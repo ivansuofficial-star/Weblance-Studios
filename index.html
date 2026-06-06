@@ -1,0 +1,2263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weblance Studios — Build Fast. Launch Faster.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #4b7bf5;
+      --blue-dim: rgba(75, 123, 245, 0.15);
+      --orange: #ff6c3d;
+      --grey-900: #131518;
+      --grey-800: #222529;
+      --grey-700: #343940;
+      --grey-600: #4b515b;
+      --grey-500: #6c7584;
+      --grey-300: #a1a7b2;
+    }
+
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+      line-height: 1.25;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: #000; color: #fff; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2em;
+      height: 62px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      white-space: nowrap;
+      height: 1.5em;
+    }
+
+    /* Wrapper gives us inline text flow for the characters */
+    .logo-text {
+      display: inline-block;
+      font-size: 1.0625em;
+      letter-spacing: -0.02em;
+      line-height: 1.5em;
+      vertical-align: middle;
+    }
+
+    /* Keep chars — always visible, never touch opacity */
+    .lk {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    /* Go chars — collapse via font-size so they physically close up */
+    .lg {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+      font-size: 1em;
+      opacity: 1;
+      /* scroll UP: expand back slowly (1s) */
+      transition:
+        font-size 1s cubic-bezier(0.51, 0, 0.08, 1),
+        opacity   0.6s ease-out;
+    }
+
+    nav.scrolled .lg {
+      font-size: 0;
+      opacity: 0;
+      /* scroll DOWN: collapse at current speed, opacity quick */
+      transition:
+        font-size 0.85s cubic-bezier(0.51, 0, 0.08, 1),
+        opacity   0.18s ease-in;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2em;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--grey-300);
+      text-decoration: none;
+      font-size: 0.875em;
+      font-weight: 500;
+      transition: color 0.2s cubic-bezier(0.51, 0, 0.08, 1);
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .nav-actions { display: flex; align-items: center; gap: 0.75em; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+      padding: 0.55em 1.2em;
+      border-radius: 6px;
+      font-size: 0.875em;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.25s cubic-bezier(0.51, 0, 0.08, 1),
+                  transform 0.2s cubic-bezier(0.51, 0, 0.08, 1),
+                  box-shadow 0.25s cubic-bezier(0.51, 0, 0.08, 1);
+    }
+    .btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+    .btn:active { transform: translateY(1px); }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 0 0 rgba(75,123,245,0);
+    }
+    .btn-primary:hover {
+      background: #1a7de8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(75,123,245,0.35);
+    }
+
+    /* ── Ramotion-style sweep button ── */
+    .btn-glow {
+      display: inline-flex;
+      align-items: stretch;
+      background: #262626;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 1em;
+      letter-spacing: -0.01em;
+      border-radius: 40px;
+      border: 2px solid #262626;
+      overflow: hidden;
+      position: relative;
+      text-decoration: none;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+    .btn-glow:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+    }
+    .btn-glow .rb-default {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #262626;
+      color: #fff;
+      border-radius: 38px;
+      z-index: 1;
+      white-space: nowrap;
+      transition: opacity 0.3s;
+    }
+    .btn-glow .rb-hover {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #262626;
+      font-weight: 500;
+      white-space: nowrap;
+      visibility: hidden;
+      opacity: 0;
+      z-index: 3;
+      transition: opacity 0.3s;
+    }
+    .btn-glow .rb-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 38px;
+      background: #fafafa;
+      transform: scaleX(0);
+      transform-origin: right center;
+      z-index: 2;
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-glow:hover .rb-overlay {
+      transform: scaleX(1);
+      transform-origin: left center;
+    }
+    .btn-glow:hover .rb-hover {
+      opacity: 1;
+      visibility: visible;
+    }
+    .btn-glow:active { opacity: 0.85; }
+
+    /* Blue idle variant for nav Get Started */
+    .btn-glow-blue {
+      background: #4b7bf5;
+      border-color: #4b7bf5;
+      box-shadow: 0 0 18px rgba(75,123,245,0.35), 0 2px 8px rgba(75,123,245,0.25);
+    }
+    .btn-glow-blue .rb-default { background: #4b7bf5; color: #fff; }
+    .btn-glow-blue .rb-hover   { color: #4b7bf5; font-weight: 600; }
+    .btn-glow-blue .rb-overlay { background: #f0f4ff; }
+    .btn-glow-blue:hover {
+      box-shadow: 0 0 28px rgba(75,123,245,0.5), 0 4px 16px rgba(75,123,245,0.3);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--grey-300);
+      border: 1px solid var(--grey-700);
+    }
+    .btn-ghost:hover {
+      color: #fff;
+      border-color: var(--grey-500);
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* ── Footer accordion pills ── */
+    .fp {
+      background: #262626;
+      border: 2px solid #262626;
+      border-radius: 40px;
+      overflow: hidden;
+      transition: border-radius 0.38s cubic-bezier(0.4,0,0.2,1);
+      min-width: 140px;
+    }
+    .fp.open { border-radius: 18px; }
+
+    .fp-btn {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .fp-d {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      padding: 0.72em 2.8em 0.72em 1.4em;
+      width: 100%;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8125em;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      white-space: nowrap;
+      background: transparent;
+    }
+    .fp-h {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      padding: 0.72em 2.8em 0.72em 1.4em;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8125em;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 3;
+      transition: opacity 0.3s;
+    }
+    .fp-ov {
+      position: absolute;
+      inset: 0;
+      background: #fafafa;
+      transform: scaleX(0);
+      transform-origin: right center;
+      z-index: 2;
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fp-btn:hover .fp-ov  { transform: scaleX(1); transform-origin: left center; }
+    .fp-btn:hover .fp-h   { opacity: 1; visibility: visible; }
+
+    .fp-ic {
+      position: absolute;
+      right: 1em;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 1.1em;
+      font-weight: 300;
+      line-height: 1;
+      z-index: 5;
+      pointer-events: none;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), color 0.2s;
+    }
+    .fp.open .fp-ic      { transform: translateY(-50%) rotate(45deg); color: rgba(255,255,255,0.9); }
+    .fp-btn:hover .fp-ic { color: rgba(0,0,0,0.45); }
+
+    /* Expanding content */
+    .fp-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fp-body > div { overflow: hidden; }
+    .fp.open .fp-body { grid-template-rows: 1fr; }
+
+    .fp-body a, .fp-body span.fp-item {
+      display: block;
+      color: var(--grey-300);
+      text-decoration: none;
+      font-size: 0.9375em;
+      padding: 0.3em 1.4em;
+      transition: color 0.2s;
+    }
+    .fp-body > div > a:first-child,
+    .fp-body > div > span:first-child { padding-top: 0.6em; }
+    .fp-body > div > a:last-child,
+    .fp-body > div > span:last-child  { padding-bottom: 0.9em; }
+    .fp-body a:hover { color: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding-top: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* WebGL shader canvas — fills the hero behind all content */
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      padding: 0 2em;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      padding: 0.35em 1em;
+      background: rgba(19,21,24,0.8);
+      border: 1px solid var(--grey-800);
+      border-radius: 100px;
+      font-size: 0.8125em;
+      color: var(--grey-300);
+      margin-bottom: 2.5em;
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 6px rgba(75,123,245,0.8);
+    }
+
+    .hero-heading {
+      font-size: clamp(3rem, 6.5vw, 6rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub {
+      font-size: 1.125em;
+      color: #ffffff;
+      line-height: 1.7;
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75em;
+      flex-wrap: wrap;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--grey-800) 30%, var(--grey-800) 70%, transparent 100%);
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2em;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      padding: 5em 2em;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--grey-900);
+      border: 1px solid var(--grey-800);
+      border-radius: 14px;
+      padding: 1.75em;
+      transition:
+        border-color 0.3s cubic-bezier(0.51, 0, 0.08, 1),
+        transform 0.3s cubic-bezier(0.51, 0, 0.08, 1),
+        box-shadow 0.3s cubic-bezier(0.51, 0, 0.08, 1);
+    }
+    .card:hover {
+      border-color: var(--grey-700);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25em;
+    }
+
+    /* ── CODE BLOCK ── */
+    pre.code-block {
+      background: #080a0c;
+      border: 1px solid var(--grey-800);
+      border-radius: 10px;
+      padding: 1.75em;
+      font-family: 'Courier New', 'Consolas', monospace;
+      font-size: 0.8125em;
+      line-height: 1.65;
+      overflow-x: auto;
+      color: #c9d1d9;
+    }
+    .kw { color: var(--blue); }
+    .str { color: var(--orange); }
+    .cmt { color: var(--grey-600); }
+    .fn { color: #79c0ff; }
+
+    /* ── GRID ── */
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25em; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; }
+    .grid-2-text { display: grid; grid-template-columns: 1fr 1fr; gap: 4em; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25em; }
+
+    /* ── DARK MODE TOGGLE ── */
+    .wl-toggle { position:relative; display:inline-block; width:3.5em; height:2em; cursor:pointer; }
+    .wl-toggle input { opacity:0; width:0; height:0; position:absolute; }
+    .wl-toggle-slider { position:absolute; inset:0; border-radius:30px; background:#9B9EA0; transition:background 0.5s; }
+    .wl-toggle-slider::before { content:''; position:absolute; height:1.4em; width:1.4em; border-radius:50%; left:10%; bottom:15%; background:#9B9EA0; box-shadow:inset 8px -4px 0px 0px #fff000; transition:transform 0.5s, box-shadow 0.5s; }
+    .wl-toggle input:checked + .wl-toggle-slider { background:#7a7d7f; }
+    .wl-toggle input:checked + .wl-toggle-slider::before { transform:translateX(100%); box-shadow:inset 15px -4px 0px 15px #fff000; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-size: 0.875em;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8c95a4;
+      margin-bottom: 1.5em;
+    }
+
+    /* ── BIG NUMBER ── */
+    .stat-number {
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      background: linear-gradient(135deg, #fff 0%, var(--grey-300) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── COMPARISON ── */
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 0.875em;
+      padding: 0.875em 1em;
+      border-radius: 8px;
+      font-size: 0.875em;
+      line-height: 1.5;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 4em 2em 2.5em;
+      border-top: 1px solid var(--grey-800);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.7s cubic-bezier(0.51, 0, 0.08, 1) both; }
+    .fade-up-d1 { animation-delay: 0.1s; }
+    .fade-up-d2 { animation-delay: 0.2s; }
+    .fade-up-d3 { animation-delay: 0.3s; }
+
+    /* ── TERMINAL TOP BAR ── */
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.75em 1em;
+      border-bottom: 1px solid var(--grey-800);
+      background: #0d0f11;
+      border-radius: 10px 10px 0 0;
+    }
+    .t-dot { width: 11px; height: 11px; border-radius: 50%; }
+
+    /* ── TICKER STRIP ── */
+    .ticker {
+      overflow: hidden;
+      border-top: 1px solid var(--grey-800);
+      border-bottom: 1px solid var(--grey-800);
+      padding: 0.875em 0;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 3em;
+      animation: ticker 25s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes ping {
+      0%        { transform: scale(1);   opacity: 0.8; }
+      75%, 100% { transform: scale(2.2); opacity: 0;   }
+    }
+    .ping-ring { animation: ping 1.5s cubic-bezier(0,0,0.2,1) infinite; }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-size: 0.8125em;
+      color: var(--grey-500);
+    }
+    .ticker-item strong { color: #fff; }
+
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+      .grid-2-text { grid-template-columns: 1fr; gap: 2.5em; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+nav .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav>
+  <a href="/" class="nav-logo" id="nav-logo"><span class="logo-text"><span class="lk">W</span><span class="lg">e</span><span class="lg">b</span><span class="lk lmid">l</span><span class="lg">a</span><span class="lg">n</span><span class="lg">c</span><span class="lg">e</span><span class="lg"> </span><span class="lk">S</span><span class="lg">t</span><span class="lg">u</span><span class="lg">d</span><span class="lg">i</span><span class="lg">o</span><span class="lg">s</span></span></a>
+
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#device-section" style="display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;">Device<span>Friendly</span></a></li>
+    <li><a href="#transformation">Transformation</a></li>
+    <li><a href="#why-us-section">Why Us?</a></li>
+    <li><a href="#business-impact" style="display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;">Business<span>Impact</span></a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="#" class="btn-glow btn-glow-blue">
+      <span class="rb-default" style="padding:0.65em 1.5em;">Get Started →</span>
+      <span class="rb-hover"   style="padding:0.65em 1.5em;">Get Started →</span>
+      <span class="rb-overlay"></span>
+    </a>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero" id="hero">
+  <canvas id="hero-canvas"></canvas>
+
+  <div class="hero-content fade-up">
+<h1 class="hero-heading">Built from scratch.<br/>Built to last.</h1>
+
+    <p class="hero-sub">
+      Your website should be working for you 24/7 — bringing in leads,
+      building trust, and turning visitors into paying customers.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#" class="btn-glow" style="font-size:1em;">
+        <span class="rb-default" style="padding:0.75em 2em;">Let's Talk →</span>
+        <span class="rb-hover"   style="padding:0.75em 2em;">Let's Talk →</span>
+        <span class="rb-overlay"></span>
+      </a>
+      <a href="pricing.html" class="btn btn-ghost" style="padding:0.875em 2.25em; font-size:1em; border-radius:40px;">Pricing</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TICKER ══════════════ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><strong>80+</strong> Websites Delivered</span>
+    <span class="ticker-item">✦</span>
+    <span class="ticker-item"><strong>99+</strong> Trusted Clients</span>
+    <span class="ticker-item">✦</span>
+    <span class="ticker-item">Fully Custom To Your Liking</span>
+    <span class="ticker-item">✦</span>
+    <span class="ticker-item">High Quality Sites</span>
+    <span class="ticker-item">✦</span>
+    <span class="ticker-item"><strong>100+</strong> Completed Projects</span>
+    <span class="ticker-item">✦</span>
+    <span class="ticker-item"><strong>48 Hour</strong> Delivery Time</span>
+    <span class="ticker-item">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><strong>80+</strong> Websites Delivered</span>
+    <span class="ticker-item">✦</span>
+    <span class="ticker-item"><strong>99+</strong> Trusted Clients</span>
+    <span class="ticker-item">✦</span>
+    <span class="ticker-item">Fully Custom To Your Liking</span>
+    <span class="ticker-item">✦</span>
+    <span class="ticker-item">High Quality Sites</span>
+    <span class="ticker-item">✦</span>
+    <span class="ticker-item"><strong>100+</strong> Completed Projects</span>
+    <span class="ticker-item">✦</span>
+    <span class="ticker-item"><strong>48 Hour</strong> Delivery Time</span>
+    <span class="ticker-item">✦</span>
+  </div>
+</div>
+
+<!-- ══════════════ DEVICE SCROLL PREVIEW ══════════════ -->
+<section id="device-section" style="min-height:75rem; display:flex; align-items:center; justify-content:center; padding:6rem 2em 4rem; position:relative; overflow:hidden;">
+
+  <!-- WebGL plasma-line shader behind the device frame -->
+  <canvas id="device-shader-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:0;"></canvas>
+
+  <div style="width:100%;max-width:64rem;margin:0 auto;perspective:1200px;position:relative;z-index:1;">
+
+    <!-- Header (translates up as you scroll) -->
+    <div id="device-header" style="text-align:center;margin-bottom:2.5rem;will-change:transform;">
+      <div class="section-label" style="justify-content:center;margin-bottom:1em;">Device Friendly</div>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-0.03em;color:#fff;line-height:1.08;margin-bottom:0.75em;">
+        No Matter The Device<br/>Your Website Will Generate Leads
+      </h2>
+      <p id="device-subtitle" style="color:var(--grey-500);font-size:1.0625em;line-height:1.7;max-width:480px;margin:0 auto;transition:color 0.8s cubic-bezier(0.51,0,0.08,1),text-shadow 0.8s cubic-bezier(0.51,0,0.08,1);">
+        A digital experience no matter the device
+      </p>
+    </div>
+
+    <!-- Device frame (rotates from tilted → flat as you scroll) -->
+    <div id="device-card" style="
+      margin: -3rem auto 0;
+      height: 40rem;
+      width: 100%;
+      border: 4px solid #6C6C6C;
+      padding: 1.5rem;
+      background: #222222;
+      border-radius: 30px;
+      box-shadow:
+        0 0 0 #0000004d,
+        0 9px 20px #0000004a,
+        0 37px 37px #00000042,
+        0 84px 50px #00000026,
+        0 149px 60px #0000000a,
+        0 233px 65px #00000003;
+      transform: rotateX(20deg) scale(1.05);
+      transform-origin: center top;
+      will-change: transform;
+    ">
+      <div style="height:100%;overflow:hidden;border-radius:16px;background:#18181b;">
+        <img
+          src="temporary%20screenshots/screenshot-1-preview.png"
+          alt="Weblance Studios website preview"
+          style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ BEFORE / AFTER SLIDER ══════════════ -->
+<section id="transformation" class="section" style="padding-top:5em;padding-bottom:5em;">
+  <div class="container">
+
+    <div style="text-align:center;margin-bottom:2.5em;">
+      <div class="section-label" style="justify-content:center;margin-bottom:1em;">Transformation</div>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-0.03em;color:#fff;line-height:1.08;margin-bottom:0.75em;">See the difference</h2>
+      <p style="color:#ffffff;font-size:1.0625em;line-height:1.7;max-width:480px;margin:0 auto;text-shadow:0 0 18px rgba(255,255,255,0.9),0 0 40px rgba(255,255,255,0.5),0 0 8px rgba(75,123,245,0.6);">Drag the slider to compare before and after a Weblance Studios build.</p>
+    </div>
+
+    <div id="img-comparison" style="position:relative;width:100%;aspect-ratio:16/7;overflow:hidden;border-radius:16px;border:1px solid var(--grey-800);cursor:ew-resize;user-select:none;box-shadow:0 24px 80px rgba(0,0,0,0.5);">
+
+      <!-- ── AFTER: animated WebGL shader (base layer) ── -->
+      <canvas id="after-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;"></canvas>
+
+      <!-- ── AFTER: commercial lighting company landing page overlay ── -->
+      <div style="position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;padding:2em;text-align:center;">
+        <p style="font-size:clamp(0.6rem,1.2vw,0.85rem);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin:0 0 0.75em;">Lumex Commercial</p>
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.4rem,3.5vw,3.2rem);font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1.05;margin:0 0 0.6em;">Illuminate<br/>Your Space</h1>
+        <p style="color:rgba(255,255,255,0.6);font-size:clamp(0.65rem,1.3vw,0.95rem);line-height:1.6;margin:0 0 1.4em;max-width:360px;">Custom commercial lighting designed to transform warehouses, retail floors, and offices into high-impact environments.</p>
+        <div style="display:flex;align-items:center;gap:0.5em;margin-bottom:1.4em;">
+          <span style="position:relative;display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;">
+            <span class="ping-ring" style="position:absolute;inset:0;border-radius:50%;background:#22c55e;"></span>
+            <span style="position:relative;width:7px;height:7px;border-radius:50%;background:#22c55e;display:block;"></span>
+          </span>
+          <span style="font-size:clamp(0.6rem,1.1vw,0.8rem);color:#22c55e;font-weight:500;">Now Accepting New Projects</span>
+        </div>
+        <div style="padding:0.6em 1.6em;background:rgba(75,123,245,0.85);border:1px solid rgba(75,123,245,0.5);border-radius:100px;color:#fff;font-size:clamp(0.65rem,1.2vw,0.875rem);font-weight:600;box-shadow:0 0 28px rgba(75,123,245,0.45),0 0 60px rgba(75,123,245,0.15);">
+          Get a Free Quote →
+        </div>
+      </div>
+
+      <!-- ── BEFORE: plain boring template-style site ── -->
+      <div id="cmp-clip" style="position:absolute;inset:0;z-index:2;clip-path:polygon(0 0,50% 0,50% 100%,0 100%);pointer-events:none;overflow:hidden;">
+        <div style="width:100%;height:100%;background:#f4f4f4;overflow:hidden;font-family:Arial,Helvetica,sans-serif;display:flex;flex-direction:column;">
+
+          <!-- Nav -->
+          <div style="background:#fff;border-bottom:1px solid #ddd;padding:0 24px;height:48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+            <div style="font-size:15px;font-weight:bold;color:#222;">LightCo</div>
+            <div style="display:flex;gap:20px;">
+              <a href="#" style="font-size:12px;color:#555;text-decoration:none;">Home</a>
+              <a href="#" style="font-size:12px;color:#555;text-decoration:none;">About</a>
+              <a href="#" style="font-size:12px;color:#555;text-decoration:none;">Services</a>
+              <a href="#" style="font-size:12px;color:#555;text-decoration:none;">Contact</a>
+            </div>
+            <div style="background:#3d85c8;color:#fff;font-size:11px;padding:7px 16px;border-radius:3px;font-weight:bold;">Get Quote</div>
+          </div>
+
+          <!-- Hero -->
+          <div style="background:#3d85c8;padding:32px 24px;text-align:center;flex-shrink:0;">
+            <div style="font-size:22px;font-weight:bold;color:#fff;margin-bottom:8px;">Welcome to LightCo</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.85);margin-bottom:18px;">Your trusted commercial lighting provider since 2008.</div>
+            <div style="display:inline-block;background:#fff;color:#3d85c8;font-size:11px;font-weight:bold;padding:8px 20px;border-radius:3px;">Learn More</div>
+          </div>
+
+          <!-- 3-col cards -->
+          <div style="display:flex;gap:12px;padding:20px 24px;flex-shrink:0;">
+            <div style="flex:1;background:#fff;border:1px solid #e0e0e0;border-top:3px solid #3d85c8;padding:14px;">
+              <div style="font-size:13px;font-weight:bold;color:#222;margin-bottom:6px;">Our Services</div>
+              <div style="font-size:11px;color:#666;line-height:1.6;">Lighting solutions for offices, warehouses, retail stores and more.</div>
+            </div>
+            <div style="flex:1;background:#fff;border:1px solid #e0e0e0;border-top:3px solid #3d85c8;padding:14px;">
+              <div style="font-size:13px;font-weight:bold;color:#222;margin-bottom:6px;">Why Choose Us</div>
+              <div style="font-size:11px;color:#666;line-height:1.6;">10+ years of experience. Reliable, affordable and on-time every time.</div>
+            </div>
+            <div style="flex:1;background:#fff;border:1px solid #e0e0e0;border-top:3px solid #3d85c8;padding:14px;">
+              <div style="font-size:13px;font-weight:bold;color:#222;margin-bottom:6px;">Contact Us</div>
+              <div style="font-size:11px;color:#666;line-height:1.6;">Call (555) 000-1234 or fill out our form to get a free on-site quote.</div>
+            </div>
+          </div>
+
+          <!-- About blurb -->
+          <div style="background:#fff;border:1px solid #e0e0e0;margin:0 24px;padding:16px;flex:1;">
+            <div style="font-size:14px;font-weight:bold;color:#222;margin-bottom:8px;">About LightCo</div>
+            <div style="font-size:11px;color:#555;line-height:1.7;">LightCo has been serving businesses across the region since 2008. We specialise in commercial and industrial lighting installations. Our certified team ensures every project is completed on time and within budget. We work with all major lighting brands and offer free on-site assessments.</div>
+          </div>
+
+          <!-- Footer -->
+          <div style="background:#e8e8e8;border-top:1px solid #d0d0d0;padding:10px 24px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;">
+            <div style="font-size:10px;color:#888;">© 2019 LightCo. All rights reserved.</div>
+            <div style="display:flex;gap:12px;">
+              <a href="#" style="font-size:10px;color:#3d85c8;text-decoration:none;">Privacy Policy</a>
+              <a href="#" style="font-size:10px;color:#3d85c8;text-decoration:none;">Sitemap</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BEFORE label -->
+      <div style="position:absolute;top:1.1em;left:1.1em;z-index:3;padding:0.3em 0.85em;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:100px;font-size:0.8em;font-weight:600;color:#fff;letter-spacing:0.06em;pointer-events:none;">BEFORE</div>
+
+      <!-- AFTER label -->
+      <div style="position:absolute;top:1.1em;right:1.1em;z-index:3;padding:0.3em 0.85em;background:rgba(75,123,245,0.6);backdrop-filter:blur(8px);border:1px solid rgba(75,123,245,0.4);border-radius:100px;font-size:0.8em;font-weight:600;color:#fff;letter-spacing:0.06em;pointer-events:none;">AFTER</div>
+
+      <!-- Handle -->
+      <div id="cmp-handle" style="position:absolute;top:0;left:calc(50% - 2px);width:4px;height:100%;z-index:3;pointer-events:none;">
+        <div style="position:absolute;inset:0;width:4px;background:rgba(255,255,255,0.65);backdrop-filter:blur(2px);"></div>
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;border-radius:50%;background:rgba(10,10,20,0.65);backdrop-filter:blur(12px);border:2px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
+          <svg width="9" height="16" viewBox="0 0 9 16" fill="none" style="margin-right:2px;"><polyline points="8,1 1,8 8,15" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="9" height="16" viewBox="0 0 9 16" fill="none" style="margin-left:2px;"><polyline points="1,1 8,8 1,15" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ START BUILDING ══════════════ -->
+<section id="why-us-section" class="section">
+  <div class="container">
+    <div class="grid-2-text">
+
+      <!-- Left: animated text -->
+      <div id="why-us-left">
+        <div class="section-label" style="color:var(--blue); font-size:1.1em; font-weight:700;"><span class="ac">W</span><span class="ac">h</span><span class="ac">y</span><span class="ac">&nbsp;</span><span class="ac">U</span><span class="ac">s</span><span class="ac">?</span></div>
+        <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:700; letter-spacing:-0.03em; color:#fff; margin-bottom:1em; line-height:1.08;"><span class="ac">C</span><span class="ac">o</span><span class="ac">d</span><span class="ac">e</span><span class="ac">d</span><span class="ac">&nbsp;</span><span class="ac">B</span><span class="ac">y</span><span class="ac">&nbsp;</span><span class="ac">U</span><span class="ac">s</span><span class="ac">.</span><br/><span class="ac">F</span><span class="ac">u</span><span class="ac">l</span><span class="ac">l</span><span class="ac">y</span><span class="ac">&nbsp;</span><span class="ac">C</span><span class="ac">u</span><span class="ac">s</span><span class="ac">t</span><span class="ac">o</span><span class="ac">m</span><span class="ac">.</span><br/><span class="ac">N</span><span class="ac">o</span><span class="ac">&nbsp;</span><span class="ac">R</span><span class="ac">i</span><span class="ac">s</span><span class="ac">k</span><span class="ac">.</span></h2>
+        <p class="why-fade" style="color:#fff; line-height:1.7; margin-bottom:2em; font-size:0.9375em;">
+          Modern, fast, custom-built websites for small businesses and personal brands — designed and delivered fully hosted so you can launch your online presence without touching a line of code.
+        </p>
+        <div class="why-fade" style="display:flex; flex-direction:column; gap:0.875em;">
+          <div style="display:flex; align-items:center; gap:0.875em; color:var(--grey-300); font-size:0.875em;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Coded By Us — We handle the dirty work
+          </div>
+          <div style="display:flex; align-items:center; gap:0.875em; color:var(--grey-300); font-size:0.875em;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Fully Custom — Decisions made by YOU, launch when YOUR ready
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:0.875em; color:var(--grey-300); font-size:0.875em;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>No Risk — Not happy with results? No charge, we work with you until you are happy with your website. <span style="color:var(--blue); font-weight:600; font-size:1.3em;">Good Results First, Happy Customers Second, Payment Last.</span></span>
+          </div>
+        </div>
+        <div class="why-fade" style="margin-top:2.5em;">
+          <a href="#" class="btn-glow">
+            <span class="rb-default" style="padding:0.75em 2em;">Get Your Site, Built Your Way →</span>
+            <span class="rb-hover"   style="padding:0.75em 2em;">Get Your Site, Built Your Way →</span>
+            <span class="rb-overlay"></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: code (letters sourced from here) -->
+      <div id="why-us-code">
+        <div class="terminal-bar">
+          <div class="t-dot" style="background:#ff5f57;"></div>
+          <div class="t-dot" style="background:#febc2e;"></div>
+          <div class="t-dot" style="background:#28c840;"></div>
+          <span style="margin-left:0.5em; font-size:0.75em; color:var(--grey-600);">weblance.ts</span>
+        </div>
+        <pre class="code-block" style="border-radius:0 0 10px 10px; border-top:none; margin:0;">
+<span class="cmt">// weblance.studio — Why Us? Simple.</span>
+<span class="kw">import</span> { <span class="fn">WebSite</span>, <span class="fn">buildCustom</span> } <span class="kw">from</span> <span class="str">'@weblance/sdk'</span>;
+
+<span class="cmt">// No risk? Fully custom? Coded By us? Yes.</span>
+<span class="kw">const</span> site = <span class="kw">await</span> <span class="fn">buildCustom</span>({
+  client:  <span class="str">'YourBusiness'</span>,   <span class="cmt">// unique to you</span>
+  style:   <span class="str">'fully-custom'</span>,   <span class="cmt">// your rules only</span>
+  hosting: <span class="str">'fully-managed'</span>,  <span class="cmt">// We handle it all</span>
+  payment: <span class="str">'results-first'</span>,  <span class="cmt">// love it or free</span>
+});
+
+<span class="kw">await</span> site.<span class="fn">deploy</span>({
+  ssl:     <span class="kw">true</span>,
+  domain:  <span class="str">'yourdomain.com'</span>,
+  regions: <span class="str">'global'</span>,
+});
+
+<span class="cmt">// ✓ Coded by us  — No skills needed</span>
+<span class="cmt">// ✓ Fully custom — your style, your Way</span>
+<span class="cmt">// ✓ No Risk      — satisfied or We fix it</span>
+console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">${site.url}</span>`</span>);
+<span class="cmt">// → weblance.io/your-business</span></pre>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var section = document.getElementById('why-us-section');
+  var codeEl  = document.getElementById('why-us-code');
+  if (!section || !codeEl) return;
+
+  var animated = false;
+  var pre = codeEl.querySelector('pre');
+
+  /* stylesheet for per-letter keyframes */
+  var kfStyle = document.createElement('style');
+  document.head.appendChild(kfStyle);
+
+  /* wrap every code char in a .cc span */
+  (function wrapCodeChars() {
+    var walker = document.createTreeWalker(pre, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [], n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(function (tn) {
+      var frag = document.createDocumentFragment();
+      for (var j = 0; j < tn.textContent.length; j++) {
+        var sp = document.createElement('span');
+        sp.className = 'cc';
+        sp.setAttribute('data-ch', tn.textContent[j].toLowerCase());
+        sp.textContent = tn.textContent[j];
+        frag.appendChild(sp);
+      }
+      tn.parentNode.replaceChild(frag, tn);
+    });
+  })();
+
+  /* hide heading chars and fade containers */
+  var targets = Array.prototype.slice.call(section.querySelectorAll('.ac'));
+  var fades   = section.querySelectorAll('.why-fade');
+  targets.forEach(function (c) { c.style.display = 'inline-block'; c.style.opacity = '0'; });
+  fades.forEach(function (el) { el.style.opacity = '0'; el.style.transform = 'translateY(14px)'; });
+
+  var observer = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting && !animated) {
+      animated = true;
+      observer.disconnect();
+      requestAnimationFrame(runAnimation);
+    }
+  }, { threshold: 0.15 });
+  observer.observe(section);
+
+  function buildPool() {
+    var pool = {};
+    pre.querySelectorAll('.cc').forEach(function (sp) {
+      var ch = sp.getAttribute('data-ch');
+      if (!pool[ch]) pool[ch] = [];
+      pool[ch].push(sp);
+    });
+    return pool;
+  }
+
+  function runAnimation() {
+    var pool     = buildPool();
+    var pointers = {};
+    var FLY_MS   = 1600;
+    var STAGGER  = 48;
+    var total    = targets.length;
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+
+    targets.forEach(function (char, i) {
+      var t = char.textContent;
+      if (t.trim() === '') { setTimeout(function () { char.style.opacity = '1'; }, i * STAGGER); return; }
+
+      var letter = t.toLowerCase();
+      if (!pointers[letter]) pointers[letter] = 0;
+      var srcArr = pool[letter];
+      var source = (srcArr && pointers[letter] < srcArr.length) ? srcArr[pointers[letter]++] : null;
+
+      setTimeout(function () {
+        if (!source) { char.style.opacity = '1'; return; }
+
+        var sR   = source.getBoundingClientRect();
+        var dR   = char.getBoundingClientRect();
+        var srcX = sR.left + sR.width  / 2;
+        var srcY = sR.top  + sR.height / 2;
+        var dstX = dR.left + dR.width  / 2;
+        var dstY = dR.top  + dR.height / 2;
+
+        /* flash source white then dim */
+        source.style.transition = 'none';
+        source.style.color = '#ffffff';
+        source.style.textShadow = '0 0 8px rgba(255,255,255,0.9)';
+        setTimeout(function () {
+          source.style.transition = 'color 0.5s ease, opacity 0.6s ease, text-shadow 0.4s ease';
+          source.style.color = '#3d6fd4';
+          source.style.opacity = '0.12';
+          source.style.textShadow = 'none';
+        }, 110);
+
+        /* curved midpoint — top / middle / bottom of screen */
+        var s1   = (i * 73  + 11) % 100 / 100;
+        var s2   = (i * 137 + 29) % 100 / 100;
+        var zone = i % 3;
+        var midX = vw * (0.08 + s1 * 0.84);
+        var midY = zone === 0 ? vh * (0.04 + s2 * 0.16)
+                 : zone === 1 ? vh * (0.38 + s2 * 0.22)
+                              : vh * (0.70 + s2 * 0.22);
+
+        var kf = 'wlf' + i;
+        kfStyle.sheet.insertRule(
+          '@keyframes ' + kf + '{' +
+          '0%{transform:translate(' + srcX + 'px,' + srcY + 'px) translate(-50%,-50%);opacity:1}' +
+          '42%{transform:translate(' + midX + 'px,' + midY + 'px) translate(-50%,-50%);opacity:1}' +
+          '100%{transform:translate(' + dstX + 'px,' + dstY + 'px) translate(-50%,-50%);opacity:0}' +
+          '}',
+          kfStyle.sheet.cssRules.length
+        );
+
+        var fly = document.createElement('span');
+        fly.textContent = t;
+        fly.style.cssText = [
+          'position:fixed','left:0','top:0',
+          'pointer-events:none','z-index:9999',
+          'font-family:inherit','font-size:1.45em','font-weight:700','line-height:1',
+          'color:#ffffff',
+          'text-shadow:0 0 3px rgba(255,255,255,0.3)',
+          'will-change:transform,opacity',
+          'animation:' + kf + ' ' + FLY_MS + 'ms cubic-bezier(0.4,0,0.15,1) forwards'
+        ].join(';');
+        document.body.appendChild(fly);
+
+        setTimeout(function () {
+          char.style.transition = 'opacity 0.35s ease';
+          char.style.opacity = '1';
+        }, FLY_MS - 200);
+
+        setTimeout(function () { if (fly.parentNode) fly.parentNode.removeChild(fly); }, FLY_MS + 400);
+
+      }, i * STAGGER);
+    });
+
+    /* fade in supporting content as a block after flying ends */
+    var endDelay = total * STAGGER + FLY_MS + 250;
+    fades.forEach(function (el, i) {
+      setTimeout(function () {
+        el.style.transition = 'opacity 0.65s ease, transform 0.65s cubic-bezier(0.34,1.2,0.64,1)';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, endDelay + i * 180);
+    });
+  }
+}());
+</script>
+
+<div class="divider"></div>
+
+<!-- ══════════════ STATS ══════════════ -->
+<section id="business-impact" class="section" style="text-align:center; padding-bottom:0.5cm; position:relative; overflow:hidden;">
+
+  <!-- Day sky background — fades in on toggle -->
+  <div id="bi-day-bg" style="
+    position:absolute;inset:0;pointer-events:none;z-index:0;
+    opacity:0;
+    transition:opacity 2.8s ease;
+    background:
+      linear-gradient(to bottom, #000000 0%, transparent 20%),
+      linear-gradient(to top,    #000000 0%, transparent 18%),
+      radial-gradient(ellipse at 17% 32%, rgba(255,240,160,0.55) 0%, transparent 44%),
+      linear-gradient(to bottom,
+        #0b3d91 0%,
+        #1565c0 16%,
+        #1e88e5 36%,
+        #64b5f6 58%,
+        #e1f5fe 74%,
+        #fff8e1 84%,
+        #ffe082 92%,
+        #ffb74d 100%
+      );
+  "></div>
+
+  <!-- Night sky background — visible by default, fades out on day -->
+  <div id="bi-night-bg" style="
+    position:absolute;inset:0;pointer-events:none;z-index:0;
+    opacity:1;transition:opacity 2s ease;overflow:hidden;
+    background:
+      linear-gradient(to bottom, #000000 0%, transparent 22%),
+      linear-gradient(to top,    #000000 0%, transparent 16%),
+      radial-gradient(ellipse at 70% 20%, rgba(60,40,120,0.45) 0%, transparent 55%),
+      radial-gradient(ellipse at 20% 60%, rgba(20,30,80,0.35) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% -5%, #1a2a5e 0%, #0d1535 40%, #04080f 80%, #000 100%);
+  "></div>
+  <script>
+  (function(){
+    var nb = document.getElementById('bi-night-bg');
+    if(!nb) return;
+    var sty = document.createElement('style');
+    sty.textContent = [
+      '@keyframes twinkle{0%{opacity:var(--to,0.9)}50%{opacity:var(--td,0.2)}100%{opacity:var(--to,0.9)}}',
+      '@keyframes shoot{0%{transform:translate(0,0) rotate(-38deg);opacity:0}6%{opacity:1}100%{transform:translate(-700px,520px) rotate(-38deg);opacity:0}}'
+    ].join('');
+    document.head.appendChild(sty);
+
+    /* ── static stars ── */
+    var rng = 42;
+    function sr(){rng=(rng*1664525+1013904223)&0xffffffff;return(rng>>>0)/4294967295;}
+    for(var i=0;i<220;i++){
+      var d=document.createElement('div');
+      var sz=0.5+sr()*2.2;
+      var op=(0.35+sr()*0.65).toFixed(2);
+      var td=(0.08+sr()*0.35).toFixed(2);
+      var dur=(2.5+sr()*4).toFixed(1);
+      var del=(sr()*5).toFixed(2);
+      /* cluster stars more towards upper 70% */
+      var tx=(sr()*100).toFixed(2);
+      var ty=(sr()*sr()*100).toFixed(2);
+      /* slight blue/white tint variation */
+      var hue=['#ffffff','#cce0ff','#e8d8ff','#fff8e0'][Math.floor(sr()*4)];
+      d.style.cssText='position:absolute;border-radius:50%;pointer-events:none;'
+        +'left:'+tx+'%;top:'+ty+'%;'
+        +'width:'+sz.toFixed(1)+'px;height:'+sz.toFixed(1)+'px;'
+        +'background:'+hue+';'
+        +'--to:'+op+';--td:'+td+';'
+        +'animation:twinkle '+dur+'s '+del+'s ease-in-out infinite;';
+      nb.appendChild(d);
+    }
+
+    /* ── shooting stars ── */
+    for(var j=0;j<6;j++){
+      var s=document.createElement('div');
+      var w=(70+sr()*100).toFixed(0);
+      var top=(5+sr()*45).toFixed(1);
+      var right=(5+sr()*65).toFixed(1);
+      var dur2=(1.2+sr()*0.9).toFixed(2);
+      var del2=(j*2.8+sr()*3).toFixed(2);
+      s.style.cssText='position:absolute;pointer-events:none;'
+        +'top:'+top+'%;right:'+right+'%;'
+        +'width:'+w+'px;height:1.5px;border-radius:2px;'
+        +'background:linear-gradient(to left,transparent 0%,rgba(255,255,255,0.15) 30%,rgba(255,255,255,0.95) 100%);'
+        +'box-shadow:0 0 4px 1px rgba(200,220,255,0.6);'
+        +'opacity:0;'
+        +'animation:shoot '+dur2+'s ease-in '+del2+'s infinite;';
+      nb.appendChild(s);
+    }
+  })();
+  </script>
+
+  <!-- 1/3 Crescent Moon -->
+  <svg id="moon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="position:absolute;top:calc(1.8em + 1cm);left:calc(50% - 5in - 66px);width:132px;height:132px;pointer-events:none;transition:opacity 0.8s ease;opacity:1;z-index:2;">
+    <defs>
+      <radialGradient id="moon-surf" cx="32%" cy="35%" r="68%">
+        <stop offset="0%" stop-color="#d0d8f8"/>
+        <stop offset="45%" stop-color="#8e9be0"/>
+        <stop offset="100%" stop-color="#5c68c4"/>
+      </radialGradient>
+      <mask id="cres-mask">
+        <circle cx="50" cy="50" r="42" fill="white"/>
+        <circle cx="74" cy="44" r="40" fill="black"/>
+      </mask>
+    </defs>
+
+    <!-- Ghost full-moon dark side (very faint) -->
+    <circle cx="50" cy="50" r="42" fill="rgba(30,28,60,0.28)" stroke="rgba(120,110,200,0.12)" stroke-width="0.8"/>
+
+    <!-- Crescent body -->
+    <circle cx="50" cy="50" r="42" fill="url(#moon-surf)" mask="url(#cres-mask)"/>
+
+    <!-- Edge shading -->
+    <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(40,30,100,0.3)" stroke-width="3.5" mask="url(#cres-mask)"/>
+
+    <!-- Large crater top -->
+    <circle cx="28" cy="36" r="6" fill="rgba(30,20,80,0.18)" mask="url(#cres-mask)"/>
+    <circle cx="28" cy="36" r="6" fill="none" stroke="rgba(60,50,140,0.45)" stroke-width="1" mask="url(#cres-mask)"/>
+    <circle cx="27" cy="35" r="2.2" fill="rgba(210,220,255,0.18)" mask="url(#cres-mask)"/>
+
+    <!-- Large crater bottom -->
+    <circle cx="34" cy="61" r="5" fill="rgba(30,20,80,0.16)" mask="url(#cres-mask)"/>
+    <circle cx="34" cy="61" r="5" fill="none" stroke="rgba(60,50,140,0.4)" stroke-width="0.9" mask="url(#cres-mask)"/>
+    <circle cx="33" cy="60" r="1.8" fill="rgba(210,220,255,0.15)" mask="url(#cres-mask)"/>
+
+    <!-- Medium crater -->
+    <circle cx="20" cy="52" r="3.2" fill="rgba(30,20,80,0.15)" mask="url(#cres-mask)"/>
+    <circle cx="20" cy="52" r="3.2" fill="none" stroke="rgba(60,50,140,0.35)" stroke-width="0.7" mask="url(#cres-mask)"/>
+
+    <!-- Small craters -->
+    <circle cx="30" cy="47" r="2" fill="rgba(30,20,80,0.13)" mask="url(#cres-mask)"/>
+    <circle cx="30" cy="47" r="2" fill="none" stroke="rgba(60,50,140,0.30)" stroke-width="0.6" mask="url(#cres-mask)"/>
+    <circle cx="24" cy="42" r="1.4" fill="rgba(30,20,80,0.12)" mask="url(#cres-mask)"/>
+    <circle cx="24" cy="42" r="1.4" fill="none" stroke="rgba(60,50,140,0.28)" stroke-width="0.5" mask="url(#cres-mask)"/>
+    <circle cx="37" cy="52" r="1.2" fill="rgba(30,20,80,0.11)" mask="url(#cres-mask)"/>
+    <circle cx="22" cy="62" r="1.0" fill="rgba(30,20,80,0.10)" mask="url(#cres-mask)"/>
+
+    <!-- Highlight streak -->
+    <path d="M16,46 Q20,33 29,27" stroke="rgba(200,210,255,0.45)" stroke-width="2" fill="none" stroke-linecap="round" mask="url(#cres-mask)"/>
+  </svg>
+
+  <!-- Sun (visible in day state) — starts off-screen bottom-right -->
+  <svg id="sun-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" style="position:absolute;top:calc(1.8em + 1cm);left:calc(50% - 5in - 66px);width:120px;height:120px;pointer-events:none;opacity:0;transform:translate(-480px,260px);transition:none;z-index:2;">
+    <defs>
+      <radialGradient id="sun-grad" cx="50%" cy="45%" r="55%">
+        <stop offset="0%" stop-color="#fffde7"/>
+        <stop offset="35%" stop-color="#ffe066"/>
+        <stop offset="100%" stop-color="#ffa000"/>
+      </radialGradient>
+      <filter id="sun-blur" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="5" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <!-- Outer soft glow -->
+    <circle cx="60" cy="60" r="46" fill="#FFD700" opacity="0.12" filter="url(#sun-blur)"/>
+    <!-- Rays -->
+    <g transform="translate(60,60)" stroke="#FFB300" stroke-linecap="round" fill="none">
+      <line y1="-38" y2="-50" stroke-width="3"/>
+      <g transform="rotate(45)"><line y1="-38" y2="-50" stroke-width="2.5"/></g>
+      <g transform="rotate(90)"><line y1="-38" y2="-50" stroke-width="3"/></g>
+      <g transform="rotate(135)"><line y1="-38" y2="-50" stroke-width="2.5"/></g>
+      <g transform="rotate(180)"><line y1="-38" y2="-50" stroke-width="3"/></g>
+      <g transform="rotate(225)"><line y1="-38" y2="-50" stroke-width="2.5"/></g>
+      <g transform="rotate(270)"><line y1="-38" y2="-50" stroke-width="3"/></g>
+      <g transform="rotate(315)"><line y1="-38" y2="-50" stroke-width="2.5"/></g>
+    </g>
+    <!-- Sun body -->
+    <circle cx="60" cy="60" r="28" fill="url(#sun-grad)"/>
+    <!-- Subtle inner highlight -->
+    <ellipse cx="52" cy="52" rx="10" ry="7" fill="rgba(255,255,220,0.25)" transform="rotate(-20,52,52)"/>
+  </svg>
+
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="section-label" style="justify-content:center;">Business Impact</div>
+    <div class="stat-number" style="letter-spacing:0.02em; font-weight:500; font-family:'Playfair Display',serif;"><span style="-webkit-text-fill-color:#fef08a;">Day</span> <span style="-webkit-text-fill-color:rgba(255,255,255,0.4); font-family:Arial,sans-serif; font-weight:400;">&amp;</span> <span style="-webkit-text-fill-color:#a5b4fc;">Night</span></div>
+    <p style="color:#ffffff; margin-top:1em; font-size:1em;">A website not only can generate more leads, but it can also work for you 24/7 — selling, converting, and growing your business while you sleep, completely making a day <span style="font-family:Arial,sans-serif; font-weight:400;">&amp;</span> night difference.</p>
+
+    <div style="max-width:660px; margin:4em auto 0; display:grid; grid-template-columns:1fr 1fr 1fr; align-items:flex-end; justify-items:center;">
+      <div>
+        <div id="stat-label-1" style="font-size:1.1em; font-weight:600; color:#a5b4fc; transition:color 0.6s ease;">Few clients</div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:0.4em; transform:translateY(-0.5cm);">
+          <div style="display:flex; align-items:center; gap:0.4em;">
+            <div style="font-size:0.95em; font-weight:500; color:#ffffff; letter-spacing:0.08em; text-transform:uppercase;">click</div>
+            <div style="font-size:0.95em; font-weight:500; color:#ffffff; letter-spacing:0.08em; text-transform:uppercase;">me</div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 22 22" style="filter:drop-shadow(1px 1px 0px #000);">
+              <path d="M4,2 L4,17 L7.5,13.5 L10.8,19.5 L13,18.4 L9.7,12.5 L15,12.5 Z" fill="#ffffff" stroke="#000000" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <label class="wl-toggle">
+            <input type="checkbox" id="dark-mode-toggle">
+            <span class="wl-toggle-slider"></span>
+          </label>
+        </div>
+        <div id="stat-label-2" style="font-size:1.1em; font-weight:600; color:#a5b4fc; transition:color 0.6s ease; text-align:center; line-height:1.3;">One time buyers</div>
+      </div>
+      <div>
+        <div id="stat-label-3" style="font-size:1.1em; font-weight:600; color:#a5b4fc; transition:color 0.6s ease;">Unsatisfied customers</div>
+      </div>
+    </div>
+
+    <!-- Dead grass & flowers strip -->
+    <div id="dead-grass-strip" style="width:100%;margin-top:2em;margin-bottom:0;overflow:visible;"></div>
+    <script>
+    (function(){
+      var aStyle=document.createElement('style');
+      aStyle.textContent=[
+        '@keyframes grass-sway{0%{transform:rotate(-2.5deg)}100%{transform:rotate(2.5deg)}}',
+        '@keyframes sparkle-pop{0%{r:0;opacity:1}60%{r:4;opacity:1}100%{r:6;opacity:0}}'
+      ].join('');
+      document.head.appendChild(aStyle);
+
+      var W=1400,H=236,BY=236;
+      var NS='http://www.w3.org/2000/svg';
+      var seed=77;
+      function rand(){seed=(seed*1664525+1013904223)&0xffffffff;return(seed>>>0)/4294967295;}
+      function mk(tag,attrs,styleObj){
+        var e=document.createElementNS(NS,tag);
+        if(attrs)for(var k in attrs)e.setAttribute(k,attrs[k]);
+        if(styleObj)for(var s in styleObj)e.style[s]=styleObj[s];
+        return e;
+      }
+      function scaleGroup(deadScale){
+        var g=mk('g',null,{
+          transformBox:'fill-box',transformOrigin:'50% 100%',
+          transform:'scaleY('+deadScale+')'
+        });
+        return g;
+      }
+
+      var svg=mk('svg',{'viewBox':'0 0 '+W+' '+H,'preserveAspectRatio':'xMidYMax meet'},{
+        width:'100%',height:'236px',display:'block',overflow:'visible'
+      });
+
+      var deadGc=['#8B7A52','#7A6B45','#A09060','#5C4F30','#C8B080','#6B5E38'];
+      var liveGc=['#4CAF50','#66BB6A','#43A047','#2E7D32','#81C784','#388E3C','#56ab2f'];
+      var flowerColors=['#E91E63','#9C27B0','#FF5722','#FF9800','#FF4081','#7B1FA2','#F44336','#FFC107','#03A9F4'];
+
+      var blades=[];
+      for(var i=0;i<140;i++){
+        var bx=(i/140)*W+(rand()*18-9);
+        var bh=55+rand()*100;
+        var bw=1.0+rand()*1.2;
+        var lx=(rand()-0.5)*32;
+        var dc=deadGc[Math.floor(rand()*deadGc.length)];
+        var ac=liveGc[Math.floor(rand()*liveGc.length)];
+        /* dead scale = 28-45% of alive height */
+        var ds=(0.28+(i%7)*0.025).toFixed(3);
+        var mx=bx,my=BY,tx=bx+lx,ty=BY-bh;
+        var clx=bx+lx*0.55-bw,cly=BY-bh*0.55;
+        var crx=bx+lx*0.55+bw,cry=BY-bh*0.55;
+        var d='M '+(mx-bw)+','+my+' C '+clx+','+cly+' '+(tx-0.5)+','+(ty+4)+' '+tx+','+ty+' C '+(tx+0.5)+','+(ty+4)+' '+crx+','+cry+' '+(mx+bw)+','+my+' Z';
+
+        var wrap=scaleGroup(ds);
+        var path=mk('path',{d:d},{
+          fill:dc,opacity:(0.75+rand()*0.25).toFixed(2),transition:'fill 0.7s ease',
+          transformBox:'fill-box',transformOrigin:'50% 100%'
+        });
+        wrap.appendChild(path);
+        svg.appendChild(wrap);
+        blades.push({wrap:wrap,path:path,x:bx,dc:dc,ac:ac,ds:ds,sw:(1.4+rand()*1.4).toFixed(2),sd:(rand()*1.2).toFixed(2),lean:(rand()-0.5)*22});
+      }
+
+      /* flowers */
+      var flowerPos=[55,170,295,430,570,700,840,970,1100,1230,1360];
+      var flowers=[];
+      flowerPos.forEach(function(fx){
+        var fh=100+rand()*55;
+        var sl=(rand()-0.5)*14;
+        var hx=fx+sl,hy=BY-fh;
+        var ac=flowerColors[Math.floor(rand()*flowerColors.length)];
+        var numP=7,pr=7+rand()*4;
+        var ds=(0.38+Math.random()*0.08).toFixed(3);
+
+        var wrap=scaleGroup(ds);
+
+        var stem=mk('path',{'d':'M'+fx+','+BY+' C'+(fx+sl*0.3)+','+(BY-fh*0.4)+' '+(hx-sl*0.2)+','+(BY-fh*0.7)+' '+hx+','+hy},{
+          stroke:'#8B5E3C',strokeWidth:'2.2',fill:'none',strokeLinecap:'round',transition:'stroke 0.6s ease'
+        });
+        var lfy=BY-fh*0.45,lfx=fx+sl*0.3,ld=(rand()>0.5?1:-1);
+        var leaf=mk('path',{'d':'M'+lfx+','+lfy+' C'+(lfx+ld*14)+','+(lfy-8)+' '+(lfx+ld*18)+','+(lfy+2)+' '+(lfx+ld*8)+','+(lfy+5)+' Z'},{
+          fill:'#5C4A28',opacity:'0.85',transition:'fill 0.5s ease'
+        });
+
+        var deadPG=mk('g',null,{transition:'opacity 0.5s ease'});
+        for(var p=0;p<numP;p++){
+          var ang=(Math.PI*0.08)+(p/(numP-1))*(Math.PI*0.84);
+          var px2=hx+Math.cos(ang)*pr*1.4,py2=hy+Math.sin(ang)*pr*1.9;
+          var cpx2=hx+Math.cos(ang)*pr*0.6,cpy2=hy+Math.sin(ang)*pr*0.5+5;
+          deadPG.appendChild(mk('path',{d:'M'+hx+','+hy+' Q'+cpx2.toFixed(1)+','+cpy2.toFixed(1)+' '+px2.toFixed(1)+','+py2.toFixed(1)},{
+            stroke:deadGc[Math.floor(rand()*3)+1],strokeWidth:'2.2',fill:'none',strokeLinecap:'round'
+          }));
+        }
+
+        var alivePG=mk('g',null,{opacity:'0',transition:'opacity 0.5s ease'});
+        var numAP=8,apr=10+rand()*3;
+        for(var p2=0;p2<numAP;p2++){
+          var a2=(p2/numAP)*Math.PI*2;
+          alivePG.appendChild(mk('ellipse',{
+            cx:(hx+Math.cos(a2)*apr*0.55).toFixed(1),cy:(hy+Math.sin(a2)*apr*0.55).toFixed(1),
+            rx:'3.8',ry:(apr*0.52).toFixed(1),
+            transform:'rotate('+(a2*180/Math.PI).toFixed(1)+' '+hx+' '+hy+')'
+          },{fill:ac,opacity:'0.92'}));
+        }
+
+        var cOuter=mk('circle',{cx:hx,cy:hy,r:'5'},{fill:'#6B5030',transition:'fill 0.4s ease'});
+        var cInner=mk('circle',{cx:hx,cy:hy,r:'2.8'},{fill:'#3D2A10',transition:'fill 0.4s ease'});
+
+        wrap.appendChild(stem);wrap.appendChild(leaf);wrap.appendChild(deadPG);
+        wrap.appendChild(alivePG);wrap.appendChild(cOuter);wrap.appendChild(cInner);
+        svg.appendChild(wrap);
+        flowers.push({x:fx,hx:hx,hy:hy,wrap:wrap,stem:stem,leaf:leaf,deadPG:deadPG,alivePG:alivePG,cOuter:cOuter,cInner:cInner,ds:ds});
+      });
+
+      /* dandelions */
+      var danPos=[120,380,640,900,1180];
+      var dans=[];
+      danPos.forEach(function(dx){
+        var dh=95+rand()*50;
+        var dhx=dx+(rand()-0.5)*10,dhy=BY-dh;
+        var ds=(0.35+Math.random()*0.1).toFixed(3);
+        var wrap=scaleGroup(ds);
+
+        var stem=mk('path',{'d':'M'+dx+','+BY+' Q'+(dx+5)+','+(BY-dh*0.5)+' '+dhx+','+dhy},{
+          stroke:'#8B5E3C',strokeWidth:'1.8',fill:'none',strokeLinecap:'round',transition:'stroke 0.5s ease'
+        });
+        wrap.appendChild(stem);
+
+        var seeds=[];
+        for(var s=0;s<14;s++){
+          var sang=((s/14)*Math.PI*2)-(Math.PI/2);
+          var slen=9+rand()*6,sx2=dhx+Math.cos(sang)*slen,sy2=dhy+Math.sin(sang)*slen;
+          var spoke=mk('path',{'d':'M'+dhx+','+dhy+' L'+sx2.toFixed(1)+','+sy2.toFixed(1)},{stroke:'#9B8B6A',strokeWidth:'0.9',fill:'none',strokeLinecap:'round',transition:'stroke 0.4s ease'});
+          var dot=mk('circle',{cx:sx2.toFixed(1),cy:sy2.toFixed(1),r:'1.4'},{fill:'#7A6848',transition:'fill 0.4s ease'});
+          wrap.appendChild(spoke);wrap.appendChild(dot);
+          seeds.push({spoke:spoke,dot:dot,ex:sx2,ey:sy2});
+        }
+        var cDot=mk('circle',{cx:dhx,cy:dhy,r:'2.8'},{fill:'#4E3D20',transition:'fill 0.4s ease'});
+        wrap.appendChild(cDot);
+        svg.appendChild(wrap);
+        dans.push({x:dx,hx:dhx,hy:dhy,wrap:wrap,stem:stem,seeds:seeds,cDot:cDot,ds:ds});
+      });
+
+      document.getElementById('dead-grass-strip').appendChild(svg);
+
+      function sparkleAt(cx,cy){
+        for(var i=0;i<8;i++){
+          var ang=(i/8)*Math.PI*2,d=12+Math.random()*10;
+          var sp=mk('circle',{cx:(cx+Math.cos(ang)*d).toFixed(1),cy:(cy+Math.sin(ang)*d).toFixed(1),r:'0'},{
+            fill:['#FFD700','#FFF9C4','#FFEB3B','#ffffff'][Math.floor(Math.random()*4)],
+            animation:'sparkle-pop 0.7s ease forwards'
+          });
+          svg.appendChild(sp);
+          setTimeout(function(s){if(s.parentNode)s.parentNode.removeChild(s);},900,sp);
+        }
+      }
+
+      /* ── Celestial arc animations ── */
+      var moonEl = document.getElementById('moon-svg');
+      var sunEl  = document.getElementById('sun-svg');
+
+      function b2(P0,P1,P2,t){
+        var m=1-t;
+        return {x:m*m*P0.x+2*m*t*P1.x+t*t*P2.x, y:m*m*P0.y+2*m*t*P1.y+t*t*P2.y};
+      }
+      function ease(t){return t<0.5?2*t*t:-1+(4-2*t)*t;}
+      function arcAnimate(el,P0,P1,P2,dur,oA,oB){
+        var t0=null;
+        el.style.transition='none';
+        function f(ts){
+          if(!t0)t0=ts;
+          var t=Math.min((ts-t0)/dur,1), e=ease(t), p=b2(P0,P1,P2,e);
+          el.style.transform='translate('+p.x.toFixed(1)+'px,'+p.y.toFixed(1)+'px)';
+          el.style.opacity=(oA+(oB-oA)*(t<0.5?ease(t*2)*0.5:0.5+ease((t-0.5)*2)*0.5)).toFixed(3);
+          if(t<1)requestAnimationFrame(f);
+          else{el.style.transform='translate('+P2.x+'px,'+P2.y+'px)';el.style.opacity=oB;}
+        }
+        requestAnimationFrame(f);
+      }
+
+      /* Arc animations */
+      function arcMoonSet(){
+        arcAnimate(moonEl,{x:0,y:0},{x:600,y:-60},{x:1500,y:20},2000,1,0);
+      }
+      function arcMoonRise(){
+        arcAnimate(moonEl,{x:-1500,y:20},{x:-600,y:-60},{x:0,y:0},2000,0,1);
+      }
+      function arcSunRise(){
+        arcAnimate(sunEl,{x:-1500,y:20},{x:-600,y:-60},{x:0,y:0},2000,0,1);
+      }
+      function arcSunSet(){
+        arcAnimate(sunEl,{x:0,y:0},{x:600,y:-60},{x:1500,y:20},2000,1,0);
+      }
+      var toggle=document.getElementById('dark-mode-toggle');
+      var alive=false;
+      toggle.addEventListener('change',function(){
+        if(this.checked&&!alive){alive=true;bringToLife();}
+        else if(!this.checked&&alive){alive=false;makeDead();}
+      });
+
+      function particleTextChange(el, newText, newColor) {
+        var rect = el.getBoundingClientRect();
+        var chars = el.textContent.split('');
+
+        function spawnSparks(count, color) {
+          for (var k = 0; k < count; k++) {
+            var pk = document.createElement('span');
+            var sz = 2 + Math.random() * 3;
+            pk.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;border-radius:50%;' +
+              'width:'+sz+'px;height:'+sz+'px;background:'+color+';' +
+              'left:'+(rect.left + Math.random()*rect.width)+'px;' +
+              'top:'+(rect.top + rect.height*0.5 + (Math.random()-0.5)*rect.height*1.2)+'px;' +
+              'opacity:1;box-shadow:0 0 6px '+color+';transition:none;';
+            document.body.appendChild(pk);
+            (function(p){
+              var dx=(Math.random()-0.5)*160, dy=(Math.random()-0.5)*90-15;
+              requestAnimationFrame(function(){
+                p.style.transition='transform 0.7s ease-out,opacity 0.65s ease-out';
+                p.style.transform='translate('+dx+'px,'+dy+'px) scale(0)';
+                p.style.opacity='0';
+                setTimeout(function(){if(p.parentNode)p.parentNode.removeChild(p);},750);
+              });
+            })(pk);
+          }
+        }
+
+        /* wrap current chars — spaces get a fixed-width placeholder, not animated */
+        el.innerHTML='';
+        var oldSpans = chars.map(function(ch){
+          if(ch==='\n'){ el.appendChild(document.createElement('br')); return null; }
+          var s=document.createElement('span');
+          if(ch===' '){ s.innerHTML='&nbsp;'; s.style.display='inline'; }
+          else { s.textContent=ch; s.style.display='inline-block'; }
+          el.appendChild(s); return s;
+        }).filter(Boolean);
+
+        spawnSparks(20, newColor);
+
+        /* scatter only non-space chars */
+        oldSpans.forEach(function(s,i){
+          if(s.style.display==='inline') return;
+          var dx=(Math.random()-0.5)*130, dy=(Math.random()-0.5)*80, rot=(Math.random()-0.5)*220;
+          setTimeout(function(){
+            s.style.transition='transform 0.38s cubic-bezier(0.4,0,1,1),opacity 0.3s ease-in';
+            s.style.transform='translate('+dx+'px,'+dy+'px) rotate('+rot+'deg) scale(0.05)';
+            s.style.opacity='0';
+          }, i*16);
+        });
+
+        var delay = chars.length*16 + 260;
+
+        /* assemble new text */
+        setTimeout(function(){
+          el.innerHTML='';
+          el.style.color=newColor;
+          spawnSparks(14, newColor);
+          newText.split('').forEach(function(ch,i){
+            if(ch==='\n'){ el.appendChild(document.createElement('br')); return; }
+            var s=document.createElement('span');
+            if(ch===' '){ s.innerHTML='&nbsp;'; s.style.display='inline'; el.appendChild(s); return; }
+            s.textContent=ch; s.style.display='inline-block';
+            var dx=(Math.random()-0.5)*120, dy=(Math.random()-0.5)*80, rot=(Math.random()-0.5)*220;
+            s.style.transform='translate('+dx+'px,'+dy+'px) rotate('+rot+'deg) scale(0.05)';
+            s.style.opacity='0';
+            el.appendChild(s);
+            setTimeout(function(){
+              s.style.transition='transform 0.55s cubic-bezier(0.34,1.56,0.64,1),opacity 0.4s ease-out';
+              s.style.transform='none';
+              s.style.opacity='1';
+            }, i*28+50);
+          });
+        }, delay);
+      }
+
+      /* ── Physics spring grow: scaleY + lean rotation ── */
+      function springGrow(wrapEl,fromSY,leanDeg,onDone){
+        var sy=parseFloat(fromSY),rz=leanDeg||0,vy=0,vz=0,k=180,damp=14,dt=1/60;
+        wrapEl.style.transition='none';
+        function tick(){
+          vy+=(k*(1-sy)-damp*vy)*dt; vz+=(k*(0-rz)-damp*vz)*dt;
+          sy+=vy*dt; rz+=vz*dt;
+          wrapEl.style.transform='scaleY('+sy.toFixed(4)+') rotate('+rz.toFixed(3)+'deg)';
+          var ok=Math.abs(1-sy)<0.0015&&Math.abs(rz)<0.05&&Math.abs(vy)<0.015&&Math.abs(vz)<0.05;
+          if(ok){wrapEl.style.transform='scaleY(1)';if(onDone)onDone();}
+          else requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      /* ── Petals bloom from center outward ── */
+      function bloomPetals(alivePG){
+        alivePG.style.opacity='1';
+        Array.from(alivePG.children).forEach(function(petal,pi){
+          var trx=parseFloat(petal.getAttribute('rx')),try_=parseFloat(petal.getAttribute('ry'));
+          petal.setAttribute('rx','0');petal.setAttribute('ry','0');
+          setTimeout(function(){
+            var t0=null,dur=540;
+            (function tick(ts){
+              if(!t0)t0=ts;
+              var t=Math.min((ts-t0)/dur,1);
+              /* spring-overshoot ease */
+              var e=t<0.6?1-Math.pow(1-t/0.6,2.4):1+(Math.sin((t-0.6)/0.4*Math.PI)*0.08*(1-t));
+              petal.setAttribute('rx',(trx*Math.min(e,1.1)).toFixed(2));
+              petal.setAttribute('ry',(try_*Math.min(e,1.1)).toFixed(2));
+              if(t<1)requestAnimationFrame(tick);
+              else{petal.setAttribute('rx',trx);petal.setAttribute('ry',try_);}
+            })(performance.now());
+          },pi*48+60);
+        });
+      }
+
+      /* ── Dandelion seeds extend radially from head ── */
+      function extendSeeds(dan){
+        dan.seeds.forEach(function(s,si){
+          setTimeout(function(){
+            var ex=s.ex,ey=s.ey,t0=null,dur=500;
+            (function tick(ts){
+              if(!t0)t0=ts;
+              var t=Math.min((ts-t0)/dur,1),ease=1-Math.pow(1-t,2.5);
+              var cx=dan.hx+(ex-dan.hx)*ease,cy=dan.hy+(ey-dan.hy)*ease;
+              s.spoke.setAttribute('d','M'+dan.hx+','+dan.hy+' L'+cx.toFixed(1)+','+cy.toFixed(1));
+              s.dot.setAttribute('cx',cx.toFixed(1));s.dot.setAttribute('cy',cy.toFixed(1));
+              if(t<1)requestAnimationFrame(tick);
+              else{s.spoke.style.stroke='#FFFDE7';s.dot.style.fill='#FFFFF0';}
+            })(performance.now());
+          },si*38);
+        });
+      }
+
+      function bringToLife(){
+        arcMoonSet(); setTimeout(arcSunRise, 400);
+        setTimeout(function(){
+          document.getElementById('bi-day-bg').style.opacity='1';
+          document.getElementById('bi-night-bg').style.opacity='0';
+        }, 600);
+        var statLabels=['stat-label-1','stat-label-2','stat-label-3'];
+        var aliveText=['New Clients','Thriving customer\nRelationships','Recurring buyers'];
+        statLabels.forEach(function(id,i){var el=document.getElementById(id);if(el) setTimeout(function(){particleTextChange(el,aliveText[i],'#fef08a');},i*120);});
+        var WAVE=1000, OFFSET=1300;
+        blades.forEach(function(b){
+          var delay=OFFSET+(b.x/W)*WAVE;
+          setTimeout(function(){
+            b.path.style.fill=b.ac;
+            springGrow(b.wrap,b.ds,b.lean,function(){
+              b.path.style.animation='grass-sway '+b.sw+'s '+b.sd+'s ease-in-out infinite alternate';
+            });
+          },delay);
+        });
+        flowers.forEach(function(f){
+          var delay=OFFSET+(f.x/W)*WAVE;
+          setTimeout(function(){
+            f.stem.style.stroke='#2E7D32';
+            f.leaf.style.fill='#4CAF50';
+            f.cOuter.style.fill='#FFC107';f.cInner.style.fill='#FF8F00';
+            f.deadPG.style.opacity='0';
+            springGrow(f.wrap,f.ds,(Math.random()-0.5)*10,null);
+            setTimeout(function(){
+              bloomPetals(f.alivePG);
+              setTimeout(function(){sparkleAt(f.hx,f.hy);},400);
+            },700);
+          },delay);
+        });
+        dans.forEach(function(d){
+          var delay=OFFSET+(d.x/W)*WAVE;
+          setTimeout(function(){
+            d.stem.style.stroke='#66BB6A';
+            d.cDot.style.fill='#FFEB3B';
+            /* collapse seeds to center so they radiate outward */
+            d.seeds.forEach(function(s){
+              s.spoke.setAttribute('d','M'+d.hx+','+d.hy+' L'+d.hx+','+d.hy);
+              s.dot.setAttribute('cx',d.hx);s.dot.setAttribute('cy',d.hy);
+            });
+            springGrow(d.wrap,d.ds,(Math.random()-0.5)*8,null);
+            setTimeout(function(){extendSeeds(d);},650);
+          },delay);
+        });
+      }
+
+      function makeDead(){
+        arcSunSet(); setTimeout(arcMoonRise, 400);
+        document.getElementById('bi-day-bg').style.opacity='0';
+        setTimeout(function(){ document.getElementById('bi-night-bg').style.opacity='1'; }, 400);
+        var statLabels=['stat-label-1','stat-label-2','stat-label-3'];
+        var deadText=['Few clients','Unsatisfied customers','One time buyers'];
+        statLabels.forEach(function(id,i){var el=document.getElementById(id);if(el) setTimeout(function(){particleTextChange(el,deadText[i],'#a5b4fc');},i*120);});
+        blades.forEach(function(b){
+          b.path.style.animation='none';
+          b.path.style.fill=b.dc;
+          b.wrap.style.transition='transform 0.75s cubic-bezier(0.4,0,0.6,1)';
+          b.wrap.style.transform='scaleY('+b.ds+')';
+        });
+        flowers.forEach(function(f){
+          f.wrap.style.transition='transform 0.75s cubic-bezier(0.4,0,0.6,1)';
+          f.wrap.style.transform='scaleY('+f.ds+')';
+          f.stem.style.stroke='#8B5E3C';f.leaf.style.fill='#5C4A28';
+          f.deadPG.style.opacity='1';f.alivePG.style.opacity='0';
+          f.cOuter.style.fill='#6B5030';f.cInner.style.fill='#3D2A10';
+        });
+        dans.forEach(function(d){
+          /* restore seeds to full-length before shrink so they scale naturally */
+          d.seeds.forEach(function(s){
+            s.spoke.setAttribute('d','M'+d.hx+','+d.hy+' L'+s.ex+','+s.ey);
+            s.dot.setAttribute('cx',s.ex);s.dot.setAttribute('cy',s.ey);
+            s.spoke.style.stroke='#9B8B6A';s.dot.style.fill='#7A6848';
+          });
+          d.wrap.style.transition='transform 0.75s cubic-bezier(0.4,0,0.6,1)';
+          d.wrap.style.transform='scaleY('+d.ds+')';
+          d.stem.style.stroke='#8B5E3C';d.cDot.style.fill='#4E3D20';
+        });
+      }
+    })();
+    </script>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ CTA BAND ══════════════ -->
+<section id="cta-launch" style="position:relative; overflow:hidden; min-height:520px; display:flex; align-items:center; justify-content:center;">
+  <!-- Three.js shader canvas fills entire section -->
+  <div id="shader-canvas-container" style="position:absolute; inset:0; z-index:0;"></div>
+  <!-- Dark overlay so text stays readable -->
+  <div style="position:absolute; inset:0; z-index:1; background:rgba(0,0,0,0.52); pointer-events:none;"></div>
+  <!-- Content -->
+  <div class="container" style="position:relative; z-index:2; padding:6em 2em; text-align:center;">
+    <p style="color:var(--blue); font-size:0.8125em; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1.25em;">Ready to Build</p>
+    <h2 style="font-size:clamp(2.25rem,5vw,4rem); font-weight:700; letter-spacing:-0.03em; color:#fff; margin-bottom:0.75em; line-height:1.08;">
+      Your Site. Your Way.
+    </h2>
+    <p style="color:rgba(255,255,255,0.6); font-size:1.125em; line-height:1.7; max-width:480px; margin:0 auto 2.5em;">
+      Transform your website into a high-converting sales engine. Custom-built, fast, and designed to grow your revenue from day one.
+    </p>
+    <div style="display:flex; align-items:center; justify-content:center; gap:0.875em; flex-wrap:wrap;">
+      <a href="#" class="btn-glow" style="font-size:1em;">
+        <span class="rb-default" style="padding:0.875em 2.25em;">Ready to Build →</span>
+        <span class="rb-hover"   style="padding:0.875em 2.25em;">Ready to Build →</span>
+        <span class="rb-overlay"></span>
+      </a>
+      <a href="pricing.html" class="btn btn-ghost" style="padding:0.875em 2.25em; font-size:1em; border-radius:40px;">Pricing</a>
+    </div>
+  </div>
+</section>
+
+<script>
+window.addEventListener('load', function(){
+(function(){
+  var container = document.getElementById('shader-canvas-container');
+  if(!container || typeof THREE === 'undefined') return;
+
+  var camera = new THREE.Camera();
+  camera.position.z = 1;
+  var scene = new THREE.Scene();
+  var geometry = new THREE.PlaneGeometry(2, 2);
+
+  var uniforms = {
+    time:       { value: 1.0 },
+    resolution: { value: new THREE.Vector2() }
+  };
+
+  var material = new THREE.ShaderMaterial({
+    uniforms: uniforms,
+    vertexShader: [
+      'void main() {',
+      '  gl_Position = vec4(position, 1.0);',
+      '}'
+    ].join('\n'),
+    fragmentShader: [
+      '#define TWO_PI 6.2831853072',
+      '#define PI 3.14159265359',
+      'precision highp float;',
+      'uniform vec2 resolution;',
+      'uniform float time;',
+      'void main(void) {',
+      '  vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x, resolution.y);',
+      '  float t = time * 0.05;',
+      '  float lineWidth = 0.002;',
+      '  vec3 color = vec3(0.0);',
+      '  for(int j = 0; j < 3; j++){',
+      '    for(int i = 0; i < 5; i++){',
+      '      color[j] += lineWidth * float(i*i) / abs(fract(t - 0.01*float(j) + float(i)*0.01)*5.0 - length(uv) + mod(uv.x+uv.y, 0.2));',
+      '    }',
+      '  }',
+      '  gl_FragColor = vec4(color[0], color[1], color[2], 1.0);',
+      '}'
+    ].join('\n')
+  });
+
+  var mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  var renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  container.appendChild(renderer.domElement);
+  renderer.domElement.style.width  = '100%';
+  renderer.domElement.style.height = '100%';
+
+  function resize() {
+    var w = container.clientWidth;
+    var h = container.clientHeight;
+    renderer.setSize(w, h);
+    uniforms.resolution.value.x = renderer.domElement.width;
+    uniforms.resolution.value.y = renderer.domElement.height;
+  }
+  resize();
+  window.addEventListener('resize', resize, false);
+
+  function animate() {
+    requestAnimationFrame(animate);
+    uniforms.time.value += 0.05;
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+});
+</script>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="container">
+
+    <div style="display:flex; flex-wrap:wrap; gap:0.75em; padding:3.5em 0 3em; align-items:flex-start;">
+
+      <!-- Social -->
+      <div class="fp" id="fp-social">
+        <button class="fp-btn" onclick="fpToggle('fp-social')" aria-expanded="false">
+          <span class="fp-d">Social</span>
+          <span class="fp-h">Social</span>
+          <span class="fp-ov"></span>
+          <span class="fp-ic">+</span>
+        </button>
+        <div class="fp-body"><div>
+          <a href="#">LinkedIn</a>
+          <a href="#">Whop</a>
+        </div></div>
+      </div>
+
+      <!-- Company -->
+      <div class="fp" id="fp-company">
+        <button class="fp-btn" onclick="fpToggle('fp-company')" aria-expanded="false">
+          <span class="fp-d">Company</span>
+          <span class="fp-h">Company</span>
+          <span class="fp-ov"></span>
+          <span class="fp-ic">+</span>
+        </button>
+        <div class="fp-body"><div>
+          <a href="#">About</a>
+          <a href="#">Process</a>
+          <a href="#">Services</a>
+        </div></div>
+      </div>
+
+      <!-- Learn -->
+      <div class="fp" id="fp-learn">
+        <button class="fp-btn" onclick="fpToggle('fp-learn')" aria-expanded="false">
+          <span class="fp-d">Learn</span>
+          <span class="fp-h">Learn</span>
+          <span class="fp-ov"></span>
+          <span class="fp-ic">+</span>
+        </button>
+        <div class="fp-body"><div>
+          <a href="#">FAQs</a>
+        </div></div>
+      </div>
+
+      <!-- Locations -->
+      <div class="fp" id="fp-locations">
+        <button class="fp-btn" onclick="fpToggle('fp-locations')" aria-expanded="false">
+          <span class="fp-d">Locations</span>
+          <span class="fp-h">Locations</span>
+          <span class="fp-ov"></span>
+          <span class="fp-ic">+</span>
+        </button>
+        <div class="fp-body"><div>
+          <span class="fp-item">Sacramento, CA</span>
+          <span class="fp-item">Elk Grove, CA</span>
+        </div></div>
+      </div>
+
+      <!-- Get in touch -->
+      <div class="fp" id="fp-contact">
+        <button class="fp-btn" onclick="fpToggle('fp-contact')" aria-expanded="false">
+          <span class="fp-d">Get in touch</span>
+          <span class="fp-h">Get in touch</span>
+          <span class="fp-ov"></span>
+          <span class="fp-ic">+</span>
+        </button>
+        <div class="fp-body"><div>
+          <a href="tel:+19166986035">+1 916 698 6035</a>
+          <a href="mailto:ivansu.official@gmail.com">Contact us</a>
+        </div></div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:1.5em 0; flex-wrap:wrap; gap:1em;">
+      <p style="color:var(--grey-600); font-size:0.8125em; margin:0;">© 2026 Weblance Studios. All rights reserved.</p>
+      <p style="color:var(--grey-600); font-size:0.8125em; margin:0;">ivansu.official@gmail.com</p>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+  function fpToggle(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var isOpen = el.classList.contains('open');
+    el.classList.toggle('open', !isOpen);
+    var btn = el.querySelector('.fp-btn');
+    if (btn) btn.setAttribute('aria-expanded', String(!isOpen));
+  }
+</script>
+
+<script>
+  // ── WebGL shader hero background ──
+  (function () {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const gl = canvas.getContext('webgl2');
+    if (!gl) return;
+
+    const vertSrc = `#version 300 es
+precision highp float;
+in vec4 position;
+void main(){gl_Position=position;}`;
+
+    // Dark space + blue star shader (ported from animated-shader-hero, orange → blue)
+    const fragSrc = `#version 300 es
+precision highp float;
+out vec4 O;
+uniform vec2 resolution;
+uniform float time;
+#define FC gl_FragCoord.xy
+#define T time
+#define R resolution
+#define MN min(R.x,R.y)
+float rnd(vec2 p){p=fract(p*vec2(12.9898,78.233));p+=dot(p,p+34.56);return fract(p.x*p.y);}
+float noise(in vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.-2.*f);float a=rnd(i),b=rnd(i+vec2(1,0)),c=rnd(i+vec2(0,1)),d=rnd(i+1.);return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}
+float fbm(vec2 p){float t=.0,a=1.;mat2 m=mat2(1.,-.5,.2,1.2);for(int i=0;i<5;i++){t+=a*noise(p);p*=2.*m;a*=.5;}return t;}
+float clouds(vec2 p){float d=1.,t=.0;for(float i=.0;i<3.;i++){float a=d*fbm(i*10.+p.x*.2+.2*(1.+i)*p.y+d+i*i+p);t=mix(t,d,a);d=a;p*=2./(i+1.);}return t;}
+void main(void){
+  vec2 uv=(FC-.5*R)/MN,st=uv*vec2(2,1);
+  vec3 col=vec3(0);
+  /* dim nebula so background stays near-black */
+  float bg=clouds(vec2(st.x+T*.3,-st.y))*.28;
+  uv*=1.-.3*(sin(T*.2)*.5+.5);
+  for(float i=1.;i<12.;i++){
+    uv+=.1*cos(i*vec2(.1+.01*i,.8)+i*i+T*.5+.1*uv.x);
+    vec2 p=uv;
+    float d=length(p);
+    /* tint base star colors blue: multiply by vec3(r,g,b) = brand blue bias */
+    col+=.00125/d*(cos(sin(i)*vec3(1,2,3))+1.)*vec3(.25,.50,1.);
+    float b=noise(i+p+bg*1.731);
+    col+=.002*b/length(max(p,vec2(b*p.x*.02,p.y)))*vec3(.20,.45,1.);
+    /* dark blue nebula instead of warm orange */
+    col=mix(col,vec3(bg*.02,bg*.05,bg*.20),d);
+  }
+  /* final blue grade to keep everything on-brand */
+  col*=vec3(.60,.80,1.);
+  O=vec4(col,1);
+}`;
+
+    function compile(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS))
+        console.error('Shader:', gl.getShaderInfoLog(s));
+      return s;
+    }
+
+    const prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, vertSrc));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fragSrc));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS))
+      return console.error('Program:', gl.getProgramInfoLog(prog));
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,1,-1,-1,1,1,1,-1]), gl.STATIC_DRAW);
+    const pos = gl.getAttribLocation(prog, 'position');
+    gl.enableVertexAttribArray(pos);
+    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+    const uRes  = gl.getUniformLocation(prog, 'resolution');
+    const uTime = gl.getUniformLocation(prog, 'time');
+
+    function resize() {
+      const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
+      canvas.width  = window.innerWidth  * dpr;
+      canvas.height = window.innerHeight * dpr;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+
+    function render(now) {
+      gl.clearColor(0, 0, 0, 1);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.useProgram(prog);
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.uniform1f(uTime, now * 1e-3);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      requestAnimationFrame(render);
+    }
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    requestAnimationFrame(render);
+  })();
+
+  // ── Nav logo collapse ──
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ── Device section: plasma-line shader background ──
+  (function () {
+    const canvas = document.getElementById('device-shader-canvas');
+    if (!canvas) return;
+    const gl = canvas.getContext('webgl');
+    if (!gl) return;
+
+    const section = document.getElementById('device-section');
+
+    const vs = `
+      attribute vec4 aVertexPosition;
+      void main() { gl_Position = aVertexPosition; }
+    `;
+
+    // Plasma line shader — purple → WLS brand blue, bg → near-black
+    const fs = `
+      precision highp float;
+      uniform vec2 iResolution;
+      uniform float iTime;
+
+      const float overallSpeed      = 0.2;
+      const float gridSmoothWidth   = 0.015;
+      const float axisWidth         = 0.05;
+      const float majorLineWidth    = 0.025;
+      const float minorLineWidth    = 0.0125;
+      const float majorLineFrequency= 5.0;
+      const float minorLineFrequency= 1.0;
+      const float scale             = 5.0;
+      /* Brand blue #4b7bf5 → vec4(0.294, 0.482, 0.961) */
+      const vec4  lineColor         = vec4(0.25, 0.48, 1.0, 1.0);
+      const float minLineWidth      = 0.01;
+      const float maxLineWidth      = 0.2;
+      const float lineSpeed         = 1.0 * overallSpeed;
+      const float lineAmplitude     = 1.0;
+      const float lineFrequency     = 0.2;
+      const float warpSpeed         = 0.2 * overallSpeed;
+      const float warpFrequency     = 0.5;
+      const float warpAmplitude     = 1.0;
+      const float offsetFrequency   = 0.5;
+      const float offsetSpeed       = 1.33 * overallSpeed;
+      const float minOffsetSpread   = 0.6;
+      const float maxOffsetSpread   = 2.0;
+      const int   linesPerGroup     = 16;
+
+      #define drawCircle(pos,radius,coord) smoothstep(radius+gridSmoothWidth,radius,length(coord-(pos)))
+      #define drawSmoothLine(pos,halfWidth,t) smoothstep(halfWidth,0.0,abs(pos-(t)))
+      #define drawCrispLine(pos,halfWidth,t) smoothstep(halfWidth+gridSmoothWidth,halfWidth,abs(pos-(t)))
+      #define drawPeriodicLine(freq,width,t) drawCrispLine(freq/2.0,width,abs(mod(t,freq)-(freq)/2.0))
+
+      float random(float t){return(cos(t)+cos(t*1.3+1.3)+cos(t*1.4+1.4))/3.0;}
+
+      float getPlasmaY(float x,float hFade,float offset){
+        return random(x*lineFrequency+iTime*lineSpeed)*hFade*lineAmplitude+offset;
+      }
+
+      void main(){
+        vec2 uv = gl_FragCoord.xy / iResolution.xy;
+        vec2 space = (gl_FragCoord.xy - iResolution.xy*0.5) / iResolution.x * 2.0 * scale;
+
+        float hFade = 1.0-(cos(uv.x*6.28)*0.5+0.5);
+        float vFade = 1.0-(cos(uv.y*6.28)*0.5+0.5);
+
+        space.y += random(space.x*warpFrequency+iTime*warpSpeed)*warpAmplitude*(0.5+hFade);
+        space.x += random(space.y*warpFrequency+iTime*warpSpeed+2.0)*warpAmplitude*hFade;
+
+        vec4 lines = vec4(0.0);
+        /* near-black backgrounds — no purple */
+        vec4 bgColor1 = vec4(0.01, 0.02, 0.06, 1.0);
+        vec4 bgColor2 = vec4(0.02, 0.04, 0.12, 1.0);
+
+        for(int l=0;l<linesPerGroup;l++){
+          float nli  = float(l)/float(linesPerGroup);
+          float offT = iTime*offsetSpeed;
+          float offP = float(l)+space.x*offsetFrequency;
+          float rand = random(offP+offT)*0.5+0.5;
+          float hw   = mix(minLineWidth,maxLineWidth,rand*hFade)/2.0;
+          float off  = random(offP+offT*(1.0+nli))*mix(minOffsetSpread,maxOffsetSpread,hFade);
+          float lPos = getPlasmaY(space.x,hFade,off);
+          float line = drawSmoothLine(lPos,hw,space.y)/2.0
+                     + drawCrispLine(lPos,hw*0.15,space.y);
+          float cx   = mod(float(l)+iTime*lineSpeed,25.0)-12.0;
+          vec2  cp   = vec2(cx,getPlasmaY(cx,hFade,off));
+          line += drawCircle(cp,0.01,space)*4.0;
+          lines += line*lineColor*rand;
+        }
+
+        vec4 col = mix(bgColor1,bgColor2,uv.x);
+        col *= vFade;
+        col.a = 1.0;
+        col += lines;
+        gl_FragColor = col;
+      }
+    `;
+
+    function makeShader(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS))
+        console.error(gl.getShaderInfoLog(s));
+      return s;
+    }
+
+    const prog = gl.createProgram();
+    gl.attachShader(prog, makeShader(gl.VERTEX_SHADER, vs));
+    gl.attachShader(prog, makeShader(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(prog);
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER,
+      new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+
+    const aPos  = gl.getAttribLocation(prog, 'aVertexPosition');
+    const uRes  = gl.getUniformLocation(prog, 'iResolution');
+    const uTime = gl.getUniformLocation(prog, 'iTime');
+
+    function resize() {
+      const r = section.getBoundingClientRect();
+      canvas.width  = r.width;
+      canvas.height = section.offsetHeight;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+
+    const t0 = Date.now();
+    function render() {
+      gl.clearColor(0,0,0,1);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.useProgram(prog);
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+      gl.enableVertexAttribArray(aPos);
+      gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.uniform1f(uTime, (Date.now()-t0)/1000);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      requestAnimationFrame(render);
+    }
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    requestAnimationFrame(render);
+  })();
+
+  // ── After canvas: chromatic-aberration wavy-line WebGL shader ──
+  (function () {
+    const canvas = document.getElementById('after-canvas');
+    if (!canvas) return;
+    const gl = canvas.getContext('webgl');
+    if (!gl) return;
+    const cmp = document.getElementById('img-comparison');
+
+    const vs = `attribute vec4 aVertexPosition; void main(){gl_Position=aVertexPosition;}`;
+    const fs = `
+      precision highp float;
+      uniform vec2 resolution;
+      uniform float time;
+      void main(){
+        vec2 p=(gl_FragCoord.xy*2.0-resolution)/min(resolution.x,resolution.y);
+        float d=length(p)*0.05;
+        float rx=p.x*(1.0+d), gx=p.x, bx=p.x*(1.0-d);
+        float r=0.05/abs(p.y+sin((rx+time)*1.0)*0.5);
+        float g=0.05/abs(p.y+sin((gx+time)*1.0)*0.5);
+        float b=0.05/abs(p.y+sin((bx+time)*1.0)*0.5);
+        gl_FragColor=vec4(r,g,b,1.0);
+      }`;
+
+    function mk(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+    const prog=gl.createProgram();
+    gl.attachShader(prog,mk(gl.VERTEX_SHADER,vs));
+    gl.attachShader(prog,mk(gl.FRAGMENT_SHADER,fs));
+    gl.linkProgram(prog);
+
+    const buf=gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+
+    const aPos=gl.getAttribLocation(prog,'aVertexPosition');
+    const uRes=gl.getUniformLocation(prog,'resolution');
+    const uTime=gl.getUniformLocation(prog,'time');
+
+    function resize(){
+      if(!cmp)return;
+      const r=cmp.getBoundingClientRect();
+      canvas.width=r.width; canvas.height=r.height;
+      gl.viewport(0,0,canvas.width,canvas.height);
+    }
+    let t=0;
+    function render(){
+      t+=0.008;
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.useProgram(prog);
+      gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+      gl.vertexAttribPointer(aPos,2,gl.FLOAT,false,0,0);
+      gl.enableVertexAttribArray(aPos);
+      gl.uniform2f(uRes,canvas.width,canvas.height);
+      gl.uniform1f(uTime,t);
+      gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+      requestAnimationFrame(render);
+    }
+    resize();
+    window.addEventListener('resize',resize,{passive:true});
+    window.addEventListener('load',resize);
+    requestAnimationFrame(render);
+  })();
+
+  // ── Before / After comparison slider ──
+  (function () {
+    const container = document.getElementById('img-comparison');
+    const clip      = document.getElementById('cmp-clip');
+    const handle    = document.getElementById('cmp-handle');
+    if (!container || !clip || !handle) return;
+
+    let dragging = false;
+
+    function setPos(clientX) {
+      const r   = container.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(100, (clientX - r.left) / r.width * 100));
+      clip.style.clipPath      = `polygon(0 0,${pct}% 0,${pct}% 100%,0 100%)`;
+      handle.style.left        = `calc(${pct}% - 2px)`;
+    }
+
+    container.addEventListener('mousedown',  (e) => { dragging = true; setPos(e.clientX); });
+    container.addEventListener('touchstart', (e) => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+    document.addEventListener('mousemove',   (e) => { if (dragging) setPos(e.clientX); });
+    document.addEventListener('touchmove',   (e) => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+    document.addEventListener('mouseup',     () => { dragging = false; });
+    document.addEventListener('touchend',    () => { dragging = false; });
+  })();
+
+  // ── Device subtitle: glow in on scroll ──
+  const deviceSubtitle = document.getElementById('device-subtitle');
+  if (deviceSubtitle) {
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          deviceSubtitle.style.color = '#ffffff';
+          deviceSubtitle.style.textShadow =
+            '0 0 18px rgba(75,123,245,0.9), 0 0 40px rgba(75,123,245,0.5), 0 0 80px rgba(75,123,245,0.25)';
+        } else {
+          deviceSubtitle.style.color = 'var(--grey-500)';
+          deviceSubtitle.style.textShadow = 'none';
+        }
+      });
+    }, { threshold: 0.8 }).observe(deviceSubtitle);
+  }
+
+  // ── Device scroll animation (ContainerScroll port) ──
+  const deviceSection = document.getElementById('device-section');
+  const deviceCard    = document.getElementById('device-card');
+  const deviceHeader  = document.getElementById('device-header');
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
+
+  function updateDevice() {
+    if (!deviceSection || !deviceCard) return;
+    const rect     = deviceSection.getBoundingClientRect();
+    const vh       = window.innerHeight;
+    const secH     = deviceSection.offsetHeight;
+    const progress = clamp((vh - rect.top) / secH, 0, 1);
+
+    const rotate   = lerp(20, 0, progress);
+    const scale    = lerp(1.05, 1, progress);
+    const transY   = lerp(0, -100, progress);
+
+    deviceCard.style.transform   = `rotateX(${rotate}deg) scale(${scale})`;
+    deviceHeader.style.transform = `translateY(${transY}px)`;
+  }
+
+  window.addEventListener('scroll', updateDevice, { passive: true });
+  updateDevice();
+</script>
+
+</body>
+</html>
