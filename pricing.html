@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MPH2828T');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weblance Studios — Pricing</title>
@@ -175,7 +178,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5em;
-      align-items: start;
+      align-items: stretch;
     }
 
     .pricing-card {
@@ -184,6 +187,8 @@
       border-radius: 18px;
       padding: 2em;
       position: relative;
+      display: flex;
+      flex-direction: column;
       transition: border-color 0.3s cubic-bezier(0.51,0,0.08,1),
                   transform    0.3s cubic-bezier(0.51,0,0.08,1),
                   box-shadow   0.3s cubic-bezier(0.51,0,0.08,1);
@@ -422,6 +427,9 @@
   </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MPH2828T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- ══════════════ NAV ══════════════ -->
 <nav>
@@ -440,6 +448,7 @@
     <li><a href="index.html#transformation">Transformation</a></li>
     <li><a href="index.html#why-us-section">Why Us?</a></li>
     <li><a href="pricing.html" class="active">Pricing</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 
   <div class="nav-actions">
@@ -541,7 +550,7 @@
         <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:1.5em;">Growth</p>
 
         <div style="margin-bottom:1.5em;">
-          <div class="price-amount"><sup>$</sup>1,199</div>
+          <div class="price-amount"><sup>$</sup>1,000</div>
           <p style="color:var(--grey-600);font-size:0.8125em;margin-top:0.5em;font-weight:500;">one-time · no monthly fees</p>
         </div>
 
@@ -596,8 +605,9 @@
         <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-500);margin-bottom:1.5em;">Studio</p>
 
         <div style="margin-bottom:1.5em;">
-          <div class="price-amount"><sup>$</sup>2,499</div>
+          <div class="price-amount"><sup>$</sup>1,999</div>
           <p style="color:var(--grey-600);font-size:0.8125em;margin-top:0.5em;font-weight:500;">one-time · no monthly fees</p>
+          <p style="color:var(--blue);font-size:0.8125em;margin-top:0.35em;font-weight:600;">48–72 hour delivery</p>
         </div>
 
         <p style="color:var(--grey-300);font-size:0.9375em;line-height:1.6;margin-bottom:1.75em;">
@@ -729,8 +739,8 @@
         <select class="form-select" id="package" name="package">
           <option value="" disabled selected>Select a package…</option>
           <option value="starter">Starter — $499</option>
-          <option value="growth">Growth — $1,199</option>
-          <option value="studio">Studio — $2,499</option>
+          <option value="growth">Growth — $1,000</option>
+          <option value="studio">Studio — $1,999</option>
           <option value="custom">Custom Project</option>
           <option value="unsure">Not sure yet</option>
         </select>
