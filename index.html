@@ -1877,8 +1877,9 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
     setTimeout(function(){
       setInterval(function(){
         var cur = parseInt(vis.textContent.replace(/,/g,''));
-        vis.textContent = (cur + 1).toLocaleString();
-      }, 1300);
+        var inc = Math.floor(Math.random() * 10) + 8;
+        vis.textContent = (cur + inc).toLocaleString();
+      }, 1700);
     }, 1500);
   }
   var obs = new IntersectionObserver(function(entries){
