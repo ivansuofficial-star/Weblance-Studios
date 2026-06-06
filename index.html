@@ -1768,33 +1768,33 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
       </div>
 
       <!-- Stat row -->
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1em;margin-bottom:2.5em;">
+      <div id="analytics-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1em;margin-bottom:2.5em;">
 
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;">
+        <div class="astat-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1),transform 0.5s cubic-bezier(.22,1,.36,1);">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.6),transparent);border-radius:16px 16px 0 0;"></div>
           <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-500);margin-bottom:0.75em;">Page Views</p>
-          <p style="font-size:2em;font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1;">2,847</p>
+          <p id="astat-pageviews" style="font-size:2em;font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1;">0</p>
           <p style="font-size:0.8em;color:#34d399;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 18% this week</p>
         </div>
 
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;">
+        <div class="astat-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.1s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.1s;">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.6),transparent);border-radius:16px 16px 0 0;"></div>
           <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-500);margin-bottom:0.75em;">Visitors</p>
-          <p style="font-size:2em;font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1;">1,203</p>
+          <p id="astat-visitors" style="font-size:2em;font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1;">0</p>
           <p style="font-size:0.8em;color:#34d399;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 24% this week</p>
         </div>
 
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;">
+        <div class="astat-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.2s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.2s;">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.4),transparent);border-radius:16px 16px 0 0;"></div>
           <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-500);margin-bottom:0.75em;">Avg. Session</p>
           <p style="font-size:2em;font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1;">2m 34s</p>
           <p style="font-size:0.8em;color:var(--grey-500);margin-top:0.5em;font-weight:500;">— steady</p>
         </div>
 
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;">
+        <div class="astat-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.3s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.3s;">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(52,211,153,0.7),transparent);border-radius:16px 16px 0 0;"></div>
           <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-500);margin-bottom:0.75em;">Conversions</p>
-          <p style="font-size:2em;font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1;">38</p>
+          <p id="astat-conversions" style="font-size:2em;font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1;">0</p>
           <p style="font-size:0.8em;color:#34d399;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 41% this week</p>
         </div>
 
@@ -1803,14 +1803,14 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
       <!-- Bar chart -->
       <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:1.5em;">
         <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-500);margin-bottom:1.25em;">Visitors — Last 7 Days</p>
-        <div style="display:flex;align-items:flex-end;gap:0.625em;height:96px;">
-          <div style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.3));border-radius:6px 6px 0 0;height:45%;"></div>
-          <div style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.3));border-radius:6px 6px 0 0;height:60%;"></div>
-          <div style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.3));border-radius:6px 6px 0 0;height:38%;"></div>
-          <div style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.35));border-radius:6px 6px 0 0;height:72%;"></div>
-          <div style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.35));border-radius:6px 6px 0 0;height:55%;"></div>
-          <div style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.25),rgba(75,123,245,0.55));border-radius:6px 6px 0 0;height:88%;"></div>
-          <div style="flex:1;background:linear-gradient(to top,#2a4fd4,#4b7bf5);border-radius:6px 6px 0 0;height:100%;box-shadow:0 0 16px rgba(75,123,245,0.55),0 4px 12px rgba(75,123,245,0.3);"></div>
+        <div id="analytics-bars" style="display:flex;align-items:flex-end;gap:0.625em;height:96px;">
+          <div class="abar" data-h="45" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.3));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.05s;"></div>
+          <div class="abar" data-h="60" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.3));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.15s;"></div>
+          <div class="abar" data-h="38" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.3));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.25s;"></div>
+          <div class="abar" data-h="72" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.35));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.35s;"></div>
+          <div class="abar" data-h="55" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.35));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.45s;"></div>
+          <div class="abar" data-h="88" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.25),rgba(75,123,245,0.55));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.55s;"></div>
+          <div class="abar" data-h="100" style="flex:1;background:linear-gradient(to top,#2a4fd4,#4b7bf5);border-radius:6px 6px 0 0;height:0%;box-shadow:0 0 16px rgba(75,123,245,0.55),0 4px 12px rgba(75,123,245,0.3);transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.65s;"></div>
         </div>
         <div style="display:flex;gap:0.625em;margin-top:0.75em;">
           <div style="flex:1;text-align:center;font-size:0.6875em;color:var(--grey-700);">Mon</div>
@@ -1854,6 +1854,40 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
     #analytics-section [style*="grid-template-columns:1fr 1fr;gap:4em"] { grid-template-columns: 1fr !important; gap: 1.5em !important; }
   }
 </style>
+<script>
+(function(){
+  var triggered = false;
+  function countUp(el, target, duration) {
+    var start = 0, step = target / (duration / 16);
+    var t = setInterval(function(){
+      start += step;
+      if (start >= target) { start = target; clearInterval(t); }
+      el.textContent = Math.floor(start).toLocaleString();
+    }, 16);
+  }
+  function triggerAnalytics() {
+    if (triggered) return;
+    triggered = true;
+    document.querySelectorAll('.astat-card').forEach(function(c){ c.style.opacity='1'; c.style.transform='translateY(0)'; });
+    document.querySelectorAll('.abar').forEach(function(b){ b.style.height = b.dataset.h + '%'; });
+    countUp(document.getElementById('astat-pageviews'), 2847, 1400);
+    countUp(document.getElementById('astat-visitors'), 1203, 1200);
+    countUp(document.getElementById('astat-conversions'), 38, 900);
+    var vis = document.getElementById('astat-visitors');
+    setTimeout(function(){
+      setInterval(function(){
+        var cur = parseInt(vis.textContent.replace(/,/g,''));
+        vis.textContent = (cur + 1).toLocaleString();
+      }, 3000);
+    }, 1500);
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting) triggerAnalytics(); });
+  }, { threshold: 0.2 });
+  var sec = document.getElementById('analytics-section');
+  if (sec) obs.observe(sec);
+})();
+</script>
 
 <div class="divider"></div>
 
