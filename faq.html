@@ -97,41 +97,210 @@
     }
     .divider { height: 1px; background: linear-gradient(90deg, transparent 0%, var(--grey-800) 30%, var(--grey-800) 70%, transparent 100%); }
 
-    /* ── FAQ ACCORDION ── */
-    .faq-item {
-      border-bottom: 1px solid var(--grey-800);
+    /* ── FAQ DISPLAY CARDS (visible grid) ── */
+    .faq-outer {
+      max-width: 1020px; margin: 0 auto; padding: 0 2em;
+    }
+
+    .faq-group { margin-bottom: 3.25em; }
+
+    .faq-group-label {
+      font-size: 0.875em; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--blue);
+      display: inline-flex; align-items: center; gap: 0.6em;
+      margin-bottom: 1.25em;
+    }
+    .faq-group-label::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: currentColor; flex-shrink: 0;
+    }
+    .faq-group-label.clr-green  { color: #34d399; }
+    .faq-group-label.clr-purple { color: #a78bfa; }
+    .faq-group-label.clr-amber  { color: #fbbf24; }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.875em;
+    }
+
+    /* THE CARD */
+    .faq-card {
+      border: 1.5px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      background: rgba(14,15,18,0.88);
+      backdrop-filter: blur(12px);
+      padding: 1.15em 1.3em 1.25em;
+      cursor: pointer;
+      position: relative;
       overflow: hidden;
+      user-select: none;
+      transform: skewY(-3deg);
+      transition:
+        transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
     }
-    .faq-item:first-child { border-top: 1px solid var(--grey-800); }
-    .faq-btn {
-      width: 100%; background: transparent; border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.75em 0; gap: 2em; text-align: left;
+
+    /* Right-side gradient fade */
+    .faq-card::after {
+      content: '';
+      position: absolute; right: 0; top: -5%;
+      width: 28%; height: 110%;
+      background: linear-gradient(to left, #000 0%, transparent 100%);
+      pointer-events: none; z-index: 2;
+      transition: opacity 0.4s ease;
     }
-    .faq-question {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.0625em; font-weight: 600; color: #fff;
-      letter-spacing: -0.01em; line-height: 1.4;
+
+    /* Counter-skew so text stays upright while the card border tilts */
+    .faq-card-inner {
+      position: relative; z-index: 3;
+      transform: skewY(3deg);
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .faq-icon {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: var(--grey-900); border: 1px solid var(--grey-700);
+
+    .faq-card:hover {
+      transform: skewY(0deg) translateY(-5px);
+      border-color: rgba(75,123,245,0.28);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.65), 0 3px 14px rgba(75,123,245,0.14);
+    }
+    .faq-card:hover::after { opacity: 0.2; }
+    .faq-card:hover .faq-card-inner { transform: skewY(0deg); }
+
+    .faq-card.clr-green:hover  { border-color: rgba(52,211,153,0.28);  box-shadow: 0 14px 40px rgba(0,0,0,0.65), 0 3px 14px rgba(52,211,153,0.12); }
+    .faq-card.clr-purple:hover { border-color: rgba(167,139,250,0.28); box-shadow: 0 14px 40px rgba(0,0,0,0.65), 0 3px 14px rgba(167,139,250,0.12); }
+    .faq-card.clr-amber:hover  { border-color: rgba(251,191,36,0.28);  box-shadow: 0 14px 40px rgba(0,0,0,0.65), 0 3px 14px rgba(251,191,36,0.12); }
+
+    /* Calm colored top accent line */
+    .faq-card::before {
+      content: '';
+      position: absolute; top: 0; left: 1.1em; right: 1.1em;
+      height: 1.5px; border-radius: 0 0 2px 2px;
+      background: rgba(75,123,245,0.45);
+      z-index: 4;
+    }
+    .faq-card.clr-green::before  { background: rgba(52,211,153,0.4); }
+    .faq-card.clr-purple::before { background: rgba(167,139,250,0.4); }
+    .faq-card.clr-amber::before  { background: rgba(251,191,36,0.4); }
+
+    .faq-card-top {
+      display: flex; align-items: center; gap: 0.5em;
+      margin-bottom: 0.65em;
+    }
+
+    .faq-card-icon {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      background: rgba(75,123,245,0.16); border: 1px solid rgba(75,123,245,0.26);
+    }
+    .faq-card-icon.clr-green  { background: rgba(52,211,153,0.13);  border-color: rgba(52,211,153,0.23); }
+    .faq-card-icon.clr-purple { background: rgba(167,139,250,0.13); border-color: rgba(167,139,250,0.23); }
+    .faq-card-icon.clr-amber  { background: rgba(251,191,36,0.13);  border-color: rgba(251,191,36,0.23); }
+
+    .faq-card-cat {
+      font-size: 0.5625em; font-weight: 700; letter-spacing: 0.13em;
+      text-transform: uppercase; color: rgba(75,123,245,0.8);
+    }
+    .faq-card-cat.clr-green  { color: rgba(52,211,153,0.8); }
+    .faq-card-cat.clr-purple { color: rgba(167,139,250,0.8); }
+    .faq-card-cat.clr-amber  { color: rgba(251,191,36,0.8); }
+
+    .faq-card-q {
+      font-size: 0.875em; font-weight: 600; color: #fff;
+      letter-spacing: -0.015em; line-height: 1.4;
+    }
+
+    .faq-card-hint {
+      margin-top: 0.8em;
+      font-size: 0.5625em; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.18);
+      transition: color 0.3s ease;
+    }
+    .faq-card:hover .faq-card-hint { color: rgba(255,255,255,0.45); }
+
+    /* ── EXPANDED CARD MODAL ── */
+    .faq-modal-backdrop {
+      position: fixed; inset: 0; z-index: 900;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(10px);
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      transition: background 0.25s, border-color 0.25s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      padding: 2em;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
     }
-    .faq-icon svg { transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); }
-    .faq-item.open .faq-icon { background: rgba(75,123,245,0.12); border-color: rgba(75,123,245,0.35); }
-    .faq-item.open .faq-icon svg { transform: rotate(45deg); }
-    .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.4,0,0.2,1); }
-    .faq-item.open .faq-body { grid-template-rows: 1fr; }
-    .faq-body > div { overflow: hidden; }
-    .faq-answer {
-      color: var(--grey-300); font-size: 0.9375em; line-height: 1.75;
-      padding-bottom: 1.75em; max-width: 620px;
+    .faq-modal-backdrop.open {
+      opacity: 1; pointer-events: all;
     }
-    .faq-answer a { color: var(--blue); text-decoration: none; }
-    .faq-answer a:hover { text-decoration: underline; }
+
+    .faq-modal-card {
+      width: 100%; max-width: 560px;
+      background: rgba(11,12,15,0.98);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 2.25em;
+      position: relative;
+      transform: scale(0.86) translateY(20px);
+      opacity: 0;
+      transition:
+        transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.28s ease;
+    }
+    .faq-modal-backdrop.open .faq-modal-card {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+
+    .faq-modal-card.clr-blue   { border-color: rgba(75,123,245,0.28);  box-shadow: 0 0 0 1px rgba(75,123,245,0.07),  0 40px 100px rgba(0,0,0,0.75), 0 8px 36px rgba(75,123,245,0.15); }
+    .faq-modal-card.clr-green  { border-color: rgba(52,211,153,0.28);  box-shadow: 0 0 0 1px rgba(52,211,153,0.07),  0 40px 100px rgba(0,0,0,0.75), 0 8px 36px rgba(52,211,153,0.12); }
+    .faq-modal-card.clr-purple { border-color: rgba(167,139,250,0.28); box-shadow: 0 0 0 1px rgba(167,139,250,0.07), 0 40px 100px rgba(0,0,0,0.75), 0 8px 36px rgba(167,139,250,0.12); }
+    .faq-modal-card.clr-amber  { border-color: rgba(251,191,36,0.28);  box-shadow: 0 0 0 1px rgba(251,191,36,0.07),  0 40px 100px rgba(0,0,0,0.75), 0 8px 36px rgba(251,191,36,0.12); }
+
+    .faq-modal-close {
+      position: absolute; top: 1.2em; right: 1.2em;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--grey-300); font-size: 1.1em; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .faq-modal-close:hover {
+      background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.2);
+    }
+
+    .faq-modal-top {
+      display: flex; align-items: center; gap: 0.65em;
+      margin-bottom: 1.25em;
+    }
+
+    .faq-modal-icon {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      background: rgba(75,123,245,0.16); border: 1px solid rgba(75,123,245,0.26);
+    }
+    .faq-modal-icon.clr-green  { background: rgba(52,211,153,0.13);  border-color: rgba(52,211,153,0.23); }
+    .faq-modal-icon.clr-purple { background: rgba(167,139,250,0.13); border-color: rgba(167,139,250,0.23); }
+    .faq-modal-icon.clr-amber  { background: rgba(251,191,36,0.13);  border-color: rgba(251,191,36,0.23); }
+
+    .faq-modal-cat {
+      font-size: 0.65em; font-weight: 700; letter-spacing: 0.13em;
+      text-transform: uppercase; color: rgba(75,123,245,0.85);
+    }
+    .faq-modal-cat.clr-green  { color: rgba(52,211,153,0.85); }
+    .faq-modal-cat.clr-purple { color: rgba(167,139,250,0.85); }
+    .faq-modal-cat.clr-amber  { color: rgba(251,191,36,0.85); }
+
+    .faq-modal-q {
+      font-size: 1.15em; font-weight: 700; color: #fff;
+      letter-spacing: -0.02em; line-height: 1.35; margin-bottom: 1em;
+    }
+
+    .faq-modal-a {
+      font-size: 0.9em; color: var(--grey-300); line-height: 1.75;
+    }
+    .faq-modal-a a { color: var(--blue); text-decoration: none; }
+    .faq-modal-a a:hover { text-decoration: underline; }
+    .faq-modal-a strong { color: rgba(255,255,255,0.92); font-weight: 600; }
 
     /* ── FOOTER ── */
     .fp { background: #262626; border: 2px solid #262626; border-radius: 40px; overflow: hidden; transition: border-radius 0.38s cubic-bezier(0.4,0,0.2,1); min-width: 140px; }
@@ -161,13 +330,20 @@
 
     @media (max-width: 900px) {
       nav .nav-links { display: none; }
+      .faq-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 580px) {
+      .faq-grid { grid-template-columns: 1fr; }
+      .faq-card { transform: skewY(-1.5deg); }
+      .faq-card-inner { transform: skewY(1.5deg); }
+      .faq-card:hover { transform: skewY(0deg) translateY(-4px); }
+      .faq-card:hover .faq-card-inner { transform: skewY(0deg); }
     }
   </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MPH2828T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <!-- ══════════════ NAV ══════════════ -->
 <nav>
@@ -185,7 +361,6 @@
 <section style="padding-top:62px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% -10%, rgba(75,123,245,0.15) 0%, transparent 55%);"></div>
   <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.03;" xmlns="http://www.w3.org/2000/svg"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grain)"/></svg>
-
   <div class="container fade-up" style="position:relative;z-index:1;padding-top:5.5em;padding-bottom:4.5em;text-align:center;">
     <div class="section-label" style="justify-content:center;">FAQ</div>
     <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5.5vw,4rem);font-weight:500;letter-spacing:-0.02em;line-height:1.06;color:#fff;margin-bottom:0.75em;">
@@ -199,144 +374,128 @@
 
 <div class="divider"></div>
 
-<!-- ══════════════ FAQ ══════════════ -->
+<!-- ══════════════ FAQ CARDS ══════════════ -->
 <section style="padding:5em 0 6em;">
-  <div class="container fade-up fade-up-d1">
+  <div class="faq-outer fade-up fade-up-d1">
 
-    <!-- Group: Getting Started -->
-    <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:1.5em;">Getting Started</p>
+    <!-- ── Getting Started ── -->
+    <div class="faq-group">
+      <p class="faq-group-label">Getting Started</p>
+      <div class="faq-grid">
 
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">How does the process work?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">You fill out the contact form, tell me about your project, and we hop on a quick call or chat. Once we agree on what you need, I get to work. You'll see a draft, give feedback, and we refine until it's exactly right. You don't pay until you're happy.</p>
-      </div></div>
+        <div class="faq-card" onclick="openCard('gs-1')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">How does the process work?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card" onclick="openCard('gs-3')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">What do I need to provide to get started?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card" onclick="openCard('gs-2')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Do you work with clients outside of Sacramento?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">What do I need to provide to get started?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">Ideally: your logo (if you have one), a few words about your business, and an idea of what you want the site to do. No logo? No problem — we can work with what you have. The more context you give, the better the result.</p>
-      </div></div>
+    <!-- ── Pricing & Payment ── -->
+    <div class="faq-group">
+      <p class="faq-group-label clr-green">Pricing &amp; Payment</p>
+      <div class="faq-grid">
+
+        <div class="faq-card clr-green" onclick="openCard('pp-1')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">What's the difference between the packages?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-green" onclick="openCard('pp-2')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">When do I pay?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-green" onclick="openCard('pp-3')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Is there a refund policy?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">Do you work with clients outside of Sacramento?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">Yes — 100% remote. Everything is handled online through messages, calls, and screen shares. It doesn't matter where you're based.</p>
-      </div></div>
+    <!-- ── Build & Delivery ── -->
+    <div class="faq-group">
+      <p class="faq-group-label clr-purple">Build &amp; Delivery</p>
+      <div class="faq-grid">
+
+        <div class="faq-card clr-purple" onclick="openCard('bd-1')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">How long does it take to build my site?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-purple" onclick="openCard('bd-2')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Is the site built on a template or from scratch?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-purple" onclick="openCard('bd-3')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">What does "Free Custom Domain" mean?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- Group: Pricing & Payment -->
-    <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-top:3em;margin-bottom:1.5em;">Pricing & Payment</p>
+    <!-- ── After Launch ── -->
+    <div class="faq-group">
+      <p class="faq-group-label clr-amber">After Launch</p>
+      <div class="faq-grid">
 
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">What's the difference between the packages?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">The <strong style="color:#fff;">Starter</strong> ($499) is a clean, fast single-page site — perfect if you just need something professional online. The <strong style="color:#fff;">Growth</strong> ($1,000) adds more pages, animations, and SEO. The <strong style="color:#fff;">Max</strong> ($1,999) is the full package — up to 10 pages, premium effects, and full post-launch support. Check out the <a href="pricing.html">pricing page</a> for the full breakdown.</p>
-      </div></div>
-    </div>
+        <div class="faq-card clr-amber" onclick="openCard('al-1')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Can I make changes after the site is live?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
 
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">When do I pay?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">You don't pay until you're happy with the result. Once you approve the final design and it's ready to go live, that's when payment is made. No upfront deposits.</p>
-      </div></div>
-    </div>
+        <div class="faq-card clr-amber" onclick="openCard('al-2')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Will I be able to see who's visiting my site?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
 
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">Is there a refund policy?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">Since you don't pay until you approve, refunds aren't something that comes up. If for any reason you're unhappy after launch, reach out and we'll make it right before anything else.</p>
-      </div></div>
-    </div>
+        <div class="faq-card clr-amber" onclick="openCard('al-3')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Will my site show up on Google?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
 
-    <!-- Group: Build & Delivery -->
-    <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-top:3em;margin-bottom:1.5em;">Build & Delivery</p>
-
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">How long does it take to build my site?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">Most sites are delivered within 24–48 hours from when I have everything I need from you. Larger projects (Max package, custom builds) may take a bit longer depending on complexity.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">Is the site built on a template or from scratch?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">Always from scratch — no Wix, no Squarespace, no WordPress templates. Every site is hand-coded, which means it's faster, lighter, and completely unique to your brand.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">What does "Free Custom Domain" mean?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">Your domain is your website address — like yourbusiness.com. We'll help you get one set up and connected to your site. The domain itself (which typically costs ~$10–15/year) is included as part of your package.</p>
-      </div></div>
-    </div>
-
-    <!-- Group: After Launch -->
-    <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-top:3em;margin-bottom:1.5em;">After Launch</p>
-
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">Can I make changes after the site is live?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">Yes. Every package includes post-launch revisions. Starter gets 2 rounds, Growth has ongoing supported revisions, and Max includes full post-launch support. For bigger changes down the line, just reach out and we'll sort out a plan.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">Will I be able to see who's visiting my site?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">Yes — every site we build has Google Analytics installed. You'll be able to see how many people visit, where they come from, what pages they look at, and how long they stay. We set it all up for you.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-btn" onclick="faqToggle(this)">
-        <span class="faq-question">Will my site show up on Google?</span>
-        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
-      </button>
-      <div class="faq-body"><div>
-        <p class="faq-answer">Growth and Max packages include SEO optimization — that means your site is set up so Google can find and index it properly. Ranking on the first page takes time and ongoing effort, but we make sure the foundation is solid from day one.</p>
-      </div></div>
+      </div>
     </div>
 
     <!-- CTA -->
-    <div style="margin-top:4em;padding:2.5em;background:linear-gradient(135deg,rgba(75,123,245,0.08) 0%,rgba(75,123,245,0.03) 100%);border:1px solid rgba(75,123,245,0.18);border-radius:20px;text-align:center;">
+    <div style="margin-top:5em;padding:2.5em;background:linear-gradient(135deg,rgba(75,123,245,0.08) 0%,rgba(75,123,245,0.03) 100%);border:1px solid rgba(75,123,245,0.18);border-radius:20px;text-align:center;">
       <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:0.75em;">Still have questions?</p>
       <h3 style="font-size:1.5rem;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:0.5em;">We're easy to reach.</h3>
       <p style="color:var(--grey-300);font-size:0.9375em;line-height:1.6;margin-bottom:1.75em;">Send a message and you'll hear back within 24 hours.</p>
@@ -347,8 +506,23 @@
       </a>
     </div>
 
-  </div>
+  </div><!-- /faq-outer -->
 </section>
+
+<!-- ══════════════ EXPANDED CARD MODAL ══════════════ -->
+<div id="faq-modal" class="faq-modal-backdrop" onclick="if(event.target===this)closeModal()">
+  <div class="faq-modal-card clr-blue" id="faq-modal-card">
+    <button class="faq-modal-close" onclick="closeModal()">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 1l8 8M9 1l-8 8"/></svg>
+    </button>
+    <div class="faq-modal-top">
+      <span class="faq-modal-icon" id="modal-icon"></span>
+      <span class="faq-modal-cat" id="modal-cat"></span>
+    </div>
+    <p class="faq-modal-q" id="modal-q"></p>
+    <p class="faq-modal-a" id="modal-a"></p>
+  </div>
+</div>
 
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer>
@@ -403,16 +577,11 @@
 </footer>
 
 <script>
+  /* ── Nav scroll ── */
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
 
-  function faqToggle(btn) {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
-
+  /* ── Footer accordions ── */
   function fpToggle(id) {
     var el = document.getElementById(id);
     if (!el) return;
@@ -421,6 +590,57 @@
     var btn = el.querySelector('.fp-btn');
     if (btn) btn.setAttribute('aria-expanded', String(!isOpen));
   }
+
+  /* ── FAQ data store — keeps HTML out of onclick attributes ── */
+  var FAQS = {
+    'gs-1': { color:'blue',   cat:'Getting Started',   q:'How does the process work?',                     a:`You fill out the contact form, tell me about your project, and we hop on a quick call or chat. Once we agree on what you need, I get to work. You'll see a draft, give feedback, and we refine until it's exactly right.` },
+    'gs-2': { color:'blue',   cat:'Getting Started',   q:'Do you work with clients outside of Sacramento?', a:`Yes — 100% remote. Everything is handled online through messages, calls, and screen shares. It doesn't matter where you're based.` },
+    'gs-3': { color:'blue',   cat:'Getting Started',   q:'What do I need to provide to get started?',      a:`Ideally: your logo (if you have one), a few words about your business, and an idea of what you want the site to do. No logo? No problem — we can work with what you have. The more context you give, the better the result.` },
+    'pp-1': { color:'green',  cat:'Pricing & Payment', q:`What's the difference between the packages?`,    a:`The <strong>Starter</strong> ($499) is a clean, fast single-page site — perfect if you just need something professional online. The <strong>Growth</strong> ($1,000) adds more pages, animations, and SEO. The <strong>Max</strong> ($1,999) is the full package — up to 10 pages, premium effects, and full post-launch support. Check out the <a href="pricing.html">pricing page</a> for the full breakdown.` },
+    'pp-2': { color:'green',  cat:'Pricing & Payment', q:'When do I pay?',                                  a:`A small deposit is collected upfront to kick things off — $100 for Starter, $200 for Growth, and $400 for Max. The remaining balance is only due once you have seen the final result and given your approval. You won't pay the rest until you're happy with what you're getting.` },
+    'pp-3': { color:'green',  cat:'Pricing & Payment', q:'Is there a refund policy?',                      a:`Payment doesn't occur until you're fully satisfied with the result — so refunds typically aren't something that comes up. If you're not happy with where things are at, we'll talk it through and make the changes needed to get it right.` },
+    'bd-1': { color:'purple', cat:'Build & Delivery',  q:'How long does it take to build my site?',         a:`Most sites are delivered within 24–48 hours from when I have everything I need from you. Larger projects (Max package, custom builds) may take a bit longer depending on complexity.` },
+    'bd-2': { color:'purple', cat:'Build & Delivery',  q:'Is the site built on a template or from scratch?', a:`Always from scratch — no Wix, no Squarespace, no WordPress templates. Every site is hand-coded, which means it's faster, lighter, and completely unique to your brand.` },
+    'bd-3': { color:'purple', cat:'Build & Delivery',  q:'What does "Free Custom Domain" mean?',            a:`Your domain is your website address — like yourbusiness.com. We'll help you get one set up and connected to your site. The domain itself (which typically costs ~$10–15/year) is included as part of your package.` },
+    'al-1': { color:'amber',  cat:'After Launch',      q:'Can I make changes after the site is live?',      a:`Yes. Every package includes post-launch revisions. Starter gets 2 rounds, Growth has ongoing supported revisions, and Max includes full post-launch support. For bigger changes down the line, just reach out and we'll sort out a plan.` },
+    'al-2': { color:'amber',  cat:'After Launch',      q:`Will I be able to see who's visiting my site?`,  a:`Growth and Max packages include Google Analytics setup. You'll be able to see how many people visit, where they come from, what pages they look at, and how long they stay — we set it all up for you. The Starter package doesn't include analytics.` },
+    'al-3': { color:'amber',  cat:'After Launch',      q:'Will my site show up on Google?',                 a:`Growth and Max packages include SEO optimization — that means your site is set up so Google can find and index it properly. Ranking on the first page takes time and ongoing effort, but we make sure the foundation is solid from day one.` }
+  };
+
+  var ICONS = {
+    blue:   '<svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="#4b7bf5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6.5 2l4 4-4 4"/></svg>',
+    green:  '<svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="#34d399" stroke-width="1.6" stroke-linecap="round"><path d="M6 1v10M4.3 3.5C4.3 2.7 5.1 2 6 2s1.7.5 1.7 1.5c0 2-3.4 1.4-3.4 3.5 0 1 .8 1.7 1.7 1.7s1.7-.7 1.7-1.7"/></svg>',
+    purple: '<svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 3.5L1 6l2.5 2.5M8.5 3.5L11 6l-2.5 2.5M7 2l-2 8"/></svg>',
+    amber:  '<svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="#fbbf24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1l1.3 3.6H11l-3 2.2 1.2 3.6L6 8.4l-3.2 2 1.2-3.6L1 4.6h3.7z"/></svg>'
+  };
+
+  /* ── Open expanded card ── */
+  function openCard(id) {
+    var f = FAQS[id];
+    if (!f) return;
+
+    document.getElementById('modal-q').textContent = f.q;
+    document.getElementById('modal-a').innerHTML = f.a;
+
+    var catEl = document.getElementById('modal-cat');
+    catEl.textContent = f.cat;
+    catEl.className = 'faq-modal-cat clr-' + f.color;
+
+    var iconEl = document.getElementById('modal-icon');
+    iconEl.className = 'faq-modal-icon clr-' + f.color;
+    iconEl.innerHTML = ICONS[f.color] || '';
+
+    document.getElementById('faq-modal-card').className = 'faq-modal-card clr-' + f.color;
+    document.getElementById('faq-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('faq-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 </script>
 
 </body>
