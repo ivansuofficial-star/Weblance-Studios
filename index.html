@@ -1874,11 +1874,17 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
     countUp(document.getElementById('astat-visitors'), 1203, 1200);
     countUp(document.getElementById('astat-conversions'), 38, 900);
     var vis = document.getElementById('astat-visitors');
+    var pv = document.getElementById('astat-pageviews');
     setTimeout(function(){
       setInterval(function(){
         var cur = parseInt(vis.textContent.replace(/,/g,''));
         var inc = Math.floor(Math.random() * 10) + 8;
         vis.textContent = (cur + inc).toLocaleString();
+      }, 1700);
+      setInterval(function(){
+        var cur = parseInt(pv.textContent.replace(/,/g,''));
+        var inc = Math.floor(Math.random() * 10) + 8;
+        pv.textContent = (cur + inc).toLocaleString();
       }, 1700);
     }, 1500);
   }
