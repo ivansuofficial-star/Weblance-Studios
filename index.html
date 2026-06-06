@@ -1886,6 +1886,10 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
         var inc = Math.floor(Math.random() * 10) + 8;
         pv.textContent = (cur + inc).toLocaleString();
       }, 1700);
+      setInterval(function(){
+        var cur = parseInt(document.getElementById('astat-conversions').textContent.replace(/,/g,''));
+        document.getElementById('astat-conversions').textContent = (cur + 1).toLocaleString();
+      }, 5000);
     }, 1500);
   }
   var obs = new IntersectionObserver(function(entries){
