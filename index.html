@@ -617,7 +617,34 @@
       .grid-2-text { grid-template-columns: 1fr; gap: 2.5em; }
       .grid-2 { grid-template-columns: 1fr; }
       .grid-3 { grid-template-columns: 1fr; }
-nav .nav-links { display: none; }
+      nav .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      /* Code block — prevent horizontal overflow on mobile */
+      #why-us-section { overflow-x: hidden; }
+      #why-us-code { max-width: 100%; }
+      pre.code-block { font-size: 0.68em; overflow-x: auto; }
+
+      /* Analytics region table — collapse to single column on mobile */
+      #analytics-region-table { grid-template-columns: 1fr auto auto !important; }
+      #analytics-region-table .right-region,
+      #analytics-region-table .right-views,
+      #analytics-region-table .right-bar,
+      #analytics-region-table .right-header-region,
+      #analytics-region-table .right-header-views,
+      #analytics-region-table .right-header-bar { display: none !important; }
+
+      /* SEO mockup URL bar — clip overflow */
+      .seo-url-bar { overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
+
+      /* Map card header — prevent truncation */
+      #analytics-world-map-card-header { flex-wrap: wrap !important; gap: 0.25em !important; }
+
+      /* Analytics two-col grid — single column */
+      #analytics-two-col { grid-template-columns: 1fr !important; }
+
+      /* SEO two-col grid — single column */
+      #seo-two-col { grid-template-columns: 1fr !important; gap: 2em !important; }
     }
   </style>
 </head>
@@ -1836,35 +1863,35 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
 
       <!-- Region table — 2 columns of 3 -->
       <div style="border-top:1px solid #f0f2f5;padding-top:1em;">
-        <div style="display:grid;grid-template-columns:1fr auto auto 1fr auto auto;gap:0.4em 0.75em;align-items:center;">
+        <div id="analytics-region-table" style="display:grid;grid-template-columns:1fr auto auto 1fr auto auto;gap:0.4em 0.75em;align-items:center;">
           <!-- Headers -->
           <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;">Region</span>
           <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;text-align:right;">Views</span>
           <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;"></span>
-          <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;padding-left:0.5em;">Region</span>
-          <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;text-align:right;">Views</span>
-          <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;"></span>
+          <span class="right-header-region" style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;padding-left:0.5em;">Region</span>
+          <span class="right-header-views" style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;text-align:right;">Views</span>
+          <span class="right-header-bar" style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;"></span>
           <!-- Row 1 -->
           <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">California</span>
           <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">4,210</span>
           <div style="width:40px;height:4px;border-radius:4px;background:#4b7bf5;"></div>
-          <span style="font-size:0.8125em;color:#111;padding:0.3em 0 0.3em 0.5em;">Florida</span>
-          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">2,180</span>
-          <div style="width:21px;height:4px;border-radius:4px;background:#93c5fd;"></div>
+          <span class="right-region" style="font-size:0.8125em;color:#111;padding:0.3em 0 0.3em 0.5em;">Florida</span>
+          <span class="right-views" style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">2,180</span>
+          <div class="right-bar" style="width:21px;height:4px;border-radius:4px;background:#93c5fd;"></div>
           <!-- Row 2 -->
           <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">Texas</span>
           <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">3,490</span>
           <div style="width:33px;height:4px;border-radius:4px;background:#6b96f7;"></div>
-          <span style="font-size:0.8125em;color:#111;padding:0.3em 0 0.3em 0.5em;">Oregon</span>
-          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">1,640</span>
-          <div style="width:16px;height:4px;border-radius:4px;background:#bfdbfe;"></div>
+          <span class="right-region" style="font-size:0.8125em;color:#111;padding:0.3em 0 0.3em 0.5em;">Oregon</span>
+          <span class="right-views" style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">1,640</span>
+          <div class="right-bar" style="width:16px;height:4px;border-radius:4px;background:#bfdbfe;"></div>
           <!-- Row 3 -->
           <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">New York</span>
           <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">2,870</span>
           <div style="width:27px;height:4px;border-radius:4px;background:#7eabf8;"></div>
-          <span style="font-size:0.8125em;color:#111;padding:0.3em 0 0.3em 0.5em;">Nevada</span>
-          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">1,190</span>
-          <div style="width:11px;height:4px;border-radius:4px;background:#dbeafe;"></div>
+          <span class="right-region" style="font-size:0.8125em;color:#111;padding:0.3em 0 0.3em 0.5em;">Nevada</span>
+          <span class="right-views" style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">1,190</span>
+          <div class="right-bar" style="width:11px;height:4px;border-radius:4px;background:#dbeafe;"></div>
         </div>
       </div>
     </div>
@@ -1980,9 +2007,9 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
           <div style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></div>
           <div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div>
         </div>
-        <div style="flex:1;background:#fff;border:1px solid #dadce0;border-radius:20px;padding:0.3em 0.875em;font-size:0.75em;color:#555;display:flex;align-items:center;gap:0.4em;">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          google.com/search?q=best+plumbing+sacramento
+        <div style="flex:1;background:#fff;border:1px solid #dadce0;border-radius:20px;padding:0.3em 0.875em;font-size:0.75em;color:#555;display:flex;align-items:center;gap:0.4em;overflow:hidden;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" style="flex-shrink:0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">google.com/search?q=best+plumbing+sacramento</span>
         </div>
       </div>
 
