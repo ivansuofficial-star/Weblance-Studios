@@ -1838,20 +1838,32 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
       <div style="border-top:1px solid #f0f2f5;padding-top:1em;">
         <div style="display:grid;grid-template-columns:1fr auto auto;gap:0.4em 1em;align-items:center;">
           <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;">Region</span>
-          <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;text-align:right;">Users</span>
+          <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;text-align:right;">Views</span>
           <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;"></span>
           <!-- Row 1 -->
           <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">California</span>
-          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">10</span>
+          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">847</span>
           <div style="width:60px;height:4px;border-radius:4px;background:#4b7bf5;"></div>
           <!-- Row 2 -->
-          <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">Oregon</span>
-          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">5</span>
-          <div style="width:31px;height:4px;border-radius:4px;background:#93c5fd;"></div>
+          <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">Texas</span>
+          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">612</span>
+          <div style="width:43px;height:4px;border-radius:4px;background:#6b96f7;"></div>
           <!-- Row 3 -->
+          <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">New York</span>
+          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">534</span>
+          <div style="width:38px;height:4px;border-radius:4px;background:#7eabf8;"></div>
+          <!-- Row 4 -->
           <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">Florida</span>
-          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">3</span>
-          <div style="width:18px;height:4px;border-radius:4px;background:#bfdbfe;"></div>
+          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">389</span>
+          <div style="width:28px;height:4px;border-radius:4px;background:#93c5fd;"></div>
+          <!-- Row 5 -->
+          <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">Oregon</span>
+          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">276</span>
+          <div style="width:20px;height:4px;border-radius:4px;background:#bfdbfe;"></div>
+          <!-- Row 6 -->
+          <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">Nevada</span>
+          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">189</span>
+          <div style="width:13px;height:4px;border-radius:4px;background:#dbeafe;"></div>
         </div>
       </div>
     </div>
@@ -2668,7 +2680,14 @@ void main(void){
     var el = document.getElementById('analytics-world-map');
     var w = el.clientWidth || 400;
     var h = 210;
-    var stateColors = { '6': '#4b7bf5', '41': '#93c5fd', '12': '#bfdbfe' };
+    var stateColors = {
+      '6':  '#4b7bf5',  /* California  847 */
+      '48': '#6b96f7',  /* Texas        612 */
+      '36': '#7eabf8',  /* New York     534 */
+      '12': '#93c5fd',  /* Florida      389 */
+      '41': '#bfdbfe',  /* Oregon       276 */
+      '32': '#dbeafe'   /* Nevada       189 */
+    };
 
     var svg = d3.select('#analytics-world-map')
       .append('svg')
@@ -2686,7 +2705,7 @@ void main(void){
         .data(states.features)
         .enter().append('path')
         .attr('d', path)
-        .attr('fill', function(d) { return stateColors[String(+d.id)] || '#d1d9e6'; })
+        .attr('fill', function(d) { return stateColors[String(d.id)] || '#d1d9e6'; })
         .attr('stroke', '#e8eaed')
         .attr('stroke-width', 0.5);
     }).catch(function() {});
