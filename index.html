@@ -1744,83 +1744,155 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
       </div>
     </div>
 
-    <!-- Mock Dashboard Card -->
-    <div style="background:#fff;border:1px solid #e8eaed;border-radius:24px;padding:2.5em;margin-bottom:1.75em;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.04);">
+    <!-- Two-col: dashboard + map -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5em;margin-bottom:1.75em;align-items:start;">
+
+    <!-- Mock Dashboard Card (scaled ~25% smaller) -->
+    <div style="background:#fff;border:1px solid #e8eaed;border-radius:20px;padding:1.75em;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.04);">
 
       <!-- Top bar -->
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2em;flex-wrap:wrap;gap:1em;">
-        <div style="display:flex;align-items:center;gap:1em;">
-          <div style="width:36px;height:36px;border-radius:10px;background:#eef2ff;border:1px solid #c7d2fe;display:flex;align-items:center;justify-content:center;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5em;flex-wrap:wrap;gap:0.75em;">
+        <div style="display:flex;align-items:center;gap:0.75em;">
+          <div style="width:30px;height:30px;border-radius:8px;background:#eef2ff;border:1px solid #c7d2fe;display:flex;align-items:center;justify-content:center;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           </div>
           <div>
-            <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.15em;">Live Overview</p>
-            <p style="font-size:0.9375em;font-weight:600;color:#111;letter-spacing:-0.01em;">YourBusiness.com</p>
+            <p style="font-size:0.65em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.1em;">Live Overview</p>
+            <p style="font-size:0.875em;font-weight:600;color:#111;letter-spacing:-0.01em;">YourBusiness.com</p>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:0.5em;background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:40px;padding:0.45em 1.1em;">
-          <span style="width:6px;height:6px;border-radius:50%;background:#ef4444;display:inline-block;animation:pulse-dot 2s ease-in-out infinite;box-shadow:0 0 6px rgba(239,68,68,0.6);"></span>
-          <span style="font-size:0.8125em;font-weight:600;color:#ef4444;letter-spacing:0.04em;">Live</span>
+        <div style="display:flex;align-items:center;gap:0.4em;background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:40px;padding:0.35em 0.875em;">
+          <span style="width:5px;height:5px;border-radius:50%;background:#ef4444;display:inline-block;animation:pulse-dot 2s ease-in-out infinite;"></span>
+          <span style="font-size:0.75em;font-weight:600;color:#ef4444;">Live</span>
         </div>
       </div>
 
       <!-- Stat row -->
-      <div id="analytics-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1em;margin-bottom:2.5em;">
+      <div id="analytics-stats" style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75em;margin-bottom:1.5em;">
 
-        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1),transform 0.5s cubic-bezier(.22,1,.36,1);">
-          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.6),transparent);border-radius:16px 16px 0 0;"></div>
-          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.75em;">Page Views</p>
-          <p id="astat-pageviews" style="font-size:2em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">0</p>
-          <p style="font-size:0.8em;color:#16a34a;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 18% this week</p>
+        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:12px;padding:0.875em 1em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1),transform 0.5s cubic-bezier(.22,1,.36,1);">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.6),transparent);border-radius:12px 12px 0 0;"></div>
+          <p style="font-size:0.65em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.5em;">Page Views</p>
+          <p id="astat-pageviews" style="font-size:1.625em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">0</p>
+          <p style="font-size:0.75em;color:#16a34a;margin-top:0.4em;font-weight:600;">↑ 18% this week</p>
         </div>
 
-        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.1s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.1s;">
-          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.6),transparent);border-radius:16px 16px 0 0;"></div>
-          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.75em;">Visitors</p>
-          <p id="astat-visitors" style="font-size:2em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">0</p>
-          <p style="font-size:0.8em;color:#16a34a;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 24% this week</p>
+        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:12px;padding:0.875em 1em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.1s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.1s;">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.6),transparent);border-radius:12px 12px 0 0;"></div>
+          <p style="font-size:0.65em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.5em;">Visitors</p>
+          <p id="astat-visitors" style="font-size:1.625em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">0</p>
+          <p style="font-size:0.75em;color:#16a34a;margin-top:0.4em;font-weight:600;">↑ 24% this week</p>
         </div>
 
-        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.2s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.2s;">
-          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.4),transparent);border-radius:16px 16px 0 0;"></div>
-          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.75em;">Avg. Session</p>
-          <p style="font-size:2em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">2m 34s</p>
-          <p style="font-size:0.8em;color:#9aa0ab;margin-top:0.5em;font-weight:500;">— steady</p>
+        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:12px;padding:0.875em 1em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.2s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.2s;">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.4),transparent);border-radius:12px 12px 0 0;"></div>
+          <p style="font-size:0.65em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.5em;">Avg. Session</p>
+          <p style="font-size:1.625em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">2m 34s</p>
+          <p style="font-size:0.75em;color:#9aa0ab;margin-top:0.4em;">— steady</p>
         </div>
 
-        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.3s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.3s;">
-          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(52,211,153,0.7),transparent);border-radius:16px 16px 0 0;"></div>
-          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.75em;">Conversions</p>
-          <p id="astat-conversions" style="font-size:2em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">0</p>
-          <p style="font-size:0.8em;color:#16a34a;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 41% this week</p>
+        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:12px;padding:0.875em 1em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.3s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.3s;">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(52,211,153,0.7),transparent);border-radius:12px 12px 0 0;"></div>
+          <p style="font-size:0.65em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.5em;">Conversions</p>
+          <p id="astat-conversions" style="font-size:1.625em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">0</p>
+          <p style="font-size:0.75em;color:#16a34a;margin-top:0.4em;font-weight:600;">↑ 41% this week</p>
         </div>
 
       </div>
 
       <!-- Bar chart -->
-      <div style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:16px;padding:1.5em;">
-        <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:1.25em;">Visitors — Last 7 Days</p>
-        <div id="analytics-bars" style="display:flex;align-items:flex-end;gap:0.625em;height:96px;">
-          <div class="abar" data-h="45" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.05s;"></div>
-          <div class="abar" data-h="60" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.15s;"></div>
-          <div class="abar" data-h="38" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.25s;"></div>
-          <div class="abar" data-h="72" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.35s;"></div>
-          <div class="abar" data-h="55" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.45s;"></div>
-          <div class="abar" data-h="88" style="flex:1;background:linear-gradient(to top,#bfdbfe,#60a5fa);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.55s;"></div>
-          <div class="abar" data-h="100" style="flex:1;background:linear-gradient(to top,#3b82f6,#4b7bf5);border-radius:6px 6px 0 0;height:0%;box-shadow:0 0 16px rgba(75,123,245,0.35),0 4px 12px rgba(75,123,245,0.2);transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.65s;"></div>
+      <div style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:12px;padding:1.1em;">
+        <p style="font-size:0.65em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:1em;">Visitors — Last 7 Days</p>
+        <div id="analytics-bars" style="display:flex;align-items:flex-end;gap:0.5em;height:72px;">
+          <div class="abar" data-h="45" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:4px 4px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.05s;"></div>
+          <div class="abar" data-h="60" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:4px 4px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.15s;"></div>
+          <div class="abar" data-h="38" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:4px 4px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.25s;"></div>
+          <div class="abar" data-h="72" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:4px 4px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.35s;"></div>
+          <div class="abar" data-h="55" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:4px 4px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.45s;"></div>
+          <div class="abar" data-h="88" style="flex:1;background:linear-gradient(to top,#bfdbfe,#60a5fa);border-radius:4px 4px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.55s;"></div>
+          <div class="abar" data-h="100" style="flex:1;background:linear-gradient(to top,#3b82f6,#4b7bf5);border-radius:4px 4px 0 0;height:0%;box-shadow:0 0 12px rgba(75,123,245,0.35);transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.65s;"></div>
         </div>
-        <div style="display:flex;gap:0.625em;margin-top:0.75em;">
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:#c0c4cc;">Mon</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:#c0c4cc;">Tue</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:#c0c4cc;">Wed</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:#c0c4cc;">Thu</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:#c0c4cc;">Fri</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:#9aa0ab;">Sat</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:#4b7bf5;font-weight:700;">Sun</div>
+        <div style="display:flex;gap:0.5em;margin-top:0.6em;">
+          <div style="flex:1;text-align:center;font-size:0.6em;color:#c0c4cc;">Mon</div>
+          <div style="flex:1;text-align:center;font-size:0.6em;color:#c0c4cc;">Tue</div>
+          <div style="flex:1;text-align:center;font-size:0.6em;color:#c0c4cc;">Wed</div>
+          <div style="flex:1;text-align:center;font-size:0.6em;color:#c0c4cc;">Thu</div>
+          <div style="flex:1;text-align:center;font-size:0.6em;color:#c0c4cc;">Fri</div>
+          <div style="flex:1;text-align:center;font-size:0.6em;color:#9aa0ab;">Sat</div>
+          <div style="flex:1;text-align:center;font-size:0.6em;color:#4b7bf5;font-weight:700;">Sun</div>
         </div>
       </div>
 
     </div>
+
+    <!-- World Map Card -->
+    <div style="background:#fff;border:1px solid #e8eaed;border-radius:20px;padding:1.75em;box-shadow:0 4px 24px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.04);">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25em;">
+        <p style="font-size:0.8125em;font-weight:600;color:#111;">Active Users by Country</p>
+        <span style="font-size:0.75em;color:#9aa0ab;">Last 7 days</span>
+      </div>
+
+      <!-- Simplified world map SVG -->
+      <svg viewBox="0 0 500 280" style="width:100%;height:auto;margin-bottom:1.25em;" xmlns="http://www.w3.org/2000/svg">
+        <rect width="500" height="280" fill="#f0f4f8" rx="8"/>
+        <!-- Greenland -->
+        <path d="M120,8 Q148,4 162,16 Q172,26 166,36 Q152,42 134,38 Q118,30 116,18 Z" fill="#d1d9e6"/>
+        <!-- North America (Canada + Mexico) -->
+        <path d="M42,28 Q72,14 112,20 Q145,24 165,44 Q180,62 178,78 Q148,68 92,68 Q58,68 38,80 Q32,62 38,44 Z" fill="#d1d9e6"/>
+        <path d="M95,132 Q118,128 134,138 Q144,150 140,162 Q128,170 112,164 Q98,155 92,142 Z" fill="#d1d9e6"/>
+        <!-- USA highlighted -->
+        <path d="M42,78 Q72,66 148,70 Q172,74 178,96 Q180,118 164,130 Q140,140 92,136 Q54,132 36,116 Q28,100 36,86 Z" fill="#4b7bf5"/>
+        <!-- South America -->
+        <path d="M90,168 Q122,160 150,168 Q168,180 172,206 Q174,238 160,262 Q144,278 118,278 Q92,276 76,254 Q62,228 66,200 Q70,180 86,170 Z" fill="#d1d9e6"/>
+        <!-- Iceland -->
+        <path d="M192,20 Q204,16 212,22 Q216,30 210,36 Q200,38 192,32 Z" fill="#d1d9e6"/>
+        <!-- UK -->
+        <path d="M194,46 Q206,42 212,52 Q212,62 204,66 Q194,64 190,56 Z" fill="#d1d9e6"/>
+        <!-- Europe -->
+        <path d="M208,46 Q242,38 272,46 Q288,56 290,74 Q286,92 268,100 Q246,106 222,100 Q202,90 198,72 Q196,56 208,48 Z" fill="#d1d9e6"/>
+        <!-- Africa -->
+        <path d="M212,108 Q254,102 282,110 Q306,124 312,158 Q318,194 304,232 Q286,260 258,272 Q230,278 206,264 Q184,246 178,212 Q172,176 178,144 Q186,116 212,110 Z" fill="#d1d9e6"/>
+        <!-- Middle East -->
+        <path d="M286,102 Q316,96 332,110 Q344,126 336,146 Q318,156 296,150 Q276,138 276,118 Z" fill="#d1d9e6"/>
+        <!-- Russia/Central Asia -->
+        <path d="M274,20 Q365,8 435,14 Q468,20 472,42 Q468,62 448,70 Q396,76 336,72 Q290,68 270,52 Q266,36 274,22 Z" fill="#d1d9e6"/>
+        <!-- China/East Asia -->
+        <path d="M336,70 Q398,64 448,72 Q468,84 470,108 Q468,130 444,142 Q406,152 362,148 Q322,142 308,122 Q298,104 314,86 Z" fill="#d1d9e6"/>
+        <!-- India (light blue) -->
+        <path d="M310,122 Q338,116 358,124 Q372,138 368,164 Q358,180 338,186 Q318,182 306,166 Q298,148 304,132 Z" fill="#93c5fd"/>
+        <!-- SE Asia -->
+        <path d="M362,120 Q398,114 422,126 Q436,140 430,158 Q412,168 386,164 Q364,154 356,138 Z" fill="#d1d9e6"/>
+        <!-- Japan -->
+        <path d="M440,52 Q452,48 460,58 Q462,70 454,76 Q442,76 436,66 Z" fill="#d1d9e6"/>
+        <!-- Australia -->
+        <path d="M386,178 Q436,170 464,182 Q484,196 486,224 Q482,250 458,262 Q428,270 398,260 Q372,246 366,220 Q362,196 378,184 Z" fill="#d1d9e6"/>
+        <!-- NZ -->
+        <path d="M474,228 Q484,222 490,232 Q490,246 482,252 Q472,250 470,238 Z" fill="#d1d9e6"/>
+        <!-- US label dot -->
+        <circle cx="108" cy="104" r="5" fill="#fff" stroke="#4b7bf5" stroke-width="2"/>
+        <!-- India dot -->
+        <circle cx="336" cy="152" r="3.5" fill="#fff" stroke="#93c5fd" stroke-width="1.5"/>
+      </svg>
+
+      <!-- Country table -->
+      <div style="border-top:1px solid #f0f2f5;padding-top:1em;">
+        <div style="display:grid;grid-template-columns:1fr auto auto;gap:0.4em 1em;align-items:center;">
+          <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;">Country</span>
+          <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;text-align:right;">Users</span>
+          <span style="font-size:0.65em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9aa0ab;padding-bottom:0.5em;border-bottom:1px solid #e8eaed;"></span>
+          <!-- Row 1 -->
+          <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">United States</span>
+          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">16</span>
+          <div style="width:60px;height:4px;border-radius:4px;background:#4b7bf5;"></div>
+          <!-- Row 2 -->
+          <span style="font-size:0.8125em;color:#111;padding:0.3em 0;">India</span>
+          <span style="font-size:0.8125em;color:#111;font-weight:600;text-align:right;">1</span>
+          <div style="width:4px;height:4px;border-radius:4px;background:#93c5fd;"></div>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- end two-col grid -->
 
     <!-- Feature pills -->
     <div style="display:flex;flex-wrap:wrap;gap:0.6em;">
@@ -1847,7 +1919,7 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
     50% { opacity: 0.4; transform: scale(0.7); }
   }
   @media (max-width: 900px) {
-    #analytics-section [style*="repeat(4,1fr)"] { grid-template-columns: 1fr 1fr !important; }
+    #analytics-section [style*="grid-template-columns:1fr 1fr;gap:1.5em"] { grid-template-columns: 1fr !important; }
     #analytics-section [style*="grid-template-columns:1fr 1fr;gap:4em"] { grid-template-columns: 1fr !important; gap: 1.5em !important; }
   }
 </style>
