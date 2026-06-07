@@ -498,12 +498,24 @@
         </div>
 
         <!-- Success state -->
-        <div id="form-success" style="display:none;padding:4em 0;text-align:center;">
+        <div id="form-success" style="display:none;padding:3em 0;text-align:center;">
           <div style="width:56px;height:56px;border-radius:50%;background:rgba(75,123,245,0.1);border:1px solid rgba(75,123,245,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5em;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:0.5em;">Message sent!</h3>
-          <p style="color:var(--grey-300);line-height:1.6;">Thanks for reaching out. I'll get back to you within 24 hours.</p>
+          <p style="color:var(--grey-300);line-height:1.6;margin-bottom:2em;">Thanks for reaching out. I'll get back to you within 24 hours.</p>
+
+          <!-- Deposit CTA -->
+          <div id="deposit-cta" style="display:none;background:rgba(75,123,245,0.07);border:1px solid rgba(75,123,245,0.2);border-radius:14px;padding:1.75em;margin-top:0.5em;">
+            <p style="font-size:0.75em;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:0.6em;">Lock in your spot</p>
+            <p id="deposit-desc" style="color:var(--grey-300);font-size:0.9375em;line-height:1.6;margin-bottom:1.25em;"></p>
+            <a id="deposit-link" href="#" target="_blank" class="btn-glow btn-glow-blue" style="font-size:1em;display:inline-flex;">
+              <span class="rb-default" style="padding:0.875em 2.25em;">Pay Deposit →</span>
+              <span class="rb-hover"   style="padding:0.875em 2.25em;">Pay Deposit →</span>
+              <span class="rb-overlay"></span>
+            </a>
+            <p style="color:var(--grey-600);font-size:0.8em;margin-top:1em;">Secured by Stripe · All major cards accepted</p>
+          </div>
         </div>
 
       </div>
@@ -633,6 +645,46 @@
     var opt = document.querySelector('.pkg-option[data-value="' + plan + '"]');
     if (opt) selectPkg(opt);
   }
+
+  /* Form submission + deposit link */
+  var stripeLinks = {
+    starter: { url: 'https://buy.stripe.com/28E28q0VVdZh5P939wco000', desc: 'Pay your $99 deposit to secure your Starter package. The remaining $400 is due after you approve the final design.' },
+    growth:  { url: 'https://buy.stripe.com/eVq6oG48708rb9taBYco001', desc: 'Pay your $199 deposit to secure your Growth package. The remaining $800 is due after you approve the final design.' },
+    studio:  { url: 'https://buy.stripe.com/5kQ28q9sr3kD3H14dAco002', desc: 'Pay your $499 deposit to secure your Max package. The remaining $1,500 is due after you approve the final design.' }
+  };
+
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = this;
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.querySelector('.contact-right > p').style.display = 'none';
+        var pkg = document.getElementById('package').value;
+        var success = document.getElementById('form-success');
+        success.style.display = 'block';
+        var cta = document.getElementById('deposit-cta');
+        if (stripeLinks[pkg]) {
+          document.getElementById('deposit-link').href = stripeLinks[pkg].url;
+          document.getElementById('deposit-desc').textContent = stripeLinks[pkg].desc;
+          cta.style.display = 'block';
+        }
+      } else {
+        btn.disabled = false;
+        alert('Something went wrong. Please try again.');
+      }
+    }).catch(function() {
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    });
+  });
 </script>
 
 </body>
