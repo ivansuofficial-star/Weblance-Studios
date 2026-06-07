@@ -1745,10 +1745,10 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
     </div>
 
     <!-- Two-col: dashboard + map -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5em;margin-bottom:1.75em;align-items:start;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5em;margin-bottom:1.75em;align-items:stretch;">
 
     <!-- Mock Dashboard Card (scaled ~25% smaller) -->
-    <div style="background:#fff;border:1px solid #e8eaed;border-radius:20px;padding:1.75em;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.04);">
+    <div style="background:#fff;border:1px solid #e8eaed;border-radius:20px;padding:1.75em;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.04);display:flex;flex-direction:column;">
 
       <!-- Top bar -->
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5em;flex-wrap:wrap;gap:0.75em;">
@@ -1826,13 +1826,13 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
     </div>
 
     <!-- World Map Card -->
-    <div style="background:#fff;border:1px solid #e8eaed;border-radius:20px;padding:1.75em;box-shadow:0 4px 24px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.04);">
+    <div style="background:#fff;border:1px solid #e8eaed;border-radius:20px;padding:1.75em;box-shadow:0 4px 24px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.04);display:flex;flex-direction:column;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25em;">
         <p style="font-size:0.8125em;font-weight:600;color:#111;">Active Users by Region</p>
         <span style="font-size:0.75em;color:#9aa0ab;">Last 7 days</span>
       </div>
 
-      <div id="analytics-world-map" style="height:210px;margin-bottom:1.25em;border-radius:8px;overflow:hidden;"></div>
+      <div id="analytics-world-map" style="flex:1;min-height:160px;margin-bottom:1.25em;border-radius:8px;overflow:hidden;"></div>
 
       <!-- Region table -->
       <div style="border-top:1px solid #f0f2f5;padding-top:1em;">
@@ -2677,9 +2677,10 @@ void main(void){
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <script>
   (function() {
+    requestAnimationFrame(function() {
     var el = document.getElementById('analytics-world-map');
     var w = el.clientWidth || 400;
-    var h = 210;
+    var h = el.clientHeight || 200;
     var stateColors = {
       '6':  '#4b7bf5',  /* California  847 */
       '48': '#6b96f7',  /* Texas        612 */
@@ -2692,7 +2693,7 @@ void main(void){
     var svg = d3.select('#analytics-world-map')
       .append('svg')
       .attr('width', '100%')
-      .attr('height', h)
+      .attr('height', '100%')
       .style('border-radius', '8px')
       .style('background', '#f0f4f8');
 
@@ -2709,6 +2710,7 @@ void main(void){
         .attr('stroke', '#e8eaed')
         .attr('stroke-width', 0.5);
     }).catch(function() {});
+    }); // end requestAnimationFrame
   })();
 </script>
 
