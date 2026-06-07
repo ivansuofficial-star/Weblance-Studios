@@ -1745,25 +1745,21 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
     </div>
 
     <!-- Mock Dashboard Card -->
-    <div style="background:linear-gradient(145deg,#131518 0%,#0e1014 100%);border:1px solid rgba(75,123,245,0.2);border-radius:24px;padding:2.5em;margin-bottom:1.75em;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(75,123,245,0.06),0 24px 80px rgba(0,0,0,0.5),0 0 60px rgba(75,123,245,0.06);">
-
-      <!-- Glow orb -->
-      <div style="position:absolute;top:-60px;right:-60px;width:360px;height:360px;background:radial-gradient(circle,rgba(75,123,245,0.12) 0%,transparent 65%);pointer-events:none;"></div>
-      <div style="position:absolute;bottom:-40px;left:10%;width:200px;height:200px;background:radial-gradient(circle,rgba(75,123,245,0.05) 0%,transparent 65%);pointer-events:none;"></div>
+    <div style="background:#fff;border:1px solid #e8eaed;border-radius:24px;padding:2.5em;margin-bottom:1.75em;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.04);">
 
       <!-- Top bar -->
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2em;flex-wrap:wrap;gap:1em;">
         <div style="display:flex;align-items:center;gap:1em;">
-          <div style="width:36px;height:36px;border-radius:10px;background:rgba(75,123,245,0.12);border:1px solid rgba(75,123,245,0.2);display:flex;align-items:center;justify-content:center;">
+          <div style="width:36px;height:36px;border-radius:10px;background:#eef2ff;border:1px solid #c7d2fe;display:flex;align-items:center;justify-content:center;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           </div>
           <div>
-            <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-500);margin-bottom:0.15em;">Live Overview</p>
-            <p style="font-size:0.9375em;font-weight:600;color:#fff;letter-spacing:-0.01em;">YourBusiness.com</p>
+            <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.15em;">Live Overview</p>
+            <p style="font-size:0.9375em;font-weight:600;color:#111;letter-spacing:-0.01em;">YourBusiness.com</p>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:0.5em;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:40px;padding:0.45em 1.1em;">
-          <span style="width:6px;height:6px;border-radius:50%;background:#ef4444;display:inline-block;animation:pulse-dot 2s ease-in-out infinite;box-shadow:0 0 6px rgba(239,68,68,0.8);"></span>
+        <div style="display:flex;align-items:center;gap:0.5em;background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:40px;padding:0.45em 1.1em;">
+          <span style="width:6px;height:6px;border-radius:50%;background:#ef4444;display:inline-block;animation:pulse-dot 2s ease-in-out infinite;box-shadow:0 0 6px rgba(239,68,68,0.6);"></span>
           <span style="font-size:0.8125em;font-weight:600;color:#ef4444;letter-spacing:0.04em;">Live</span>
         </div>
       </div>
@@ -1771,56 +1767,56 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
       <!-- Stat row -->
       <div id="analytics-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1em;margin-bottom:2.5em;">
 
-        <div class="astat-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1),transform 0.5s cubic-bezier(.22,1,.36,1);">
+        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1),transform 0.5s cubic-bezier(.22,1,.36,1);">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.6),transparent);border-radius:16px 16px 0 0;"></div>
-          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-500);margin-bottom:0.75em;">Page Views</p>
-          <p id="astat-pageviews" style="font-size:2em;font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1;">0</p>
-          <p style="font-size:0.8em;color:#34d399;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 18% this week</p>
+          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.75em;">Page Views</p>
+          <p id="astat-pageviews" style="font-size:2em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">0</p>
+          <p style="font-size:0.8em;color:#16a34a;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 18% this week</p>
         </div>
 
-        <div class="astat-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.1s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.1s;">
+        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.1s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.1s;">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.6),transparent);border-radius:16px 16px 0 0;"></div>
-          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-500);margin-bottom:0.75em;">Visitors</p>
-          <p id="astat-visitors" style="font-size:2em;font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1;">0</p>
-          <p style="font-size:0.8em;color:#34d399;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 24% this week</p>
+          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.75em;">Visitors</p>
+          <p id="astat-visitors" style="font-size:2em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">0</p>
+          <p style="font-size:0.8em;color:#16a34a;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 24% this week</p>
         </div>
 
-        <div class="astat-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.2s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.2s;">
+        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.2s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.2s;">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(75,123,245,0.4),transparent);border-radius:16px 16px 0 0;"></div>
-          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-500);margin-bottom:0.75em;">Avg. Session</p>
-          <p style="font-size:2em;font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1;">2m 34s</p>
-          <p style="font-size:0.8em;color:var(--grey-500);margin-top:0.5em;font-weight:500;">— steady</p>
+          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.75em;">Avg. Session</p>
+          <p style="font-size:2em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">2m 34s</p>
+          <p style="font-size:0.8em;color:#9aa0ab;margin-top:0.5em;font-weight:500;">— steady</p>
         </div>
 
-        <div class="astat-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.3s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.3s;">
+        <div class="astat-card" style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:16px;padding:1.25em 1.5em;position:relative;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.3s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.3s;">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(52,211,153,0.7),transparent);border-radius:16px 16px 0 0;"></div>
-          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-500);margin-bottom:0.75em;">Conversions</p>
-          <p id="astat-conversions" style="font-size:2em;font-weight:700;color:#fff;letter-spacing:-0.03em;line-height:1;">0</p>
-          <p style="font-size:0.8em;color:#34d399;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 41% this week</p>
+          <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:0.75em;">Conversions</p>
+          <p id="astat-conversions" style="font-size:2em;font-weight:700;color:#111;letter-spacing:-0.03em;line-height:1;">0</p>
+          <p style="font-size:0.8em;color:#16a34a;margin-top:0.5em;font-weight:600;display:flex;align-items:center;gap:0.3em;"><span style="font-size:1.1em;">↑</span> 41% this week</p>
         </div>
 
       </div>
 
       <!-- Bar chart -->
-      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:1.5em;">
-        <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-500);margin-bottom:1.25em;">Visitors — Last 7 Days</p>
+      <div style="background:#f8f9ff;border:1px solid #e8eaed;border-radius:16px;padding:1.5em;">
+        <p style="font-size:0.7em;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9aa0ab;margin-bottom:1.25em;">Visitors — Last 7 Days</p>
         <div id="analytics-bars" style="display:flex;align-items:flex-end;gap:0.625em;height:96px;">
-          <div class="abar" data-h="45" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.3));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.05s;"></div>
-          <div class="abar" data-h="60" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.3));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.15s;"></div>
-          <div class="abar" data-h="38" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.3));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.25s;"></div>
-          <div class="abar" data-h="72" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.35));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.35s;"></div>
-          <div class="abar" data-h="55" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.15),rgba(75,123,245,0.35));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.45s;"></div>
-          <div class="abar" data-h="88" style="flex:1;background:linear-gradient(to top,rgba(75,123,245,0.25),rgba(75,123,245,0.55));border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.55s;"></div>
-          <div class="abar" data-h="100" style="flex:1;background:linear-gradient(to top,#2a4fd4,#4b7bf5);border-radius:6px 6px 0 0;height:0%;box-shadow:0 0 16px rgba(75,123,245,0.55),0 4px 12px rgba(75,123,245,0.3);transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.65s;"></div>
+          <div class="abar" data-h="45" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.05s;"></div>
+          <div class="abar" data-h="60" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.15s;"></div>
+          <div class="abar" data-h="38" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.25s;"></div>
+          <div class="abar" data-h="72" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.35s;"></div>
+          <div class="abar" data-h="55" style="flex:1;background:linear-gradient(to top,#dbeafe,#93c5fd);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.45s;"></div>
+          <div class="abar" data-h="88" style="flex:1;background:linear-gradient(to top,#bfdbfe,#60a5fa);border-radius:6px 6px 0 0;height:0%;transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.55s;"></div>
+          <div class="abar" data-h="100" style="flex:1;background:linear-gradient(to top,#3b82f6,#4b7bf5);border-radius:6px 6px 0 0;height:0%;box-shadow:0 0 16px rgba(75,123,245,0.35),0 4px 12px rgba(75,123,245,0.2);transition:height 0.7s cubic-bezier(.22,1,.36,1) 0.65s;"></div>
         </div>
         <div style="display:flex;gap:0.625em;margin-top:0.75em;">
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:var(--grey-700);">Mon</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:var(--grey-700);">Tue</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:var(--grey-700);">Wed</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:var(--grey-700);">Thu</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:var(--grey-700);">Fri</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:var(--grey-600);">Sat</div>
-          <div style="flex:1;text-align:center;font-size:0.6875em;color:var(--blue);font-weight:700;">Sun</div>
+          <div style="flex:1;text-align:center;font-size:0.6875em;color:#c0c4cc;">Mon</div>
+          <div style="flex:1;text-align:center;font-size:0.6875em;color:#c0c4cc;">Tue</div>
+          <div style="flex:1;text-align:center;font-size:0.6875em;color:#c0c4cc;">Wed</div>
+          <div style="flex:1;text-align:center;font-size:0.6875em;color:#c0c4cc;">Thu</div>
+          <div style="flex:1;text-align:center;font-size:0.6875em;color:#c0c4cc;">Fri</div>
+          <div style="flex:1;text-align:center;font-size:0.6875em;color:#9aa0ab;">Sat</div>
+          <div style="flex:1;text-align:center;font-size:0.6875em;color:#4b7bf5;font-weight:700;">Sun</div>
         </div>
       </div>
 
