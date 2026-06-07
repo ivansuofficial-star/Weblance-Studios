@@ -1914,22 +1914,18 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
   <div class="container" style="position:relative;z-index:1;">
 
     <!-- Header -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4em;align-items:end;margin-bottom:3.5em;">
-      <div>
-        <div class="section-label">SEO Ranking</div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.5rem);font-weight:500;letter-spacing:-0.02em;line-height:1.06;color:#fff;">
-          Get found on<br/><em style="color:var(--blue);font-style:italic;">Google. Fast.</em>
-        </h2>
-      </div>
-      <div style="display:flex;flex-direction:column;justify-content:flex-end;">
-        <p style="color:#fff;font-size:1.0625em;line-height:1.7;">
-          <strong style="color:#fff;">SEO (Search Engine Optimization)</strong> is what determines whether your website gets found — or gets buried. Every Growth and Max package we build is engineered with SEO built in from the ground up, not bolted on as an afterthought.<br/><br/>Strong rankings come from a combination of factors: the right keywords woven naturally into your content, fast load times, clean page structure, optimized titles and descriptions, proper heading hierarchy, mobile responsiveness, local signals, and authoritative links pointing back to your site.<br/><br/>At Weblance Studios, SEO isn't an add-on — it's included in every Growth and Max project. From your first page to your last, we make sure Google can read, understand, and rank your site so the right customers find you at the right time.
-        </p>
-      </div>
+    <div style="margin-bottom:2.5em;">
+      <div class="section-label">SEO Ranking</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.5rem);font-weight:500;letter-spacing:-0.02em;line-height:1.06;color:#fff;">
+        Get found on<br/><em style="color:var(--blue);font-style:italic;">Google. Fast.</em>
+      </h2>
     </div>
 
+    <!-- Two-column: mock card left, text right -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3.5em;align-items:start;margin-bottom:1.75em;">
+
     <!-- Mock Google Search Result Card -->
-    <div style="background:linear-gradient(145deg,#131518 0%,#0e1014 100%);border:1px solid rgba(75,123,245,0.2);border-radius:24px;padding:2.5em;margin-bottom:1.75em;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(75,123,245,0.06),0 24px 80px rgba(0,0,0,0.5),0 0 60px rgba(75,123,245,0.06);">
+    <div style="background:linear-gradient(145deg,#131518 0%,#0e1014 100%);border:1px solid rgba(75,123,245,0.2);border-radius:24px;padding:2em;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(75,123,245,0.06),0 24px 80px rgba(0,0,0,0.5),0 0 60px rgba(75,123,245,0.06);">
 
       <!-- Glow orb -->
       <div style="position:absolute;top:-60px;left:-40px;width:360px;height:360px;background:radial-gradient(circle,rgba(75,123,245,0.12) 0%,transparent 65%);pointer-events:none;"></div>
@@ -1986,6 +1982,15 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
       </div>
     </div>
 
+    <!-- Right: paragraph text -->
+    <div style="display:flex;flex-direction:column;justify-content:center;">
+      <p style="color:#fff;font-size:1.0625em;line-height:1.7;">
+        <strong style="color:#fff;">SEO (Search Engine Optimization)</strong> is what determines whether your website gets found — or gets buried. Every Growth and Max package we build is engineered with SEO built in from the ground up, not bolted on as an afterthought.<br/><br/>Strong rankings come from a combination of factors: the right keywords woven naturally into your content, fast load times, clean page structure, optimized titles and descriptions, proper heading hierarchy, mobile responsiveness, local signals, and authoritative links pointing back to your site.<br/><br/>At Weblance Studios, SEO isn't an add-on — it's included in every Growth and Max project. From your first page to your last, we make sure Google can read, understand, and rank your site so the right customers find you at the right time.
+      </p>
+    </div>
+
+    </div><!-- end two-col grid -->
+
     <!-- Feature pills -->
     <div style="display:flex;flex-wrap:wrap;gap:0.6em;">
       <div style="display:flex;align-items:center;gap:0.7em;background:rgba(75,123,245,0.06);border:1px solid rgba(75,123,245,0.18);border-radius:40px;padding:0.65em 1.4em;">
@@ -2010,7 +2015,7 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
 </section>
 <style>
   @media (max-width: 900px) {
-    #seo-section [style*="grid-template-columns:1fr 1fr;gap:4em"] { grid-template-columns: 1fr !important; gap: 1.5em !important; }
+    #seo-section [style*="grid-template-columns:1fr 1fr;gap:3.5em"] { grid-template-columns: 1fr !important; gap: 2em !important; }
   }
 </style>
 <script>
