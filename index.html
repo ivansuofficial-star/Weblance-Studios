@@ -637,6 +637,7 @@ nav .nav-links { display: none; }
     <li><a href="#why-us-section">Why Us?</a></li>
     <li><a href="#business-impact" style="display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;">Business<span>Impact</span></a></li>
     <li><a href="#analytics-section" style="display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;">Website<span>Analytics</span></a></li>
+    <li><a href="#seo-section" style="display:inline-flex;flex-direction:column;align-items:center;line-height:1.15;">SEO<span>Ranking</span></a></li>
   </ul>
 
   <div class="nav-actions">
@@ -1896,6 +1897,137 @@ console.<span class="fn">log</span>(<span class="str">`Ready: <span class="kw">$
     entries.forEach(function(e){ if (e.isIntersecting) triggerAnalytics(); });
   }, { threshold: 0.2 });
   var sec = document.getElementById('analytics-section');
+  if (sec) obs.observe(sec);
+})();
+</script>
+
+<div class="divider"></div>
+
+<!-- ══════════════ SEO RANKING ══════════════ -->
+<section id="seo-section" class="section" style="padding-top:6em;padding-bottom:6em;position:relative;overflow:hidden;">
+
+  <!-- Background glows -->
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 25% 40%, rgba(34,197,94,0.07) 0%, transparent 55%), radial-gradient(ellipse at 80% 80%, rgba(34,197,94,0.04) 0%, transparent 50%);"></div>
+  <!-- Grain -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.025;" xmlns="http://www.w3.org/2000/svg"><filter id="sg"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#sg)"/></svg>
+
+  <div class="container" style="position:relative;z-index:1;">
+
+    <!-- Header -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4em;align-items:end;margin-bottom:3.5em;">
+      <div>
+        <div class="section-label">SEO Ranking</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.5rem);font-weight:500;letter-spacing:-0.02em;line-height:1.06;color:#fff;">
+          Get found on<br/><em style="color:#22c55e;font-style:italic;">Google. Fast.</em>
+        </h2>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:flex-end;">
+        <p style="color:#fff;font-size:1.0625em;line-height:1.7;">
+          Every site we build is optimized for search engines from day one — the right structure, speed, and keywords so your business shows up when customers are searching for exactly what you offer.
+        </p>
+      </div>
+    </div>
+
+    <!-- Mock Google Search Result Card -->
+    <div style="background:linear-gradient(145deg,#131518 0%,#0e1014 100%);border:1px solid rgba(34,197,94,0.18);border-radius:24px;padding:2.5em;margin-bottom:1.75em;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(34,197,94,0.06),0 24px 80px rgba(0,0,0,0.5),0 0 60px rgba(34,197,94,0.05);">
+
+      <!-- Glow orb -->
+      <div style="position:absolute;top:-60px;left:-40px;width:360px;height:360px;background:radial-gradient(circle,rgba(34,197,94,0.09) 0%,transparent 65%);pointer-events:none;"></div>
+
+      <!-- Browser chrome -->
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:0.75em 1em;margin-bottom:1.75em;display:flex;align-items:center;gap:0.75em;">
+        <div style="display:flex;gap:0.4em;">
+          <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);"></div>
+        </div>
+        <div style="flex:1;background:rgba(255,255,255,0.05);border-radius:6px;padding:0.4em 0.875em;font-size:0.8125em;color:var(--grey-500);">google.com/search?q=plumber+sacramento</div>
+      </div>
+
+      <!-- Search results -->
+      <div style="display:flex;flex-direction:column;gap:1em;">
+
+        <!-- Result #1 — client's business highlighted -->
+        <div id="seo-result-1" style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:1.25em 1.5em;position:relative;opacity:0;transform:translateY(14px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1),transform 0.5s cubic-bezier(.22,1,.36,1);">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(34,197,94,0.7),transparent);border-radius:14px 14px 0 0;"></div>
+          <div style="display:flex;align-items:center;gap:0.6em;margin-bottom:0.4em;">
+            <div style="width:18px;height:18px;border-radius:4px;background:#22c55e;display:flex;align-items:center;justify-content:center;">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span style="font-size:0.75em;color:var(--grey-500);">yourbusiness.com</span>
+            <span style="font-size:0.7em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#22c55e;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);border-radius:20px;padding:0.2em 0.6em;">#1</span>
+          </div>
+          <p style="font-size:1em;font-weight:600;color:#22c55e;margin-bottom:0.25em;">Best Plumber in Sacramento, CA — Fast &amp; Reliable</p>
+          <p style="font-size:0.875em;color:var(--grey-400);line-height:1.5;">Licensed &amp; insured Sacramento plumber. Same-day service, upfront pricing, 500+ five-star reviews. Call now for a free quote.</p>
+        </div>
+
+        <!-- Result #2 -->
+        <div id="seo-result-2" style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.25em 1.5em;opacity:0;transform:translateY(14px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.12s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.12s;">
+          <div style="display:flex;align-items:center;gap:0.6em;margin-bottom:0.4em;">
+            <div style="width:18px;height:18px;border-radius:4px;background:rgba(255,255,255,0.08);"></div>
+            <span style="font-size:0.75em;color:var(--grey-600);">competitor-plumbing.com</span>
+            <span style="font-size:0.7em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey-600);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:0.2em 0.6em;">#2</span>
+          </div>
+          <p style="font-size:1em;font-weight:600;color:var(--grey-400);margin-bottom:0.25em;">Sacramento Plumbing Co.</p>
+          <p style="font-size:0.875em;color:var(--grey-600);line-height:1.5;">Plumbing services in the Sacramento area. Contact us for a quote.</p>
+        </div>
+
+        <!-- Result #3 -->
+        <div id="seo-result-3" style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.25em 1.5em;opacity:0;transform:translateY(14px);transition:opacity 0.5s cubic-bezier(.22,1,.36,1) 0.24s,transform 0.5s cubic-bezier(.22,1,.36,1) 0.24s;">
+          <div style="display:flex;align-items:center;gap:0.6em;margin-bottom:0.4em;">
+            <div style="width:18px;height:18px;border-radius:4px;background:rgba(255,255,255,0.08);"></div>
+            <span style="font-size:0.75em;color:var(--grey-600);">quickfix-plumbers.com</span>
+            <span style="font-size:0.7em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey-600);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:0.2em 0.6em;">#3</span>
+          </div>
+          <p style="font-size:1em;font-weight:600;color:var(--grey-400);margin-bottom:0.25em;">Quick Fix Plumbing — Sacramento</p>
+          <p style="font-size:0.875em;color:var(--grey-600);line-height:1.5;">Emergency plumbing, drain cleaning, water heater repair.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Feature pills -->
+    <div style="display:flex;flex-wrap:wrap;gap:0.6em;">
+      <div style="display:flex;align-items:center;gap:0.7em;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.18);border-radius:40px;padding:0.65em 1.4em;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <span style="font-size:0.875em;font-weight:500;color:#c8d0e0;">Google ranking optimization</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.7em;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.18);border-radius:40px;padding:0.65em 1.4em;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <span style="font-size:0.875em;font-weight:500;color:#c8d0e0;">Local SEO &amp; Google Maps</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.7em;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.18);border-radius:40px;padding:0.65em 1.4em;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <span style="font-size:0.875em;font-weight:500;color:#c8d0e0;">Page speed optimization</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.7em;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.18);border-radius:40px;padding:0.65em 1.4em;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <span style="font-size:0.875em;font-weight:500;color:#c8d0e0;">Meta tags &amp; schema markup</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+<style>
+  @media (max-width: 900px) {
+    #seo-section [style*="grid-template-columns:1fr 1fr;gap:4em"] { grid-template-columns: 1fr !important; gap: 1.5em !important; }
+  }
+</style>
+<script>
+(function(){
+  var triggered = false;
+  function triggerSeo() {
+    if (triggered) return;
+    triggered = true;
+    ['seo-result-1','seo-result-2','seo-result-3'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) { el.style.opacity='1'; el.style.transform='translateY(0)'; }
+    });
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting) triggerSeo(); });
+  }, { threshold: 0.2 });
+  var sec = document.getElementById('seo-section');
   if (sec) obs.observe(sec);
 })();
 </script>
