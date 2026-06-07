@@ -204,6 +204,60 @@
     .form-select option { background: #1a1d21; color: #fff; }
     .form-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
 
+    /* ── CUSTOM PACKAGE SELECT ── */
+    .pkg-select { position: relative; }
+    .pkg-trigger {
+      background: var(--grey-900);
+      border: 1px solid var(--grey-800);
+      border-radius: 10px;
+      padding: 0.875em 2.5em 0.875em 1em;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9375em;
+      outline: none;
+      width: 100%;
+      cursor: pointer;
+      text-align: left;
+      position: relative;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .pkg-trigger:focus, .pkg-select.open .pkg-trigger {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(75,123,245,0.12);
+    }
+    .pkg-chevron {
+      position: absolute; right: 1em; top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
+      pointer-events: none;
+    }
+    .pkg-select.open .pkg-chevron { transform: translateY(-50%) rotate(180deg); }
+    .pkg-placeholder { color: var(--grey-600); }
+    .pkg-dropdown {
+      position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+      background: #1a1d21;
+      border: 1px solid var(--grey-800);
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 100;
+      display: none;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .pkg-select.open .pkg-dropdown { display: block; }
+    .pkg-option {
+      padding: 0.875em 1em;
+      cursor: pointer;
+      font-size: 0.9375em;
+      color: var(--grey-300);
+      transition: background 0.15s;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .pkg-option:last-child { border-bottom: none; }
+    .pkg-option:hover { background: rgba(75,123,245,0.08); }
+    .pkg-option.selected { background: rgba(75,123,245,0.12); }
+    .pkg-price { color: #fff; font-weight: 600; }
+    .pkg-deposit { color: var(--blue); }
+
     /* ── CONTACT INFO ITEMS ── */
     .contact-info-row {
       display: flex; flex-direction: column; gap: 2em;
@@ -402,14 +456,20 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="package">Package Interest</label>
-            <select class="form-select" id="package" name="package">
-              <option value="" disabled selected>Select a package…</option>
-              <option value="starter">Starter — $499 ($99 deposit)</option>
-              <option value="growth">Growth — $999 ($199 deposit)</option>
-              <option value="studio">Max — $1,999 ($499 deposit)</option>
-              <option value="custom">Custom Project</option>
-            </select>
+            <label class="form-label">Package Interest</label>
+            <input type="hidden" name="package" id="package" />
+            <div class="pkg-select" id="pkg-select">
+              <button type="button" class="pkg-trigger" id="pkg-trigger" onclick="togglePkgSelect(event)">
+                <span id="pkg-display"><span class="pkg-placeholder">Select a package…</span></span>
+                <svg class="pkg-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="#6c7584" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              </button>
+              <div class="pkg-dropdown" id="pkg-dropdown">
+                <div class="pkg-option" data-value="starter" onclick="selectPkg(this)">Starter — <span class="pkg-price">$499</span> (<span class="pkg-deposit">$99 deposit</span>)</div>
+                <div class="pkg-option" data-value="growth" onclick="selectPkg(this)">Growth — <span class="pkg-price">$999</span> (<span class="pkg-deposit">$199 deposit</span>)</div>
+                <div class="pkg-option" data-value="studio" onclick="selectPkg(this)">Max — <span class="pkg-price">$1,999</span> (<span class="pkg-deposit">$499 deposit</span>)</div>
+                <div class="pkg-option" data-value="custom" onclick="selectPkg(this)">Custom Project</div>
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
@@ -548,12 +608,30 @@
   }
 
 
-/* Pre-select package from URL param (?plan=growth) */
+/* Custom package dropdown */
+  function togglePkgSelect(e) {
+    e.stopPropagation();
+    document.getElementById('pkg-select').classList.toggle('open');
+  }
+  function selectPkg(el) {
+    var val = el.getAttribute('data-value');
+    document.getElementById('package').value = val;
+    document.getElementById('pkg-display').innerHTML = el.innerHTML;
+    document.querySelectorAll('.pkg-option').forEach(function(o) { o.classList.remove('selected'); });
+    el.classList.add('selected');
+    document.getElementById('pkg-select').classList.remove('open');
+  }
+  document.addEventListener('click', function(e) {
+    var sel = document.getElementById('pkg-select');
+    if (sel && !sel.contains(e.target)) sel.classList.remove('open');
+  });
+
+  /* Pre-select package from URL param (?plan=growth) */
   var params = new URLSearchParams(window.location.search);
   var plan = params.get('plan');
   if (plan) {
-    var sel = document.getElementById('package');
-    if (sel) sel.value = plan;
+    var opt = document.querySelector('.pkg-option[data-value="' + plan + '"]');
+    if (opt) selectPkg(opt);
   }
 </script>
 
