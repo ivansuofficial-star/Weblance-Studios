@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DBKTEN03T0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DBKTEN03T0');
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MPH2828T');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weblance Studios — FAQ</title>
+  <link rel="icon" type="image/png" href="brand_assets/WEBLANCE STUDIOS logo.png">
+  <meta name="description" content="Answers to common questions about Weblance Studios — how the process works, pricing, timelines, revisions, and more. 100% remote, working with clients worldwide.">
+  <meta name="keywords" content="web design FAQ, how does web design work, website design process, custom website questions, web designer FAQ">
+  <meta property="og:title" content="Weblance Studios — Questions, Answered.">
+  <meta property="og:description" content="Everything you need to know before reaching out. Process, pricing, timelines, and revisions explained.">
+  <meta property="og:image" content="brand_assets/WEBLANCE STUDIOS logo.png">
+  <meta property="og:url" content="https://weblancestudios.com/faq">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #4b7bf5;
+      --blue-dim: rgba(75, 123, 245, 0.15);
+      --grey-900: #131518;
+      --grey-800: #222529;
+      --grey-700: #343940;
+      --grey-600: #4b515b;
+      --grey-500: #6c7584;
+      --grey-300: #a1a7b2;
+    }
+
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+      line-height: 1.25;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2em; height: 62px;
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo {
+      display: flex; align-items: center; text-decoration: none;
+      color: #fff; font-weight: 700; white-space: nowrap; height: 1.5em;
+    }
+    .logo-text { display: inline-block; font-size: 1.0625em; letter-spacing: -0.02em; line-height: 1.5em; vertical-align: middle; }
+    .lk { display: inline-block; vertical-align: top; }
+    .lg {
+      display: inline-block; overflow: hidden; vertical-align: top;
+      font-size: 1em; opacity: 1;
+      transition: font-size 1s cubic-bezier(0.51,0,0.08,1), opacity 0.6s ease-out;
+    }
+    nav.scrolled .lg { font-size: 0; opacity: 0; transition: font-size 0.85s cubic-bezier(0.51,0,0.08,1), opacity 0.18s ease-in; }
+    .nav-links { display: flex; align-items: center; gap: 2em; list-style: none; }
+    .nav-links a { color: var(--grey-300); text-decoration: none; font-size: 0.875em; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+
+    /* ── BUTTONS ── */
+    .btn-glow {
+      display: inline-flex; align-items: stretch;
+      background: #262626; color: #fff;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 1em;
+      letter-spacing: -0.01em; border-radius: 40px; border: 2px solid #262626;
+      overflow: hidden; position: relative; text-decoration: none; cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+    .btn-glow:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.4); }
+    .btn-glow .rb-default { position: relative; display: flex; align-items: center; justify-content: center; background: #262626; color: #fff; border-radius: 38px; z-index: 1; white-space: nowrap; transition: opacity 0.3s; }
+    .btn-glow .rb-hover { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #262626; font-weight: 500; white-space: nowrap; visibility: hidden; opacity: 0; z-index: 3; transition: opacity 0.3s; }
+    .btn-glow .rb-overlay { position: absolute; inset: 0; border-radius: 38px; background: #fafafa; transform: scaleX(0); transform-origin: right center; z-index: 2; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .btn-glow:hover .rb-overlay { transform: scaleX(1); transform-origin: left center; }
+    .btn-glow:hover .rb-hover { opacity: 1; visibility: visible; }
+    .btn-glow-blue { background: #4b7bf5; border-color: #4b7bf5; box-shadow: 0 0 18px rgba(75,123,245,0.35), 0 2px 8px rgba(75,123,245,0.25); }
+    .btn-glow-blue .rb-default { background: #4b7bf5; color: #fff; }
+    .btn-glow-blue .rb-hover { color: #4b7bf5; font-weight: 600; }
+    .btn-glow-blue .rb-overlay { background: #f0f4ff; }
+    .btn-glow-blue:hover { box-shadow: 0 0 28px rgba(75,123,245,0.5), 0 4px 16px rgba(75,123,245,0.3); }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 780px; margin: 0 auto; padding: 0 2em; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.5em;
+      font-size: 2.25em; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #ffffff; margin-bottom: 1cm; margin-top: 0.5cm;
+    }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent 0%, var(--grey-800) 30%, var(--grey-800) 70%, transparent 100%); }
+
+    /* ── FAQ DISPLAY CARDS (visible grid) ── */
+    .faq-outer {
+      max-width: 1020px; margin: 0 auto; padding: 0 2em;
+    }
+
+    .faq-group { margin-bottom: 3.25em; }
+
+    .faq-group-label {
+      font-size: 0.875em; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--blue);
+      display: inline-flex; align-items: center; gap: 0.6em;
+      margin-bottom: 1.25em;
+    }
+    .faq-group-label::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: currentColor; flex-shrink: 0;
+    }
+    .faq-group-label.clr-green  { color: #34d399; }
+    .faq-group-label.clr-purple { color: #a78bfa; }
+    .faq-group-label.clr-amber  { color: #fbbf24; }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.875em;
+    }
+
+    /* THE CARD */
+    .faq-card {
+      border: 1.5px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      background: rgba(14,15,18,0.88);
+      backdrop-filter: blur(12px);
+      padding: 1.15em 1.3em 1.25em;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+      transform: skewY(-3deg);
+      transition:
+        transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    /* Right-side gradient fade */
+    .faq-card::after {
+      content: '';
+      position: absolute; right: 0; top: -5%;
+      width: 28%; height: 110%;
+      background: linear-gradient(to left, #000 0%, transparent 100%);
+      pointer-events: none; z-index: 2;
+      transition: opacity 0.4s ease;
+    }
+
+    /* Counter-skew so text stays upright while the card border tilts */
+    .faq-card-inner {
+      position: relative; z-index: 3;
+      transform: skewY(3deg);
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .faq-card:hover {
+      transform: skewY(0deg) translateY(-5px);
+      border-color: rgba(75,123,245,0.28);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.65), 0 3px 14px rgba(75,123,245,0.14);
+    }
+    .faq-card:hover::after { opacity: 0.2; }
+    .faq-card:hover .faq-card-inner { transform: skewY(0deg); }
+
+    .faq-card.clr-green:hover  { border-color: rgba(52,211,153,0.28);  box-shadow: 0 14px 40px rgba(0,0,0,0.65), 0 3px 14px rgba(52,211,153,0.12); }
+    .faq-card.clr-purple:hover { border-color: rgba(167,139,250,0.28); box-shadow: 0 14px 40px rgba(0,0,0,0.65), 0 3px 14px rgba(167,139,250,0.12); }
+    .faq-card.clr-amber:hover  { border-color: rgba(251,191,36,0.28);  box-shadow: 0 14px 40px rgba(0,0,0,0.65), 0 3px 14px rgba(251,191,36,0.12); }
+
+    /* Calm colored top accent line */
+    .faq-card::before {
+      content: '';
+      position: absolute; top: 0; left: 1.1em; right: 1.1em;
+      height: 1.5px; border-radius: 0 0 2px 2px;
+      background: rgba(75,123,245,0.45);
+      z-index: 4;
+    }
+    .faq-card.clr-green::before  { background: rgba(52,211,153,0.4); }
+    .faq-card.clr-purple::before { background: rgba(167,139,250,0.4); }
+    .faq-card.clr-amber::before  { background: rgba(251,191,36,0.4); }
+
+    .faq-card-top {
+      display: flex; align-items: center; gap: 0.5em;
+      margin-bottom: 0.65em;
+    }
+
+    .faq-card-icon {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      background: rgba(75,123,245,0.16); border: 1px solid rgba(75,123,245,0.26);
+    }
+    .faq-card-icon.clr-green  { background: rgba(52,211,153,0.13);  border-color: rgba(52,211,153,0.23); }
+    .faq-card-icon.clr-purple { background: rgba(167,139,250,0.13); border-color: rgba(167,139,250,0.23); }
+    .faq-card-icon.clr-amber  { background: rgba(251,191,36,0.13);  border-color: rgba(251,191,36,0.23); }
+
+    .faq-card-cat {
+      font-size: 0.5625em; font-weight: 700; letter-spacing: 0.13em;
+      text-transform: uppercase; color: rgba(75,123,245,0.8);
+    }
+    .faq-card-cat.clr-green  { color: rgba(52,211,153,0.8); }
+    .faq-card-cat.clr-purple { color: rgba(167,139,250,0.8); }
+    .faq-card-cat.clr-amber  { color: rgba(251,191,36,0.8); }
+
+    .faq-card-q {
+      font-size: 0.875em; font-weight: 600; color: #fff;
+      letter-spacing: -0.015em; line-height: 1.4;
+    }
+
+    .faq-card-hint {
+      margin-top: 0.8em;
+      font-size: 0.5625em; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.18);
+      transition: color 0.3s ease;
+    }
+    .faq-card:hover .faq-card-hint { color: rgba(255,255,255,0.45); }
+
+    /* ── EXPANDED CARD MODAL ── */
+    .faq-modal-backdrop {
+      position: fixed; inset: 0; z-index: 900;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 2em;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .faq-modal-backdrop.open {
+      opacity: 1; pointer-events: all;
+    }
+
+    .faq-modal-card {
+      width: 100%; max-width: 560px;
+      background: rgba(11,12,15,0.98);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 2.25em;
+      position: relative;
+      transform: scale(0.86) translateY(20px);
+      opacity: 0;
+      transition:
+        transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.28s ease;
+    }
+    .faq-modal-backdrop.open .faq-modal-card {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+
+    .faq-modal-card.clr-blue   { border-color: rgba(75,123,245,0.28);  box-shadow: 0 0 0 1px rgba(75,123,245,0.07),  0 40px 100px rgba(0,0,0,0.75), 0 8px 36px rgba(75,123,245,0.15); }
+    .faq-modal-card.clr-green  { border-color: rgba(52,211,153,0.28);  box-shadow: 0 0 0 1px rgba(52,211,153,0.07),  0 40px 100px rgba(0,0,0,0.75), 0 8px 36px rgba(52,211,153,0.12); }
+    .faq-modal-card.clr-purple { border-color: rgba(167,139,250,0.28); box-shadow: 0 0 0 1px rgba(167,139,250,0.07), 0 40px 100px rgba(0,0,0,0.75), 0 8px 36px rgba(167,139,250,0.12); }
+    .faq-modal-card.clr-amber  { border-color: rgba(251,191,36,0.28);  box-shadow: 0 0 0 1px rgba(251,191,36,0.07),  0 40px 100px rgba(0,0,0,0.75), 0 8px 36px rgba(251,191,36,0.12); }
+
+    .faq-modal-close {
+      position: absolute; top: 1.2em; right: 1.2em;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--grey-300); font-size: 1.1em; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .faq-modal-close:hover {
+      background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.2);
+    }
+
+    .faq-modal-top {
+      display: flex; align-items: center; gap: 0.65em;
+      margin-bottom: 1.25em;
+    }
+
+    .faq-modal-icon {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      background: rgba(75,123,245,0.16); border: 1px solid rgba(75,123,245,0.26);
+    }
+    .faq-modal-icon.clr-green  { background: rgba(52,211,153,0.13);  border-color: rgba(52,211,153,0.23); }
+    .faq-modal-icon.clr-purple { background: rgba(167,139,250,0.13); border-color: rgba(167,139,250,0.23); }
+    .faq-modal-icon.clr-amber  { background: rgba(251,191,36,0.13);  border-color: rgba(251,191,36,0.23); }
+
+    .faq-modal-cat {
+      font-size: 0.65em; font-weight: 700; letter-spacing: 0.13em;
+      text-transform: uppercase; color: rgba(75,123,245,0.85);
+    }
+    .faq-modal-cat.clr-green  { color: rgba(52,211,153,0.85); }
+    .faq-modal-cat.clr-purple { color: rgba(167,139,250,0.85); }
+    .faq-modal-cat.clr-amber  { color: rgba(251,191,36,0.85); }
+
+    .faq-modal-q {
+      font-size: 1.15em; font-weight: 700; color: #fff;
+      letter-spacing: -0.02em; line-height: 1.35; margin-bottom: 1em;
+    }
+
+    .faq-modal-a {
+      font-size: 0.9em; color: var(--grey-300); line-height: 1.75;
+    }
+    .faq-modal-a a { color: var(--blue); text-decoration: none; }
+    .faq-modal-a a:hover { text-decoration: underline; }
+    .faq-modal-a strong { color: rgba(255,255,255,0.92); font-weight: 600; }
+
+    /* ── FOOTER ── */
+    .fp { background: #262626; border: 2px solid #262626; border-radius: 40px; overflow: hidden; transition: border-radius 0.38s cubic-bezier(0.4,0,0.2,1); min-width: 140px; }
+    .fp.open { border-radius: 18px; }
+    .fp-btn { display: flex; align-items: center; width: 100%; position: relative; overflow: hidden; background: transparent; border: none; cursor: pointer; padding: 0; }
+    .fp-d { position: relative; z-index: 1; display: flex; align-items: center; padding: 0.72em 2.8em 0.72em 1.4em; width: 100%; font-family: 'Space Grotesk', sans-serif; font-size: 0.8125em; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; white-space: nowrap; background: transparent; }
+    .fp-h { position: absolute; inset: 0; display: flex; align-items: center; padding: 0.72em 2.8em 0.72em 1.4em; font-family: 'Space Grotesk', sans-serif; font-size: 0.8125em; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1a1a1a; white-space: nowrap; opacity: 0; visibility: hidden; z-index: 3; transition: opacity 0.3s; }
+    .fp-ov { position: absolute; inset: 0; background: #fafafa; transform: scaleX(0); transform-origin: right center; z-index: 2; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .fp-btn:hover .fp-ov { transform: scaleX(1); transform-origin: left center; }
+    .fp-btn:hover .fp-h { opacity: 1; visibility: visible; }
+    .fp-ic { position: absolute; right: 1em; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.5); font-size: 1.1em; font-weight: 300; line-height: 1; z-index: 5; pointer-events: none; transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), color 0.2s; }
+    .fp.open .fp-ic { transform: translateY(-50%) rotate(45deg); color: rgba(255,255,255,0.9); }
+    .fp-btn:hover .fp-ic { color: rgba(0,0,0,0.45); }
+    .fp-body-f { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .fp-body-f > div { overflow: hidden; }
+    .fp.open .fp-body-f { grid-template-rows: 1fr; }
+    .fp-body-f a, .fp-body-f span { display: block; color: var(--grey-300); text-decoration: none; font-size: 0.9375em; padding: 0.3em 1.4em; transition: color 0.2s; }
+    .fp-body-f > div > a:first-child, .fp-body-f > div > span:first-child { padding-top: 0.6em; }
+    .fp-body-f > div > a:last-child, .fp-body-f > div > span:last-child { padding-bottom: 0.9em; }
+    .fp-body-f a:hover { color: #fff; }
+    footer { padding: 4em 2em 2.5em; border-top: 1px solid var(--grey-800); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { animation: fadeUp 0.7s cubic-bezier(0.51,0,0.08,1) both; }
+    .fade-up-d1 { animation-delay: 0.08s; }
+    .fade-up-d2 { animation-delay: 0.16s; }
+
+    @media (max-width: 900px) {
+      nav .nav-links { display: none; }
+      .faq-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 580px) {
+      .faq-grid { grid-template-columns: 1fr; }
+      .faq-card { transform: skewY(-1.5deg); }
+      .faq-card-inner { transform: skewY(1.5deg); }
+      .faq-card:hover { transform: skewY(0deg) translateY(-4px); }
+      .faq-card:hover .faq-card-inner { transform: skewY(0deg); }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MPH2828T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav>
+  <a href="/" class="nav-logo" id="nav-logo">
+    <span class="logo-text"><span class="lk">W</span><span class="lg">e</span><span class="lg">b</span><span class="lk">l</span><span class="lg">a</span><span class="lg">n</span><span class="lg">c</span><span class="lg">e</span><span class="lg"> </span><span class="lk">S</span><span class="lg">t</span><span class="lg">u</span><span class="lg">d</span><span class="lg">i</span><span class="lg">o</span><span class="lg">s</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/pricing">Pricing</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section style="padding-top:62px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% -10%, rgba(75,123,245,0.15) 0%, transparent 55%);"></div>
+  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.03;" xmlns="http://www.w3.org/2000/svg"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grain)"/></svg>
+  <div class="container fade-up" style="position:relative;z-index:1;padding-top:0;padding-bottom:4.5em;text-align:center;">
+    <div class="section-label" style="justify-content:center;">FAQ</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5.5vw,4rem);font-weight:500;letter-spacing:-0.02em;line-height:1.06;color:#fff;margin-bottom:0.75em;">
+      Questions, <em style="color:var(--blue);font-style:italic;">answered.</em>
+    </h1>
+    <p style="color:var(--grey-300);font-size:1.0625em;line-height:1.7;max-width:480px;margin:0 auto;">
+      Everything you need to know before reaching out. Still have questions? <a href="/contact" style="color:var(--blue);text-decoration:none;">Send us a message.</a>
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════ FAQ CARDS ══════════════ -->
+<section style="padding:5em 0 6em;">
+  <div class="faq-outer fade-up fade-up-d1">
+
+    <!-- ── Getting Started ── -->
+    <div class="faq-group">
+      <p class="faq-group-label">Getting Started</p>
+      <div class="faq-grid">
+
+        <div class="faq-card" onclick="openCard('gs-1')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">How does the process work?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card" onclick="openCard('gs-3')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">What do I need to provide to get started?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card" onclick="openCard('gs-2')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Do you work with clients outside of Sacramento?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Pricing & Payment ── -->
+    <div class="faq-group">
+      <p class="faq-group-label clr-green">Pricing &amp; Payment</p>
+      <div class="faq-grid">
+
+        <div class="faq-card clr-green" onclick="openCard('pp-1')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">What's the difference between the packages?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-green" onclick="openCard('pp-2')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">When do I pay?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-green" onclick="openCard('pp-3')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Is there a refund policy?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Build & Delivery ── -->
+    <div class="faq-group">
+      <p class="faq-group-label clr-purple">Build &amp; Delivery</p>
+      <div class="faq-grid">
+
+        <div class="faq-card clr-purple" onclick="openCard('bd-1')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">How long does it take to build my site?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-purple" onclick="openCard('bd-2')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Is the site built on a template or from scratch?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-purple" onclick="openCard('bd-3')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">What does "Free Custom Domain" mean?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── After Launch ── -->
+    <div class="faq-group">
+      <p class="faq-group-label clr-amber">After Launch</p>
+      <div class="faq-grid">
+
+        <div class="faq-card clr-amber" onclick="openCard('al-1')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Can I make changes after the site is live?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-amber" onclick="openCard('al-2')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Will I be able to see who's visiting my site?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-amber" onclick="openCard('al-3')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Will my site show up on Google?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="margin-top:5em;padding:2.5em;background:linear-gradient(135deg,rgba(75,123,245,0.08) 0%,rgba(75,123,245,0.03) 100%);border:1px solid rgba(75,123,245,0.18);border-radius:20px;text-align:center;">
+      <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:0.75em;">Still have questions?</p>
+      <h3 style="font-size:1.5rem;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:0.5em;">We're easy to reach.</h3>
+      <p style="color:var(--grey-300);font-size:0.9375em;line-height:1.6;margin-bottom:1.75em;">Send a message and you'll hear back within 24 hours.</p>
+      <a href="/contact" class="btn-glow btn-glow-blue" style="font-size:1em;">
+        <span class="rb-default" style="padding:0.875em 2.25em;">Get in Touch →</span>
+        <span class="rb-hover"   style="padding:0.875em 2.25em;">Get in Touch →</span>
+        <span class="rb-overlay"></span>
+      </a>
+    </div>
+
+  </div><!-- /faq-outer -->
+</section>
+
+<!-- ══════════════ EXPANDED CARD MODAL ══════════════ -->
+<div id="faq-modal" class="faq-modal-backdrop" onclick="if(event.target===this)closeModal()">
+  <div class="faq-modal-card clr-blue" id="faq-modal-card">
+    <button class="faq-modal-close" onclick="closeModal()">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 1l8 8M9 1l-8 8"/></svg>
+    </button>
+    <div class="faq-modal-top">
+      <span class="faq-modal-icon" id="modal-icon"></span>
+      <span class="faq-modal-cat" id="modal-cat"></span>
+    </div>
+    <p class="faq-modal-q" id="modal-q"></p>
+    <p class="faq-modal-a" id="modal-a"></p>
+  </div>
+</div>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;gap:0.75em;padding:3.5em 0 3em;align-items:flex-start;">
+
+      <div class="fp" id="fp-social">
+        <button class="fp-btn" onclick="fpToggle('fp-social')" aria-expanded="false">
+          <span class="fp-d">Social</span><span class="fp-h">Social</span><span class="fp-ov"></span><span class="fp-ic">+</span>
+        </button>
+        <div class="fp-body-f"><div><a href="#">LinkedIn</a><a href="#">Whop</a></div></div>
+      </div>
+
+      <div class="fp" id="fp-company">
+        <button class="fp-btn" onclick="fpToggle('fp-company')" aria-expanded="false">
+          <span class="fp-d">Company</span><span class="fp-h">Company</span><span class="fp-ov"></span><span class="fp-ic">+</span>
+        </button>
+        <div class="fp-body-f"><div>
+          <a href="/">Home</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/contact">Contact</a>
+          <a href="/faq">FAQ</a>
+          <a href="about.html">About</a>
+        </div></div>
+      </div>
+
+      <div class="fp" id="fp-locations">
+        <button class="fp-btn" onclick="fpToggle('fp-locations')" aria-expanded="false">
+          <span class="fp-d">Locations</span><span class="fp-h">Locations</span><span class="fp-ov"></span><span class="fp-ic">+</span>
+        </button>
+        <div class="fp-body-f"><div><span>Sacramento, CA</span><span>Elk Grove, CA</span></div></div>
+      </div>
+
+      <div class="fp" id="fp-contact">
+        <button class="fp-btn" onclick="fpToggle('fp-contact')" aria-expanded="false">
+          <span class="fp-d">Get in touch</span><span class="fp-h">Get in touch</span><span class="fp-ov"></span><span class="fp-ic">+</span>
+        </button>
+        <div class="fp-body-f"><div>
+          <a href="tel:+19166986035">+1 916 698 6035</a>
+          <a href="/contact">Contact us</a>
+        </div></div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1.5em 0;flex-wrap:wrap;gap:1em;">
+      <p style="color:var(--grey-600);font-size:0.8125em;margin:0;">© 2026 Weblance Studios. All rights reserved.</p>
+      <p style="color:var(--grey-600);font-size:0.8125em;margin:0;">weblancestudiosofficial@gmail.com</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Nav scroll ── */
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+
+  /* ── Footer accordions ── */
+  function fpToggle(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var isOpen = el.classList.contains('open');
+    el.classList.toggle('open', !isOpen);
+    var btn = el.querySelector('.fp-btn');
+    if (btn) btn.setAttribute('aria-expanded', String(!isOpen));
+  }
+
+  /* ── FAQ data store — keeps HTML out of onclick attributes ── */
+  var FAQS = {
+    'gs-1': { color:'blue',   cat:'Getting Started',   q:'How does the process work?',                     a:`You fill out the contact form, tell me about your project, and we hop on a quick call or chat. Once we agree on what you need, I get to work. You'll see a draft, give feedback, and we refine until it's exactly right.` },
+    'gs-2': { color:'blue',   cat:'Getting Started',   q:'Do you work with clients outside of Sacramento?', a:`Yes — 100% remote. Everything is handled online through messages, calls, and screen shares. It doesn't matter where you're based.` },
+    'gs-3': { color:'blue',   cat:'Getting Started',   q:'What do I need to provide to get started?',      a:`Ideally: your logo (if you have one), a few words about your business, and an idea of what you want the site to do. No logo? No problem — we can work with what you have. The more context you give, the better the result.` },
+    'pp-1': { color:'green',  cat:'Pricing & Payment', q:`What's the difference between the packages?`,    a:`The <strong>Starter</strong> ($499) is a clean, fast single-page site — perfect if you just need something professional online. The <strong>Growth</strong> ($999) adds more pages, animations, and SEO. The <strong>Max</strong> ($1,999) is the full package — up to 10 pages, premium effects, and full post-launch support. Check out the <a href="/pricing">pricing page</a> for the full breakdown.` },
+    'pp-2': { color:'green',  cat:'Pricing & Payment', q:'When do I pay?',                                  a:`A deposit is collected upfront to kick things off — $99 for Starter, $199 for Growth, and $499 for Max. The remaining balance is only due once you have seen the final result and given your approval. You won't pay the rest until you're happy with what you're getting.` },
+    'pp-3': { color:'green',  cat:'Pricing & Payment', q:'Is there a refund policy?',                      a:`<strong>Deposits are non-refundable</strong> once work has begun — they cover the time spent scoping and starting your project. The remaining balance is only due after you've reviewed and approved the final result. If you're not satisfied before final delivery, we'll revise until you are — or issue a full refund of the remaining balance. Once the final payment is made and the site is delivered, we consider the project complete and no further refunds are issued.` },
+    'bd-1': { color:'purple', cat:'Build & Delivery',  q:'How long does it take to build my site?',         a:`Most sites are delivered within 24–48 hours from when I have everything I need from you. Larger projects (Max package, custom builds) may take a bit longer depending on complexity.` },
+    'bd-2': { color:'purple', cat:'Build & Delivery',  q:'Is the site built on a template or from scratch?', a:`Always from scratch — no Wix, no Squarespace, no WordPress templates. Every site is hand-coded, which means it's faster, lighter, and completely unique to your brand.` },
+    'bd-3': { color:'purple', cat:'Build & Delivery',  q:'What does "Free Custom Domain" mean?',            a:`Your domain is your website address — like yourbusiness.com. We'll help you get one set up and connected to your site. The domain itself (which typically costs ~$10–15/year) is included as part of your package.` },
+    'al-1': { color:'amber',  cat:'After Launch',      q:'Can I make changes after the site is live?',      a:`Yes. Every package includes post-launch revisions. Starter gets 2 rounds, Growth has ongoing supported revisions, and Max includes full post-launch support. For bigger changes down the line, just reach out and we'll sort out a plan.` },
+    'al-2': { color:'amber',  cat:'After Launch',      q:`Will I be able to see who's visiting my site?`,  a:`Growth and Max packages include Google Analytics setup. You'll be able to see how many people visit, where they come from, what pages they look at, and how long they stay — we set it all up for you. The Starter package doesn't include analytics.` },
+    'al-3': { color:'amber',  cat:'After Launch',      q:'Will my site show up on Google?',                 a:`Growth and Max packages include SEO optimization — that means your site is set up so Google can find and index it properly. Ranking on the first page takes time and ongoing effort, but we make sure the foundation is solid from day one.` }
+  };
+
+  var ICONS = {
+    blue:   '<svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="#4b7bf5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6.5 2l4 4-4 4"/></svg>',
+    green:  '<svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="#34d399" stroke-width="1.6" stroke-linecap="round"><path d="M6 1v10M4.3 3.5C4.3 2.7 5.1 2 6 2s1.7.5 1.7 1.5c0 2-3.4 1.4-3.4 3.5 0 1 .8 1.7 1.7 1.7s1.7-.7 1.7-1.7"/></svg>',
+    purple: '<svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 3.5L1 6l2.5 2.5M8.5 3.5L11 6l-2.5 2.5M7 2l-2 8"/></svg>',
+    amber:  '<svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="#fbbf24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1l1.3 3.6H11l-3 2.2 1.2 3.6L6 8.4l-3.2 2 1.2-3.6L1 4.6h3.7z"/></svg>'
+  };
+
+  /* ── Open expanded card ── */
+  function openCard(id) {
+    var f = FAQS[id];
+    if (!f) return;
+
+    document.getElementById('modal-q').textContent = f.q;
+    document.getElementById('modal-a').innerHTML = f.a;
+
+    var catEl = document.getElementById('modal-cat');
+    catEl.textContent = f.cat;
+    catEl.className = 'faq-modal-cat clr-' + f.color;
+
+    var iconEl = document.getElementById('modal-icon');
+    iconEl.className = 'faq-modal-icon clr-' + f.color;
+    iconEl.innerHTML = ICONS[f.color] || '';
+
+    document.getElementById('faq-modal-card').className = 'faq-modal-card clr-' + f.color;
+    document.getElementById('faq-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('faq-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
