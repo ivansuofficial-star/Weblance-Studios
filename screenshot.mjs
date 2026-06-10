@@ -30,7 +30,7 @@ await new Promise(r => setTimeout(r, 800));
 
 // Force all scroll animations visible (IntersectionObserver unreliable in headless)
 await page.evaluate(() => {
-  document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
+  document.querySelectorAll('.fade-up, .reveal').forEach(el => el.classList.add('visible'));
 });
 await new Promise(r => setTimeout(r, 400));
 

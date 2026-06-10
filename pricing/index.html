@@ -188,56 +188,53 @@
       text-transform: uppercase; color: #8c95a4; margin-bottom: 1.5em;
     }
 
-    /* ── PRICING CARDS ── */
+    /* ── PRICING GRID ── */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5em;
-      align-items: stretch;
+      gap: 2em;
+      align-items: start;
+      padding: 1.5em 0.5em 0.5em;
     }
 
+    /* ── PRICING CARD (neo-brutalist) ── */
     .pricing-card {
-      background: var(--grey-900);
-      border: 1px solid var(--grey-800);
-      border-radius: 18px;
+      background: #fff;
+      border: 2px solid #111;
+      border-radius: 12px;
       padding: 2em;
       position: relative;
       display: flex;
       flex-direction: column;
-      transition: border-color 0.3s cubic-bezier(0.51,0,0.08,1),
-                  transform    0.3s cubic-bezier(0.51,0,0.08,1),
-                  box-shadow   0.3s cubic-bezier(0.51,0,0.08,1);
+      box-shadow: 5px 5px 0 0 #111;
+      transition: box-shadow 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform  0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      color: #111;
     }
-    .pricing-card:hover {
-      border-color: var(--grey-700);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-    }
-    .pricing-card.popular {
-      border-color: rgba(212,175,55,0.5);
-      box-shadow: 0 0 0 1px rgba(212,175,55,0.15), 0 8px 40px rgba(212,175,55,0.1), 0 0 60px rgba(212,175,55,0.06);
-      transform: scale(1.025);
-    }
-    .pricing-card.popular:hover {
-      transform: scale(1.025) translateY(-4px);
-      border-color: rgba(212,175,55,0.7);
-      box-shadow: 0 0 0 1px rgba(212,175,55,0.25), 0 16px 48px rgba(212,175,55,0.15), 0 0 80px rgba(212,175,55,0.08);
-    }
+
+    .pricing-card.rot-neg1 { transform: rotate(-1deg); }
+    .pricing-card.rot-pos1 { transform: rotate(1deg); }
+    .pricing-card.rot-neg2 { transform: rotate(-2deg); }
+
+    .pricing-card.rot-neg1:hover { transform: rotate(-1deg) translate(-3px, -3px); box-shadow: 8px 8px 0 0 #111, 0 0 20px 6px rgba(75,123,245,0.45), 0 0 50px 16px rgba(75,123,245,0.18); }
+    .pricing-card.rot-pos1:hover { transform: rotate(1deg) translate(-3px, -3px); box-shadow: 8px 8px 0 0 #111, 0 0 22px 8px rgba(212,175,55,0.55), 0 0 55px 18px rgba(212,175,55,0.22); }
+    .pricing-card.rot-neg2:hover { transform: rotate(-2deg) translate(-3px, -3px); box-shadow: 8px 8px 0 0 #111, 0 0 20px 6px rgba(75,123,245,0.45), 0 0 50px 16px rgba(75,123,245,0.18); }
 
     .popular-badge {
       position: absolute;
-      top: -16px; left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(90deg, #b8860b 0%, #f5d060 40%, #d4af37 60%, #b8860b 100%);
-      color: #000;
-      font-size: 0.85em;
-      font-weight: 900;
-      letter-spacing: 0.12em;
+      top: -14px; right: -8px;
+      background: #fbbf24;
+      color: #111;
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 0.45em 1.5em;
+      padding: 0.4em 1.1em;
       border-radius: 100px;
       white-space: nowrap;
-      box-shadow: 0 0 24px rgba(212,175,55,0.6), 0 2px 10px rgba(0,0,0,0.5);
+      border: 2px solid #111;
+      transform: rotate(6deg);
+      box-shadow: 2px 2px 0 0 #111;
     }
 
     .price-amount {
@@ -245,7 +242,7 @@
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1;
-      color: #fff;
+      color: #111;
     }
     .price-amount sup {
       font-size: 1.25rem;
@@ -265,23 +262,49 @@
       align-items: flex-start;
       gap: 0.65em;
       font-size: 0.875em;
-      color: var(--grey-300);
+      color: #333;
       line-height: 1.5;
     }
-    .feature-list li svg { flex-shrink: 0; margin-top: 2px; }
 
-    .card-cta {
-      display: flex;
-      width: 100%;
-    }
-    .card-cta .btn-glow {
-      width: 100%;
+    .check-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #111;
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
-    .card-cta .rb-default {
+
+    .card-cta { display: flex; width: 100%; margin-top: auto; }
+
+    .btn-neo {
+      display: block;
       width: 100%;
-      justify-content: center;
+      padding: 0.875em 1.5em;
+      background: #f5f5f5;
+      color: #111;
+      border: 2px solid #111;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9375em;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 3px 3px 0 0 #111;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
     }
+    .btn-neo:hover {
+      box-shadow: 5px 5px 0 0 #111;
+      transform: translate(-2px, -2px);
+      color: #111;
+    }
+    .btn-neo:active { opacity: 0.85; }
+    .btn-neo.popular-btn { background: #fbbf24; }
+    .btn-neo.popular-btn:hover { background: #f59e0b; }
 
     /* ── CUSTOM CARD ── */
     .custom-card {
@@ -319,20 +342,9 @@
     .guarantee-item svg { color: var(--blue); flex-shrink: 0; }
 
     /* ── CONTACT FORM ── */
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-    }
-    .form-label {
-      font-size: 0.8125em;
-      font-weight: 600;
-      color: var(--grey-300);
-      letter-spacing: 0.04em;
-    }
-    .form-input,
-    .form-select,
-    .form-textarea {
+    .form-group { display: flex; flex-direction: column; gap: 0.5em; }
+    .form-label { font-size: 0.8125em; font-weight: 600; color: var(--grey-300); letter-spacing: 0.04em; }
+    .form-input, .form-select, .form-textarea {
       background: var(--grey-900);
       border: 1px solid var(--grey-800);
       border-radius: 10px;
@@ -346,11 +358,8 @@
       appearance: none;
       -webkit-appearance: none;
     }
-    .form-input::placeholder,
-    .form-textarea::placeholder { color: var(--grey-600); }
-    .form-input:focus,
-    .form-select:focus,
-    .form-textarea:focus {
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--grey-600); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
       border-color: var(--blue);
       box-shadow: 0 0 0 3px rgba(75,123,245,0.12);
     }
@@ -405,8 +414,8 @@
       line-height: 1; z-index: 5; pointer-events: none;
       transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), color 0.2s;
     }
-    .fp.open .fp-ic       { transform: translateY(-50%) rotate(45deg); color: rgba(255,255,255,0.9); }
-    .fp-btn:hover .fp-ic  { color: rgba(0,0,0,0.45); }
+    .fp.open .fp-ic      { transform: translateY(-50%) rotate(45deg); color: rgba(255,255,255,0.9); }
+    .fp-btn:hover .fp-ic { color: rgba(0,0,0,0.45); }
     .fp-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.4,0,0.2,1); }
     .fp-body > div { overflow: hidden; }
     .fp.open .fp-body { grid-template-rows: 1fr; }
@@ -434,8 +443,12 @@
 
     @media (max-width: 900px) {
       .pricing-grid { grid-template-columns: 1fr; }
-      .pricing-card.popular { transform: none; }
-      .pricing-card.popular:hover { transform: translateY(-4px); }
+      .pricing-card.rot-neg1,
+      .pricing-card.rot-pos1,
+      .pricing-card.rot-neg2 { transform: none; }
+      .pricing-card.rot-neg1:hover,
+      .pricing-card.rot-pos1:hover,
+      .pricing-card.rot-neg2:hover { transform: translate(-3px, -3px); }
       .custom-card { grid-template-columns: 1fr; }
       nav .nav-links { display: none; }
       .form-row { grid-template-columns: 1fr !important; }
@@ -452,27 +465,20 @@
   <a href="/" class="nav-logo" id="nav-logo">
     <span class="logo-text"><span class="lk">W</span><span class="lg">e</span><span class="lg">b</span><span class="lk">l</span><span class="lg">a</span><span class="lg">n</span><span class="lg">c</span><span class="lg">e</span><span class="lg"> </span><span class="lk">S</span><span class="lg">t</span><span class="lg">u</span><span class="lg">d</span><span class="lg">i</span><span class="lg">o</span><span class="lg">s</span></span>
   </a>
-
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
     <li><a href="/pricing" style="color:var(--blue);">Pricing</a></li>
     <li><a href="/contact">Contact</a></li>
   </ul>
-
 </nav>
 
 <!-- ══════════════ PRICING HERO ══════════════ -->
 <section style="min-height:38vh; padding-top:62px; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden;">
-
-  <!-- Subtle radial glow -->
   <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% -10%, rgba(75,123,245,0.18) 0%, transparent 55%);"></div>
-
-  <!-- Grain texture -->
   <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.035;" xmlns="http://www.w3.org/2000/svg">
     <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
     <rect width="100%" height="100%" filter="url(#grain)"/>
   </svg>
-
   <div class="container fade-up" style="position:relative;z-index:1;padding:5.5em 2em 4em;">
     <div class="section-label" style="justify-content:center;">Pricing</div>
     <h1 style="font-size:clamp(2.5rem,5.5vw,4.5rem);font-weight:700;letter-spacing:-0.03em;line-height:1.04;color:#fff;margin-bottom:0.75em;">
@@ -491,180 +497,114 @@
     <div class="pricing-grid">
 
       <!-- ── Starter ── -->
-      <div class="pricing-card fade-up">
-        <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-500);margin-bottom:1.5em;">Starter</p>
+      <div class="fade-up">
+        <div class="pricing-card rot-neg1">
+          <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#888;margin-bottom:1.5em;">Starter</p>
 
-        <div style="margin-bottom:1.5em;">
-          <div class="price-amount"><sup>$</sup>499</div>
-          <p style="color:var(--grey-600);font-size:0.8125em;margin-top:0.5em;font-weight:500;">one-time · no monthly fees</p>
-          <div style="display:inline-flex;align-items:center;gap:0.5em;margin-top:0.6em;background:#000;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.45em 0.85em;">
-            <span style="color:#4b7bf5;font-size:0.9375em;font-weight:700;">$99 due today</span>
-            <span style="color:var(--grey-500);font-size:0.8125em;">·</span>
-            <span style="color:#fff;font-size:0.8125em;font-weight:500;">$400 after client approval</span>
+          <div style="margin-bottom:1.5em;">
+            <div class="price-amount"><sup>$</sup>499</div>
+            <p style="color:#888;font-size:0.8125em;margin-top:0.5em;font-weight:500;">one-time · no monthly fees</p>
+            <div style="display:inline-flex;align-items:center;gap:0.5em;margin-top:0.6em;background:#f5f5f5;border:1px solid rgba(0,0,0,0.1);border-radius:8px;padding:0.45em 0.85em;">
+              <span style="color:#4b7bf5;font-size:0.9375em;font-weight:700;">$99 due today</span>
+              <span style="color:#aaa;font-size:0.8125em;">·</span>
+              <span style="color:#333;font-size:0.8125em;font-weight:500;">$400 after client approval</span>
+            </div>
           </div>
-        </div>
 
-        <p style="color:var(--grey-300);font-size:0.9375em;line-height:1.6;margin-bottom:1.75em;">
-          Perfect for new businesses and personal brands that need a fast, clean online presence — delivered fast.
-        </p>
+          <p style="color:#555;font-size:0.9375em;line-height:1.6;margin-bottom:1.75em;">
+            Perfect for new businesses and personal brands that need a fast, clean online presence — delivered fast.
+          </p>
 
-        <div class="divider" style="margin-bottom:1.75em;"></div>
+          <div style="height:1px;background:rgba(0,0,0,0.1);margin-bottom:1.75em;"></div>
 
-        <ul class="feature-list" style="margin-bottom:2em;">
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Mobile responsive design
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Up to 3 custom animations
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Contact form integration
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Custom domain setup
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Free Custom Domain
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            24–48 hour delivery
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            2 rounds of revision after launch
-          </li>
-        </ul>
+          <ul class="feature-list" style="margin-bottom:2em;">
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Mobile responsive design</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Up to 3 custom animations</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Contact form integration</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Custom domain setup</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Free Custom Domain</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>24–48 hour delivery</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>2 rounds of revision after launch</li>
+          </ul>
 
-        <div class="card-cta">
-          <a href="/contact" class="btn-glow" style="font-size:0.9375em;">
-            <span class="rb-default" style="padding:0.75em 1.5em;width:100%;justify-content:center;">Get Started →</span>
-            <span class="rb-hover"   style="padding:0.75em 1.5em;">Get Started →</span>
-            <span class="rb-overlay"></span>
-          </a>
+          <div class="card-cta">
+            <a href="/contact" class="btn-neo">Get Started →</a>
+          </div>
         </div>
       </div>
 
       <!-- ── Growth (Popular) ── -->
-      <div class="pricing-card popular fade-up fade-up-d1">
-        <div class="popular-badge">Most Popular</div>
-        <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:1.5em;">Growth</p>
+      <div class="fade-up fade-up-d1">
+        <div class="pricing-card rot-pos1">
+          <div class="popular-badge">Most Popular</div>
+          <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#4b7bf5;margin-bottom:1.5em;">Growth</p>
 
-        <div style="margin-bottom:1.5em;">
-          <div class="price-amount"><sup>$</sup>999</div>
-          <p style="color:var(--grey-600);font-size:0.8125em;margin-top:0.5em;font-weight:500;">one-time · no monthly fees</p>
-          <div style="display:inline-flex;align-items:center;gap:0.5em;margin-top:0.6em;background:#000;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.45em 0.85em;">
-            <span style="color:#4b7bf5;font-size:0.9375em;font-weight:700;">$199 due today</span>
-            <span style="color:var(--grey-500);font-size:0.8125em;">·</span>
-            <span style="color:#fff;font-size:0.8125em;font-weight:500;">$800 after client approval</span>
+          <div style="margin-bottom:1.5em;">
+            <div class="price-amount"><sup>$</sup>999</div>
+            <p style="color:#888;font-size:0.8125em;margin-top:0.5em;font-weight:500;">one-time · no monthly fees</p>
+            <div style="display:inline-flex;align-items:center;gap:0.5em;margin-top:0.6em;background:#f5f5f5;border:1px solid rgba(0,0,0,0.1);border-radius:8px;padding:0.45em 0.85em;">
+              <span style="color:#4b7bf5;font-size:0.9375em;font-weight:700;">$199 due today</span>
+              <span style="color:#aaa;font-size:0.8125em;">·</span>
+              <span style="color:#333;font-size:0.8125em;font-weight:500;">$800 after client approval</span>
+            </div>
           </div>
-        </div>
 
-        <p style="color:var(--grey-300);font-size:0.9375em;line-height:1.6;margin-bottom:1.75em;">
-          Best for businesses ready to grow — multi-page site with polished animations and a real SEO presence.
-        </p>
+          <p style="color:#555;font-size:0.9375em;line-height:1.6;margin-bottom:1.75em;">
+            Best for businesses ready to grow — multi-page site with polished animations and a real SEO presence.
+          </p>
 
-        <div class="divider" style="margin-bottom:1.75em;"></div>
+          <div style="height:1px;background:rgba(0,0,0,0.1);margin-bottom:1.75em;"></div>
 
-        <ul class="feature-list" style="margin-bottom:2em;">
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Everything in Starter
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Up to 5 pages
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Advanced animations & interactions
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Basic SEO optimization
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Google Analytics setup
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Priority delivery
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Supported revisions after launch
-          </li>
-        </ul>
+          <ul class="feature-list" style="margin-bottom:2em;">
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Everything in Starter</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Up to 5 pages</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Advanced animations &amp; interactions</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Basic SEO optimization</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Google Analytics setup</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Priority delivery</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Supported revisions after launch</li>
+          </ul>
 
-        <div class="card-cta">
-          <a href="/contact" class="btn-glow btn-glow-blue" style="font-size:0.9375em;">
-            <span class="rb-default" style="padding:0.75em 1.5em;width:100%;justify-content:center;">Get Started →</span>
-            <span class="rb-hover"   style="padding:0.75em 1.5em;">Get Started →</span>
-            <span class="rb-overlay"></span>
-          </a>
+          <div class="card-cta">
+            <a href="/contact" class="btn-neo popular-btn">Get Started →</a>
+          </div>
         </div>
       </div>
 
       <!-- ── Max ── -->
-      <div class="pricing-card fade-up fade-up-d2">
-        <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-500);margin-bottom:1.5em;">Max</p>
+      <div class="fade-up fade-up-d2">
+        <div class="pricing-card rot-neg2">
+          <p style="font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#888;margin-bottom:1.5em;">Max</p>
 
-        <div style="margin-bottom:1.5em;">
-          <div class="price-amount"><sup>$</sup>1,999</div>
-          <p style="color:var(--grey-600);font-size:0.8125em;margin-top:0.5em;font-weight:500;">one-time · no monthly fees</p>
-          <div style="display:inline-flex;align-items:center;gap:0.5em;margin-top:0.6em;background:#000;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.45em 0.85em;">
-            <span style="color:#4b7bf5;font-size:0.9375em;font-weight:700;">$499 due today</span>
-            <span style="color:var(--grey-500);font-size:0.8125em;">·</span>
-            <span style="color:#fff;font-size:0.8125em;font-weight:500;">$1,500 after client approval</span>
+          <div style="margin-bottom:1.5em;">
+            <div class="price-amount"><sup>$</sup>1,999</div>
+            <p style="color:#888;font-size:0.8125em;margin-top:0.5em;font-weight:500;">one-time · no monthly fees</p>
+            <div style="display:inline-flex;align-items:center;gap:0.5em;margin-top:0.6em;background:#f5f5f5;border:1px solid rgba(0,0,0,0.1);border-radius:8px;padding:0.45em 0.85em;">
+              <span style="color:#4b7bf5;font-size:0.9375em;font-weight:700;">$499 due today</span>
+              <span style="color:#aaa;font-size:0.8125em;">·</span>
+              <span style="color:#333;font-size:0.8125em;font-weight:500;">$1,500 after client approval</span>
+            </div>
+            <p style="color:#111;font-size:0.8125em;margin-top:0.35em;font-weight:600;">Highest priority delivery</p>
           </div>
-          <p style="color:#fff;font-size:0.8125em;margin-top:0.35em;font-weight:600;">Highest priority delivery</p>
-        </div>
 
-        <p style="color:var(--grey-300);font-size:0.9375em;line-height:1.6;margin-bottom:1.75em;">
-          For brands that want to stand out — full custom build with premium effects, unlimited revisions, and post-launch support.
-        </p>
+          <p style="color:#555;font-size:0.9375em;line-height:1.6;margin-bottom:1.75em;">
+            For brands that want to stand out — full custom build with premium effects, unlimited revisions, and post-launch support.
+          </p>
 
-        <div class="divider" style="margin-bottom:1.75em;"></div>
+          <div style="height:1px;background:rgba(0,0,0,0.1);margin-bottom:1.75em;"></div>
 
-        <ul class="feature-list" style="margin-bottom:2em;">
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Everything in Growth
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Up to 10 pages
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            WebGL shaders & premium effects
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Full SEO + performance optimization
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Priority delivery
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4b7bf5" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Full post-launch support
-          </li>
-        </ul>
+          <ul class="feature-list" style="margin-bottom:2em;">
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Everything in Growth</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Up to 10 pages</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>WebGL shaders &amp; premium effects</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Full SEO + performance optimization</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Priority delivery</li>
+            <li><span class="check-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Full post-launch support</li>
+          </ul>
 
-        <div class="card-cta">
-          <a href="/contact" class="btn-glow" style="font-size:0.9375em;">
-            <span class="rb-default" style="padding:0.75em 1.5em;width:100%;justify-content:center;">Get Started →</span>
-            <span class="rb-hover"   style="padding:0.75em 1.5em;">Get Started →</span>
-            <span class="rb-overlay"></span>
-          </a>
+          <div class="card-cta">
+            <a href="/contact" class="btn-neo">Get Started →</a>
+          </div>
         </div>
       </div>
 
@@ -759,7 +699,7 @@
       </div>
 
       <div class="fp" style="min-width:0;">
-        <a href="faq.html" class="fp-btn" style="text-decoration:none;">
+        <a href="/faq" class="fp-btn" style="text-decoration:none;">
           <span class="fp-d">FAQs</span>
           <span class="fp-h">FAQs</span>
           <span class="fp-ov"></span>
@@ -805,13 +745,11 @@
 </footer>
 
 <script>
-  /* Nav logo collapse */
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  /* Footer accordion */
   function fpToggle(id) {
     var el = document.getElementById(id);
     if (!el) return;
@@ -821,8 +759,6 @@
     if (btn) btn.setAttribute('aria-expanded', String(!isOpen));
   }
 
-
-/* Pre-select package from URL param (?plan=growth) */
   var params = new URLSearchParams(window.location.search);
   var plan = params.get('plan');
   if (plan) {
