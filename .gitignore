@@ -3,3 +3,12 @@ temporary screenshots/
 serve-out.txt
 serve-err.txt
 www.sui.io_.png
+
+# Local Claude Code settings (permissions, local config)
+.claude/
+
+# Private business docs — never publish
+Weblance Studios - Client Contract.txt
+
+# Internal tools — not meant for the public site
+outreach-tracker.html
