@@ -170,6 +170,21 @@
     @media (max-width: 700px) {
       nav .nav-links { display: none; }
     }
+
+    /* ── Pill sweep button (matches site btn-glow) ── */
+    .btn-glow { display:inline-flex; align-items:stretch; background:#262626; color:#fff; font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:1em; letter-spacing:-0.01em; border-radius:40px; border:2px solid #262626; overflow:hidden; position:relative; text-decoration:none; cursor:pointer; transition:box-shadow 0.3s ease; }
+    .btn-glow:hover { box-shadow:0 6px 24px rgba(0,0,0,0.4); }
+    .btn-glow .rb-default { position:relative; display:flex; align-items:center; justify-content:center; background:#262626; color:#fff; border-radius:38px; z-index:1; white-space:nowrap; transition:opacity 0.3s; }
+    .btn-glow .rb-hover { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#262626; font-weight:500; white-space:nowrap; visibility:hidden; opacity:0; z-index:3; transition:opacity 0.3s; }
+    .btn-glow .rb-overlay { position:absolute; inset:0; border-radius:38px; background:#fafafa; transform:scaleX(0); transform-origin:right center; z-index:2; transition:transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .btn-glow:hover .rb-overlay { transform:scaleX(1); transform-origin:left center; }
+    .btn-glow:hover .rb-hover { opacity:1; visibility:visible; }
+    .btn-glow:active { opacity:0.85; }
+    .btn-glow-blue { background:#4b7bf5; border-color:#4b7bf5; box-shadow:0 0 18px rgba(75,123,245,0.35), 0 2px 8px rgba(75,123,245,0.25); }
+    .btn-glow-blue .rb-default { background:#4b7bf5; color:#fff; }
+    .btn-glow-blue .rb-hover { color:#4b7bf5; font-weight:600; }
+    .btn-glow-blue .rb-overlay { background:#f0f4ff; }
+    .btn-glow-blue:hover { box-shadow:0 0 28px rgba(75,123,245,0.5), 0 4px 16px rgba(75,123,245,0.3); }
   </style>
 </head>
 <body>
@@ -280,8 +295,10 @@
     I'm based in Sacramento &amp; Elk Grove, and I'd genuinely love to build something you're proud of. If you've got a business you care about, let's talk.
   </p>
   <div class="fade-up">
-    <a href="/contact" style="display:inline-flex;align-items:center;gap:0.6em;background:#4b7bf5;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1em;padding:0.85em 2em;border-radius:40px;text-decoration:none;transition:box-shadow 0.3s;box-shadow:0 0 18px rgba(75,123,245,0.35);">
-      Let's talk →
+    <a href="/contact" class="btn-glow btn-glow-blue" style="font-size:1.0625em;">
+      <span class="rb-default" style="padding:0.85em 2.25em;">Let's talk →</span>
+      <span class="rb-hover" style="padding:0.85em 2.25em;">Let's talk →</span>
+      <span class="rb-overlay"></span>
     </a>
   </div>
 </section>
