@@ -411,6 +411,13 @@
           </div>
         </div>
 
+        <div class="faq-card" onclick="openCard('gs-4')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Why should I trust a newer studio?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -436,6 +443,13 @@
         <div class="faq-card clr-green" onclick="openCard('pp-3')">
           <div class="faq-card-inner">
             <p class="faq-card-q">Is there a refund policy?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-green" onclick="openCard('pp-4')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">What if I don't like it?</p>
             <p class="faq-card-hint">Tap to read →</p>
           </div>
         </div>
@@ -469,6 +483,13 @@
           </div>
         </div>
 
+        <div class="faq-card clr-purple" onclick="openCard('bd-4')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Do I own my website?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -494,6 +515,13 @@
         <div class="faq-card clr-amber" onclick="openCard('al-3')">
           <div class="faq-card-inner">
             <p class="faq-card-q">Will my site show up on Google?</p>
+            <p class="faq-card-hint">Tap to read →</p>
+          </div>
+        </div>
+
+        <div class="faq-card clr-amber" onclick="openCard('al-4')">
+          <div class="faq-card-inner">
+            <p class="faq-card-q">Can you keep my site updated over time?</p>
             <p class="faq-card-hint">Tap to read →</p>
           </div>
         </div>
@@ -563,6 +591,19 @@
         <div class="fp-body-f"><div><span>Sacramento, CA</span><span>Elk Grove, CA</span></div></div>
       </div>
 
+      <div class="fp" id="fp-legal">
+        <button class="fp-btn" onclick="fpToggle('fp-legal')" aria-expanded="false">
+          <span class="fp-d">Legal</span>
+          <span class="fp-h">Legal</span>
+          <span class="fp-ov"></span>
+          <span class="fp-ic">+</span>
+        </button>
+        <div class="fp-body"><div>
+          <a href="terms.html">Terms of Service</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </div></div>
+      </div>
+
       <div class="fp" id="fp-contact">
         <button class="fp-btn" onclick="fpToggle('fp-contact')" aria-expanded="false">
           <span class="fp-d">Get in touch</span><span class="fp-h">Get in touch</span><span class="fp-ov"></span><span class="fp-ic">+</span>
@@ -611,7 +652,11 @@
     'bd-3': { color:'purple', cat:'Build & Delivery',  q:'What does "Free Custom Domain" mean?',            a:`Your domain is your website address — like yourbusiness.com. We'll help you get one set up and connected to your site. The domain itself (which typically costs ~$10–15/year) is included as part of your package.` },
     'al-1': { color:'amber',  cat:'After Launch',      q:'Can I make changes after the site is live?',      a:`Yes. Every package includes post-launch revisions. Starter gets 2 rounds, Growth has ongoing supported revisions, and Max includes full post-launch support. For bigger changes down the line, just reach out and we'll sort out a plan.` },
     'al-2': { color:'amber',  cat:'After Launch',      q:`Will I be able to see who's visiting my site?`,  a:`Growth and Max packages include Google Analytics setup. You'll be able to see how many people visit, where they come from, what pages they look at, and how long they stay — we set it all up for you. The Starter package doesn't include analytics.` },
-    'al-3': { color:'amber',  cat:'After Launch',      q:'Will my site show up on Google?',                 a:`Growth and Max packages include SEO optimization — that means your site is set up so Google can find and index it properly. Ranking on the first page takes time and ongoing effort, but we make sure the foundation is solid from day one.` }
+    'al-3': { color:'amber',  cat:'After Launch',      q:'Will my site show up on Google?',                 a:`Growth and Max packages include SEO optimization — that means your site is set up so Google can find and index it properly. Ranking on the first page takes time and ongoing effort, but we make sure the foundation is solid from day one.` },
+    'gs-4': { color:'blue',   cat:'Getting Started',   q:'Why should I trust a newer studio?',              a:`Fair question — here's the honest answer. You work directly with me, not a sales rep or an outsourced team, so every project gets real, personal attention, and I only take on a few at a time. And you're protected either way: you pay just a small deposit to start, and you don't pay the rest until the site is built and you genuinely love it. Not happy? I revise until you are, or you don't pay the balance. The risk is on me, not you.` },
+    'pp-4': { color:'green',  cat:'Pricing & Payment', q:`What if I don't like it?`,                        a:`Then we keep working until you do. You only pay a small deposit to start, and the remaining balance isn't due until you've seen the finished site and you're happy with it. If you're not satisfied before final delivery, I'll revise it until you are — or refund the remaining balance. You're never stuck paying for something you don't love.` },
+    'bd-4': { color:'purple', cat:'Build & Delivery',  q:'Do I own my website?',                            a:`Yes — 100%. Once your final payment is made, the website and all its code are entirely yours to keep. No licensing, no lock-in, no holding your site hostage. You own it outright.` },
+    'al-4': { color:'amber',  cat:'After Launch',      q:'Can you keep my site updated over time?',         a:`Absolutely. Every package includes post-launch revisions to get things just right. And if you need ongoing changes down the road — new photos, seasonal updates, an added page — just reach out and we'll work out a simple plan that fits what you need. I'm not going to disappear after launch.` }
   };
 
   var ICONS = {
