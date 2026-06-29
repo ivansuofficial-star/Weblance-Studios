@@ -445,6 +445,12 @@
 
         <form id="contact-form" action="https://formspree.io/f/xpqevoee" method="POST" style="display:grid;gap:1.5em;">
 
+          <!-- Honeypot: invisible to humans & screen readers. Bots that fill it are silently dropped (Formspree _gotcha + JS guard). -->
+          <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;" tabindex="-1">
+            <label for="hp_field">Leave this field empty</label>
+            <input type="text" id="hp_field" name="_gotcha" tabindex="-1" autocomplete="off" />
+          </div>
+
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25em;">
             <div class="form-group">
               <label class="form-label" for="fname">First Name</label>
@@ -682,6 +688,18 @@
     e.preventDefault();
     var form = this;
     var btn = form.querySelector('button[type="submit"]');
+
+    // Honeypot: if a bot filled the hidden field, silently abort (don't send, don't tip it off)
+    var hp = form.querySelector('[name="_gotcha"]');
+    if (hp && hp.value.trim() !== '') { return; }
+
+    // Trim-validate required fields so whitespace-only entries can't slip through
+    var requiredFields = ['fname', 'lname', 'email', 'message'];
+    for (var i = 0; i < requiredFields.length; i++) {
+      var fld = document.getElementById(requiredFields[i]);
+      if (fld && fld.value.trim() === '') { fld.value = ''; fld.focus(); fld.reportValidity(); return; }
+    }
+
     btn.disabled = true;
 
     fetch(form.action, {
